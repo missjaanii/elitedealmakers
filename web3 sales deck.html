@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The No-Brainer Enterprise Deal System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Opening Slide - The Hook */
+        .hero-slide {
+            background: radial-gradient(circle at center, #1a1a2e 0%, #000 100%);
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-slide h1 {
+            font-size: 96px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 0.9;
+        }
+        
+        .hero-slide .big-promise {
+            font-size: 36px;
+            color: #fff;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+        
+        .hero-stat {
+            display: inline-block;
+            margin: 0 30px;
+            text-align: center;
+        }
+        
+        .hero-stat-number {
+            font-size: 64px;
+            font-weight: 900;
+            color: #4ade80;
+            display: block;
+        }
+        
+        .hero-stat-label {
+            font-size: 18px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* The Problem Slide */
+        .problem-slide {
+            background: #0a0a0a;
+        }
+        
+        .split-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .comparison-side {
+            position: relative;
+            padding: 60px;
+            border-radius: 30px;
+            text-align: center;
+        }
+        
+        .without-us {
+            background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
+            border: 3px solid #ef4444;
+        }
+        
+        .with-us {
+            background: linear-gradient(135deg, #065f46, #047857);
+            border: 3px solid #4ade80;
+            transform: scale(1.05);
+        }
+        
+        .comparison-side h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .without-us h2 {
+            color: #ef4444;
+        }
+        
+        .with-us h2 {
+            color: #4ade80;
+        }
+        
+        .comparison-item {
+            font-size: 22px;
+            margin-bottom: 25px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .comparison-item .emoji {
+            font-size: 32px;
+        }
+        
+        /* Simple Math Slide */
+        .math-slide {
+            background: linear-gradient(135deg, #1e3a8a, #1e1b4b);
+            text-align: center;
+        }
+        
+        .math-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .math-slide h2 {
+            font-size: 64px;
+            font-weight: 900;
+            margin-bottom: 60px;
+            color: #ffd700;
+        }
+        
+        .math-equation {
+            background: rgba(255,255,255,0.1);
+            border-radius: 30px;
+            padding: 60px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 40px;
+        }
+        
+        .math-line {
+            font-size: 36px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .math-number {
+            font-size: 72px;
+            font-weight: 900;
+            color: #4ade80;
+        }
+        
+        .equals {
+            font-size: 48px;
+            color: #ffd700;
+        }
+        
+        .math-result {
+            font-size: 96px;
+            font-weight: 900;
+            color: #4ade80;
+            text-shadow: 0 0 30px rgba(74, 222, 128, 0.5);
+            margin-top: 40px;
+        }
+        
+        /* Three Options Slide */
+        .options-slide {
+            background: #000;
+        }
+        
+        .options-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .options-header h2 {
+            font-size: 56px;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        
+        .options-header .subtitle {
+            font-size: 28px;
+            color: #ffd700;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .option-card {
+            background: #111;
+            border-radius: 30px;
+            padding: 40px 30px;
+            position: relative;
+            border: 3px solid #222;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .option-card:hover {
+            transform: translateY(-10px);
+            border-color: #ffd700;
+        }
+        
+        .option-card.best-value {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #000;
+            transform: scale(1.1);
+            border: none;
+            box-shadow: 0 20px 60px rgba(251, 191, 36, 0.4);
+        }
+        
+        .option-card.best-value::before {
+            content: "NO-BRAINER";
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #000;
+            color: #ffd700;
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            font-size: 14px;
+        }
+        
+        .option-emoji {
+            font-size: 72px;
+            margin-bottom: 20px;
+        }
+        
+        .option-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .option-speed {
+            font-size: 22px;
+            font-weight: 600;
+            color: #4ade80;
+            margin-bottom: 15px;
+        }
+        
+        .best-value .option-speed {
+            color: #000;
+        }
+        
+        .option-price {
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+        
+        .option-result {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4ade80;
+            margin-bottom: 25px;
+        }
+        
+        .best-value .option-result {
+            color: #000;
+        }
+        
+        .option-features {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .option-feature {
+            font-size: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.4;
+        }
+        
+        .option-cta {
+            display: inline-block;
+            background: #4ade80;
+            color: #000;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .best-value .option-cta {
+            background: #000;
+            color: #ffd700;
+        }
+        
+        .option-feature .bonus {
+            color: #ffd700;
+        }
+        
+        /* Guarantee Slide */
+        .guarantee-slide {
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            text-align: center;
+        }
+        
+        .guarantee-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .guarantee-slide h2 {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+        
+        .guarantee-box {
+            background: rgba(0,0,0,0.3);
+            border: 5px solid #ffd700;
+            border-radius: 30px;
+            padding: 60px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .guarantee-item {
+            font-size: 32px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .guarantee-item .icon {
+            font-size: 48px;
+            margin-right: 20px;
+        }
+        
+        .crazy-part {
+            font-size: 48px;
+            font-weight: 900;
+            color: #ffd700;
+            margin-top: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        /* Add-ons Slide */
+        .addons-slide {
+            background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+        }
+        
+        .addons-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .addons-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .addons-header h2 {
+            font-size: 56px;
+            font-weight: 900;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .addons-header p {
+            font-size: 28px;
+            color: #fff;
+        }
+        
+        .addon-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .addon-box {
+            background: #111;
+            border: 3px solid #333;
+            border-radius: 30px;
+            padding: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .addon-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ffd700, #f59e0b);
+        }
+        
+        .addon-box:hover {
+            transform: translateY(-10px);
+            border-color: #ffd700;
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2);
+        }
+        
+        .addon-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .addon-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .addon-description {
+            font-size: 20px;
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .addon-price {
+            font-size: 48px;
+            font-weight: 900;
+            color: #4ade80;
+            margin-bottom: 20px;
+        }
+        
+        .addon-cta {
+            display: inline-block;
+            background: #ffd700;
+            color: #000;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .addon-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Final CTA Slide */
+        .final-slide {
+            background: #000;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .final-slide::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, #ffd700, transparent, #4ade80, transparent, #ffd700);
+            animation: gradient-sweep 10s linear infinite;
+        }
+        
+        @keyframes gradient-sweep {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .final-content {
+            position: relative;
+            z-index: 2;
+            background: rgba(0,0,0,0.9);
+            padding: 80px;
+            border-radius: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .final-slide h2 {
+            font-size: 64px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, #ffd700, #4ade80);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .choice-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .choice-box {
+            padding: 40px;
+            border-radius: 20px;
+            border: 3px solid #333;
+        }
+        
+        .choice-box.bad {
+            background: #1e1e1e;
+            border-color: #ef4444;
+        }
+        
+        .choice-box.good {
+            background: #065f46;
+            border-color: #4ade80;
+        }
+        
+        .choice-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        
+        .bad .choice-title {
+            color: #ef4444;
+        }
+        
+        .good .choice-title {
+            color: #4ade80;
+        }
+        
+        .choice-list {
+            font-size: 20px;
+            line-height: 1.8;
+            text-align: left;
+        }
+        
+        .final-cta {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffd700, #f59e0b);
+            color: #000;
+            padding: 30px 80px;
+            font-size: 32px;
+            font-weight: 900;
+            text-decoration: none;
+            border-radius: 60px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.4);
+            animation: cta-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes cta-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .final-cta:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 60px rgba(255, 215, 0, 0.6);
+        }
+        
+        .spots-left {
+            margin-top: 30px;
+            font-size: 24px;
+            color: #ef4444;
+            font-weight: 700;
+            animation: blink 1s ease-in-out infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-slide h1 {
+                font-size: 48px;
+            }
+            
+            .split-comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            .options-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .option-card.best-value {
+                transform: scale(1);
+            }
+            
+            .choice-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .addon-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: The Hook -->
+    <div class="slide hero-slide">
+        <div class="hero-content">
+            <h1>STOP!<br>DON'T EXPLAIN<br>BLOCKCHAIN</h1>
+            <p class="big-promise">Start Closing $100K+ Enterprise Deals Instead</p>
+            <div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">$9.5M</span>
+                    <span class="hero-stat-label">Average Deal</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">30</span>
+                    <span class="hero-stat-label">Days to Close</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">127x</span>
+                    <span class="hero-stat-label">Your ROI</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Slide 2: The Problem -->
+    <div class="slide problem-slide">
+        <div class="split-comparison">
+            <div class="comparison-side without-us">
+                <h2>Without Us</h2>
+                <div class="comparison-item">
+                    <span class="emoji">😴</span>
+                    <span>Enterprises fall asleep in your pitch</span>
+                </div>
+                <div class="comparison-item">
+                    <span class="emoji">🗑️</span>
+                    <span>Your emails go straight to trash</span>
+                </div>
+                <div class="comparison-item">
+                    <span class="emoji">😕</span>
+                    <span>"We don't get blockchain"</span>
+                </div>
+                <div class="comparison-item">
+                    <span class="emoji">💸</span>
+                    <span>Burn $50K/month, make $0</span>
+                </div>
+                <div class="comparison-item">
+                    <span class="emoji">😰</span>
+                    <span>6 months left of runway</span>
+                </div>
+                <div class="comparison-item">
+                    <span class="emoji">📉</span>
+                    <span>Investors lose faith</span>
+                </div>
+            </div>
+            <div class="comparison-side with-us">
+                <h2>With Us</h2>
+                <div class="comparison-item">
+                    <span class="emoji">👀</span>
+                    <span>CFO leans forward: "Tell me more"</span>
+                </div>
+                <div class="comparison-item">
+                    <span class="emoji">📧</span>
+                    <span>47% email response rate</span>
+                </div>
+                <div class="comparison-item">
+                    <span class="emoji">💡</span>
+                    <span>"This actually makes sense!"</span>
+                </div>
+                <div class="comparison-item">
+                    <span class="emoji">💰</span>
+                    <span>First $100K deal in 30 days</span>
+                </div>
+                <div class="comparison-item">
+                    <span class="emoji">🚀</span>
+                    <span>3 pilots = Series A ready</span>
+                </div>
+                <div class="comparison-item">
+                    <span class="emoji">🎉</span>
+                    <span>You're the hot startup</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Slide 3: Simple Math -->
+    <div class="slide math-slide">
+        <div class="math-container">
+            <h2>THE SIMPLE MATH</h2>
+            <div class="math-equation">
+                <div class="math-line">
+                    <span>Your Investment:</span>
+                    <span class="math-number">$1,497</span>
+                </div>
+                <div class="math-line">
+                    <span>One Enterprise Deal:</span>
+                    <span class="math-number">$100,000</span>
+                </div>
+                <div class="math-line equals">
+                    <span>=</span>
+                </div>
+                <div class="math-result">67x Return</div>
+            </div>
+            <p style="font-size: 28px; color: #ffd700;">
+                That's like putting $1 in and getting $67 back.<br>
+                <span style="font-size: 36px; font-weight: 800;">Every. Single. Time.</span>
+            </p>
+        </div>
+    </div>
+    
+    <!-- Slide 4: Three Options -->
+    <div class="slide options-slide">
+        <div>
+            <div class="options-header">
+                <h2>Pick Your Speed to $100K</h2>
+                <p class="subtitle">All roads lead to enterprise deals</p>
+            </div>
+            <div class="options-grid">
+                <!-- Option 1 -->
+                <div class="option-card">
+                    <div class="option-emoji">🏃</div>
+                    <h3 class="option-title">Quick Start</h3>
+                    <div class="option-speed">⚡ 48 Hour Delivery</div>
+                    <div class="option-price">$497</div>
+                    <div class="option-result">Perfect Templates, Fast Results</div>
+                    <div class="option-features">
+                        <div class="option-feature">
+                            <span>✓</span>
+                            <span>30-second elevator pitch (3 versions)</span>
+                        </div>
+                        <div class="option-feature">
+                            <span>✓</span>
+                            <span>5-email sequence that gets 47% reply rate</span>
+                        </div>
+                        <div class="option-feature">
+                            <span>✓</span>
+                            <span>10 LinkedIn templates (70% acceptance)</span>
+                        </div>
+                        <div class="option-feature">
+                            <span>✓</span>
+                            <span>"No Blockchain" fact sheet template</span>
+                        </div>
+                        <div class="option-feature">
+                            <span>✓</span>
+                            <span>Enterprise meeting prep checklist</span>
+                        </div>
+                        <div class="option-feature">
+                            <span>🎁</span>
+                            <span>BONUS: 50 subject lines that work</span>
+                        </div>
+                    </div>
+                    <a href="#" class="option-cta">Start Today</a>
+                </div>
+                
+                <!-- Option 2 -->
+                <div class="option-card best-value">
+                    <div class="option-emoji">🚀</div>
+                    <h3 class="option-title">Accelerator</h3>
+                    <div class="option-speed">📅 1 Week Delivery</div>
+                    <div class="option-price">$1,497</div>
+                    <div class="option-result">We Do The Heavy Lifting</div>
+                    <div class="option-features">
+                        <div class="option-feature">
+                            <span>✓</span>
+                            <span><strong>Everything in Quick Start PLUS:</strong></span>
+                        </div>
+                        <div class="option-feature">
+                            <span>✓</span>
+                            <span>20 qualified companies researched</span>
+                        </div>
+                        <div class="option-feature">
+                            <span>✓</span>
+                            <span>Decision makers found (with emails)</span>
+                        </div>
+                        <div class="option-feature">
+                            <span>✓</span>
+                            <span>Personalized opener for each prospect</span>
+                        </div>
+                        <div class="option-feature">
+                            <span>🔥</span>
+                            <span>First 5 emails sent by us</span>
+                        </div>
+                        <div class="option-feature">
+                            <span>✓</span>
+                            <span>Response tracking & optimization</span>
+                        </div>
+                        <div class="option-feature">
+                            <span>✓</span>
+                            <span>45-min strategy session included</span>
+                        </div>
+                    </div>
+                    <a href="#" class="option-cta">Get This Deal</a>
+                </div>
+                
+                <!-- Option 3 -->
+                <div class="option-card">
+                    <div class="option-emoji">👑</div>
+                    <h3 class="option-title">Dominator</h3>
+                    <div class="option-speed">🗓️ 30-Day Campaign</div>
+                    <div class="option-price">$4,497</div>
+                    <div class="option-result">Your Enterprise Sales Team</div>
+                    <div class="option-features">
+                        <div class="option-feature">
+                            <span>✓</span>
+                            <span><strong>Everything in Accelerator PLUS:</strong></span>
+                        </div>
+                        <div class="option-feature">
+                            <span>✓</span>
+                            <span>100 personalized emails managed</span>
+                        </div>
+                        <div class="option-feature">
+                            <span>✓</span>
+                            <span>50 LinkedIn connections handled</span>
+                        </div>
+                        <div class="option-feature">
+                            <span>✓</span>
+                            <span>All responses & follow-ups managed</span>
+                        </div>
+                        <div class="option-feature">
+                            <span>✓</span>
+                            <span>Weekly optimization calls (4 total)</span>
+                        </div>
+                        <div class="option-feature">
+                            <span>💎</span>
+                            <span>Executive briefings created</span>
+                        </div>
+                        <div class="option-feature">
+                            <span>✓</span>
+                            <span>Meeting scheduling handled</span>
+                        </div>
+                    </div>
+                    <a href="#" class="option-cta">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Slide 5: Insane Guarantee -->
+    <div class="slide guarantee-slide">
+        <div class="guarantee-container">
+            <h2>This Is Stupid</h2>
+            <div class="guarantee-box">
+                <div class="guarantee-item">
+                    <span class="icon">✅</span>
+                    Get enterprise meetings in 30 days
+                </div>
+                <div class="guarantee-item">
+                    <span class="icon">✅</span>
+                    Or we keep working FREE until you do
+                </div>
+                <div class="guarantee-item">
+                    <span class="icon">✅</span>
+                    Still no meetings? We pay YOU $1,000
+                </div>
+                <div class="crazy-part">
+                    We literally lose money if you fail
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Slide 6: Power-Up Add-Ons -->
+    <div class="slide addons-slide">
+        <div class="addons-container">
+            <div class="addons-header">
+                <h2>⚡ Power-Up Your Success</h2>
+                <p>Supercharge any package with these game-changers</p>
+            </div>
+            <div class="addon-grid">
+                <div class="addon-box">
+                    <div class="addon-icon">🤝</div>
+                    <h3 class="addon-title">Sales Copilot</h3>
+                    <p class="addon-description">
+                        I join your enterprise calls as your "business development lead." 
+                        Handle objections live, guide the conversation, close for next steps. 
+                        Perfect for technical founders who freeze in sales situations.
+                    </p>
+                    <div class="addon-price">$500/meeting</div>
+                    <a href="#" class="addon-cta">Add This Power-Up</a>
+                </div>
+                <div class="addon-box">
+                    <div class="addon-icon">🧠</div>
+                    <h3 class="addon-title">Enterprise Sales Mastery</h3>
+                    <p class="addon-description">
+                        Intensive 1-on-1 coaching for Web3 founders. Master enterprise psychology, 
+                        practice real scenarios, develop your executive presence. 
+                        4 sessions over 2 weeks that transform you into an enterprise closer.
+                    </p>
+                    <div class="addon-price">$1,497</div>
+                    <a href="#" class="addon-cta">Level Up Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Slide 7: Final Choice -->
+    <div class="slide final-slide">
+        <div class="final-content">
+            <h2>You Have 2 Choices</h2>
+            <div class="choice-container">
+                <div class="choice-box bad">
+                    <h3 class="choice-title">Keep Struggling</h3>
+                    <div class="choice-list">
+                        • Explain blockchain forever<br>
+                        • Watch enterprises run away<br>
+                        • Burn through runway<br>
+                        • Shut down in 6 months<br>
+                        • Tell investors you failed
+                    </div>
+                </div>
+                <div class="choice-box good">
+                    <h3 class="choice-title">Get The System</h3>
+                    <div class="choice-list">
+                        • Enterprise meetings next week<br>
+                        • First deal in 30 days<br>
+                        • 67x return on investment<br>
+                        • Series A becomes inevitable<br>
+                        • You're the success story
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="final-cta">Get Enterprise Deals Now</a>
+            <p class="spots-left">⚠️ Only 2 spots left this month</p>
+        </div>
+    </div>
+</body>
+</html>
