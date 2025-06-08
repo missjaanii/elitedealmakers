@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Enterprise Deal Machine - Mobile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+        }
+        
+        .slide-container {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+        
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.5s ease;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide.prev {
+            transform: translateX(-100%);
+        }
+        
+        /* Navigation */
+        .nav-dots {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 100;
+            padding: 10px 20px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active {
+            background: #ffd700;
+            transform: scale(1.2);
+        }
+        
+        .nav-arrows {
+            position: fixed;
+            bottom: 100px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 100;
+        }
+        
+        .nav-arrow {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 24px;
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-arrow:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.1);
+        }
+        
+        /* Slide 1: Hero */
+        .slide-1 {
+            background: radial-gradient(circle at center, #1a1a2e 0%, #000 100%);
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-subtitle {
+            font-size: 22px;
+            color: #fff;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .hero-stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: 900;
+            color: #4ade80;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #888;
+            text-transform: uppercase;
+        }
+        
+        /* Slide 2: Problem */
+        .slide-2 {
+            background: #0a0a0a;
+        }
+        
+        .comparison-wrapper {
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .comparison-box {
+            background: #111;
+            border-radius: 20px;
+            padding: 30px 20px;
+            margin-bottom: 20px;
+            border: 3px solid #333;
+        }
+        
+        .comparison-box.bad {
+            border-color: #ef4444;
+        }
+        
+        .comparison-box.good {
+            border-color: #4ade80;
+            background: #0a2e0a;
+        }
+        
+        .comparison-title {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        
+        .bad .comparison-title {
+            color: #ef4444;
+        }
+        
+        .good .comparison-title {
+            color: #4ade80;
+        }
+        
+        .comparison-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        /* Slide 3: Math */
+        .slide-3 {
+            background: linear-gradient(135deg, #1e3a8a, #1e1b4b);
+            text-align: center;
+        }
+        
+        .math-title {
+            font-size: 36px;
+            font-weight: 900;
+            color: #ffd700;
+            margin-bottom: 30px;
+        }
+        
+        .math-box {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            max-width: 350px;
+        }
+        
+        .math-line {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .math-number {
+            font-size: 32px;
+            font-weight: 900;
+            color: #4ade80;
+            display: block;
+            margin-top: 10px;
+        }
+        
+        .math-result {
+            font-size: 48px;
+            font-weight: 900;
+            color: #4ade80;
+            margin-top: 30px;
+            text-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
+        }
+        
+        /* Slides 4-6: Tiers */
+        .tier-slide {
+            background: #000;
+        }
+        
+        .tier-card {
+            background: #111;
+            border-radius: 20px;
+            padding: 30px 20px;
+            max-width: 350px;
+            width: 100%;
+            border: 3px solid #222;
+            margin: 0 auto;
+        }
+        
+        .tier-card.featured {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #000;
+            border: none;
+            position: relative;
+        }
+        
+        .tier-card.featured::before {
+            content: "NO-BRAINER";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #000;
+            color: #ffd700;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
+        .tier-icon {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .tier-name {
+            font-size: 28px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .tier-speed {
+            text-align: center;
+            font-size: 18px;
+            color: #4ade80;
+            margin-bottom: 10px;
+        }
+        
+        .featured .tier-speed {
+            color: #000;
+        }
+        
+        .tier-price {
+            font-size: 48px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .tier-features {
+            margin-bottom: 30px;
+        }
+        
+        .tier-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .tier-cta {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #4ade80;
+            color: #000;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        
+        .featured .tier-cta {
+            background: #000;
+            color: #ffd700;
+        }
+        
+        /* Slide 7: Guarantee */
+        .slide-7 {
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            text-align: center;
+        }
+        
+        .guarantee-title {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 30px;
+        }
+        
+        .guarantee-box {
+            background: rgba(0,0,0,0.3);
+            border: 3px solid #ffd700;
+            border-radius: 20px;
+            padding: 30px 20px;
+            max-width: 350px;
+        }
+        
+        .guarantee-item {
+            font-size: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .guarantee-icon {
+            font-size: 32px;
+        }
+        
+        .crazy-text {
+            font-size: 28px;
+            font-weight: 900;
+            color: #ffd700;
+            margin-top: 20px;
+        }
+        
+        /* Slide 8-9: Add-ons */
+        .addon-slide {
+            background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+        }
+        
+        .addon-card {
+            background: #111;
+            border: 3px solid #333;
+            border-radius: 20px;
+            padding: 30px 20px;
+            max-width: 350px;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .addon-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .addon-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        .addon-desc {
+            font-size: 16px;
+            color: #ccc;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        .addon-price {
+            font-size: 36px;
+            font-weight: 900;
+            color: #4ade80;
+            margin-bottom: 20px;
+        }
+        
+        .addon-cta {
+            display: inline-block;
+            background: #ffd700;
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        
+        /* Slide 10: Final Choice */
+        .slide-10 {
+            background: #000;
+            text-align: center;
+        }
+        
+        .final-title {
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #ffd700, #4ade80);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .choice-box {
+            background: #111;
+            border-radius: 20px;
+            padding: 30px 20px;
+            margin-bottom: 20px;
+            max-width: 350px;
+            border: 3px solid #333;
+        }
+        
+        .choice-box.bad {
+            border-color: #ef4444;
+        }
+        
+        .choice-box.good {
+            border-color: #4ade80;
+            background: #0a2e0a;
+        }
+        
+        .choice-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .bad .choice-title {
+            color: #ef4444;
+        }
+        
+        .good .choice-title {
+            color: #4ade80;
+        }
+        
+        .choice-item {
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        
+        .final-cta {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffd700, #f59e0b);
+            color: #000;
+            padding: 20px 40px;
+            font-size: 20px;
+            font-weight: 900;
+            text-decoration: none;
+            border-radius: 40px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+        
+        .spots-warning {
+            color: #ef4444;
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+        
+        /* Swipe Hint */
+        .swipe-hint {
+            position: fixed;
+            bottom: 160px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        /* Touch Gestures */
+        .slide-container {
+            touch-action: pan-y;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container" id="slideContainer">
+        <!-- Slide 1: Hero -->
+        <div class="slide slide-1 active">
+            <h1 class="hero-title">STOP!<br>DON'T EXPLAIN<br>BLOCKCHAIN</h1>
+            <p class="hero-subtitle">Start Closing $100K+ Enterprise Deals</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="stat-number">$9.5M</span>
+                    <span class="stat-label">Avg Deal</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-number">30</span>
+                    <span class="stat-label">Days</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-number">127x</span>
+                    <span class="stat-label">ROI</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 2: Problem -->
+        <div class="slide slide-2">
+            <div class="comparison-wrapper">
+                <div class="comparison-box bad">
+                    <h2 class="comparison-title">Without Us</h2>
+                    <div class="comparison-item">
+                        <span>😴</span>
+                        <span>Enterprises fall asleep</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>🗑️</span>
+                        <span>Emails go to trash</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>💸</span>
+                        <span>Burn $50K/month</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>📉</span>
+                        <span>6 months to failure</span>
+                    </div>
+                </div>
+                <div class="comparison-box good">
+                    <h2 class="comparison-title">With Us</h2>
+                    <div class="comparison-item">
+                        <span>👀</span>
+                        <span>CFO: "Tell me more"</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>📧</span>
+                        <span>47% response rate</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>💰</span>
+                        <span>$100K in 30 days</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>🚀</span>
+                        <span>Series A ready</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 3: Simple Math -->
+        <div class="slide slide-3">
+            <h2 class="math-title">THE SIMPLE MATH</h2>
+            <div class="math-box">
+                <div class="math-line">
+                    Your Investment:
+                    <span class="math-number">$1,497</span>
+                </div>
+                <div class="math-line">
+                    One Deal:
+                    <span class="math-number">$100,000</span>
+                </div>
+                <div class="math-result">67x Return</div>
+            </div>
+        </div>
+        
+        <!-- Slide 4: Tier 1 -->
+        <div class="slide tier-slide slide-4">
+            <div class="tier-card">
+                <div class="tier-icon">🚀</div>
+                <h3 class="tier-name">Quick Start</h3>
+                <div class="tier-speed">⚡ 48 Hour Delivery</div>
+                <div class="tier-price">$497</div>
+                <div class="tier-features">
+                    <div class="tier-feature">
+                        <span>✓</span>
+                        <span>30-second pitch (3 versions)</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span>✓</span>
+                        <span>5 emails (47% reply rate)</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span>✓</span>
+                        <span>10 LinkedIn templates</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span>✓</span>
+                        <span>"No Blockchain" fact sheet</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span>✓</span>
+                        <span>Meeting prep checklist</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span>🎁</span>
+                        <span>BONUS: 50 subject lines</span>
+                    </div>
+                </div>
+                <a href="#" class="tier-cta">Start Today</a>
+            </div>
+        </div>
+        
+        <!-- Slide 5: Tier 2 -->
+        <div class="slide tier-slide slide-5">
+            <div class="tier-card featured">
+                <div class="tier-icon">🎯</div>
+                <h3 class="tier-name">Accelerator</h3>
+                <div class="tier-speed">📅 1 Week Delivery</div>
+                <div class="tier-price">$1,497</div>
+                <div class="tier-features">
+                    <div class="tier-feature">
+                        <span>✓</span>
+                        <span><strong>Everything in Quick Start</strong></span>
+                    </div>
+                    <div class="tier-feature">
+                        <span>✓</span>
+                        <span>20 companies researched</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span>✓</span>
+                        <span>Decision makers found</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span>✓</span>
+                        <span>Personalized openers</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span>🔥</span>
+                        <span>First 5 emails sent</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span>✓</span>
+                        <span>Response tracking</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span>✓</span>
+                        <span>45-min strategy call</span>
+                    </div>
+                </div>
+                <a href="#" class="tier-cta">Get This Deal</a>
+            </div>
+        </div>
+        
+        <!-- Slide 6: Tier 3 -->
+        <div class="slide tier-slide slide-6">
+            <div class="tier-card">
+                <div class="tier-icon">💎</div>
+                <h3 class="tier-name">Dominator</h3>
+                <div class="tier-speed">🗓️ 30-Day Campaign</div>
+                <div class="tier-price">$4,497</div>
+                <div class="tier-features">
+                    <div class="tier-feature">
+                        <span>✓</span>
+                        <span><strong>Everything in Accelerator</strong></span>
+                    </div>
+                    <div class="tier-feature">
+                        <span>✓</span>
+                        <span>100 emails managed</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span>✓</span>
+                        <span>50 LinkedIn connections</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span>✓</span>
+                        <span>All responses handled</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span>✓</span>
+                        <span>Weekly optimization</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span>💎</span>
+                        <span>Executive briefings</span>
+                    </div>
+                    <div class="tier-feature">
+                        <span>✓</span>
+                        <span>Meeting scheduling</span>
+                    </div>
+                </div>
+                <a href="#" class="tier-cta">Apply Now</a>
+            </div>
+        </div>
+        
+        <!-- Slide 7: Guarantee -->
+        <div class="slide slide-7">
+            <h2 class="guarantee-title">This Is Stupid</h2>
+            <div class="guarantee-box">
+                <div class="guarantee-item">
+                    <span class="guarantee-icon">✅</span>
+                    <span>Get meetings in 30 days</span>
+                </div>
+                <div class="guarantee-item">
+                    <span class="guarantee-icon">✅</span>
+                    <span>Or we work FREE</span>
+                </div>
+                <div class="guarantee-item">
+                    <span class="guarantee-icon">✅</span>
+                    <span>Still fail? We pay YOU $1,000</span>
+                </div>
+                <div class="crazy-text">We lose money if you fail</div>
+            </div>
+        </div>
+        
+        <!-- Slide 8: Add-on 1 -->
+        <div class="slide addon-slide slide-8">
+            <div class="addon-card">
+                <div class="addon-icon">🤝</div>
+                <h3 class="addon-title">Sales Copilot</h3>
+                <p class="addon-desc">
+                    I join your enterprise calls. Handle objections live. Close for next steps. Perfect for technical founders.
+                </p>
+                <div class="addon-price">$500/meeting</div>
+                <a href="#" class="addon-cta">Add Power-Up</a>
+            </div>
+        </div>
+        
+        <!-- Slide 9: Add-on 2 -->
+        <div class="slide addon-slide slide-9">
+            <div class="addon-card">
+                <div class="addon-icon">🧠</div>
+                <h3 class="addon-title">Sales Mastery</h3>
+                <p class="addon-desc">
+                    4 intensive sessions. Master enterprise psychology. Develop executive presence. Close like a pro.
+                </p>
+                <div class="addon-price">$1,497</div>
+                <a href="#" class="addon-cta">Level Up</a>
+            </div>
+        </div>
+        
+        <!-- Slide 10: Final Choice -->
+        <div class="slide slide-10">
+            <h2 class="final-title">You Have 2 Choices</h2>
+            <div class="choice-box bad">
+                <h3 class="choice-title">Keep Struggling</h3>
+                <div class="choice-item">• Explain blockchain forever</div>
+                <div class="choice-item">• Burn through runway</div>
+                <div class="choice-item">• Shut down in 6 months</div>
+            </div>
+            <div class="choice-box good">
+                <h3 class="choice-title">Get The System</h3>
+                <div class="choice-item">• Meetings next week</div>
+                <div class="choice-item">• First deal in 30 days</div>
+                <div class="choice-item">• Series A inevitable</div>
+            </div>
+            <a href="#" class="final-cta">Get Enterprise Deals</a>
+            <p class="spots-warning">⚠️ Only 2 spots left</p>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <div class="nav-dots">
+        <span class="nav-dot active" onclick="goToSlide(0)"></span>
+        <span class="nav-dot" onclick="goToSlide(1)"></span>
+        <span class="nav-dot" onclick="goToSlide(2)"></span>
+        <span class="nav-dot" onclick="goToSlide(3)"></span>
+        <span class="nav-dot" onclick="goToSlide(4)"></span>
+        <span class="nav-dot" onclick="goToSlide(5)"></span>
+        <span class="nav-dot" onclick="goToSlide(6)"></span>
+        <span class="nav-dot" onclick="goToSlide(7)"></span>
+        <span class="nav-dot" onclick="goToSlide(8)"></span>
+        <span class="nav-dot" onclick="goToSlide(9)"></span>
+    </div>
+    
+    <div class="nav-arrows">
+        <div class="nav-arrow" onclick="prevSlide()">←</div>
+        <div class="nav-arrow" onclick="nextSlide()">→</div>
+    </div>
+    
+    <div class="swipe-hint">Swipe or tap arrows to navigate</div>
+    
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.nav-dot');
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        function showSlide(n) {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'prev');
+                if (index < n) slide.classList.add('prev');
+                if (index === n) slide.classList.add('active');
+            });
+            
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === n);
+            });
+            
+            currentSlide = n;
+        }
+        
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+        
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+        
+        function goToSlide(n) {
+            showSlide(n);
+        }
+        
+        // Touch gestures
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) nextSlide();
+            if (touchEndX > touchStartX + 50) prevSlide();
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+        
+        // Hide swipe hint after first interaction
+        document.addEventListener('touchstart', () => {
+            document.querySelector('.swipe-hint').style.display = 'none';
+        }, { once: true });
+        
+        document.addEventListener('click', () => {
+            document.querySelector('.swipe-hint').style.display = 'none';
+        }, { once: true });
+    </script>
+</body>
+</html>
