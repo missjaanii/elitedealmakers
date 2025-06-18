@@ -2,900 +2,2592 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Enterprise Deal Machine - Mobile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>ELITE DEALMAKERS - Sovereign AI Sales Coach</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
         }
-        
+
+        :root {
+            --bg: #0a0a0a;
+            --surface: #111111;
+            --surface-light: #1a1a1a;
+            --text: #ffffff;
+            --text-muted: #a0a0a0;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #000;
-            color: #fff;
-            overflow: hidden;
-            position: relative;
-            height: 100vh;
-            width: 100vw;
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
-        
-        .slide-container {
-            position: relative;
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
+
+        /* Background Animation Canvas */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
-        
-        .slide {
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Prevent horizontal scroll on mobile */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 15px 0;
+            background: rgba(10, 10, 10, 0.95);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-cta {
+            background: var(--gradient);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            margin-left: 16px;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 0 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 14px;
+            margin-bottom: 24px;
+            color: var(--accent-light);
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        h1 {
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+
+        .gradient-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: var(--text-muted);
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        /* Video Container */
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto 48px;
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            background: var(--surface);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .video-wrapper:hover {
+            transform: perspective(1000px) rotateX(0deg) scale(1.02);
+        }
+
+        .video-placeholder {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            padding: 40px 20px;
-            opacity: 0;
-            transform: translateX(100%);
-            transition: all 0.5s ease;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
         }
-        
-        .slide.active {
+
+        .play-btn {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-left: 20px solid white;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 4px;
+        }
+
+        /* CTA Section */
+        .hero-cta {
+            animation: fadeInUp 0.6s ease-out 0.4s both;
+        }
+
+        .primary-btn {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .primary-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .primary-btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .hero-meta {
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .meta-icon {
+            width: 20px;
+            height: 20px;
+            background: rgba(99, 102, 241, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        /* Sales Calculator Section */
+        .calculator-section {
+            padding: 80px 0;
+            background: var(--surface);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 48px;
+            position: relative;
+        }
+
+        .calc-input-group {
+            margin-bottom: 32px;
+        }
+
+        .calc-label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .calc-slider {
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .slider-value {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-light);
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--gradient);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .calc-results {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .calc-result-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .calc-result-value {
+            font-size: 48px;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+
+        /* Interactive Problem Section */
+        .problem-section {
+            padding: 80px 0;
+            background: var(--bg);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.1);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            color: var(--accent-light);
+        }
+
+        h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .problem-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .problem-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .sector-tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .sector-tab {
+            flex: 1;
+            padding: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-muted);
+            position: relative;
+            text-align: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .sector-tab:last-child {
+            border-right: none;
+        }
+
+        .sector-tab::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .sector-tab:hover {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text);
+        }
+
+        .sector-tab.active {
+            color: var(--accent-light);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .sector-tab.active::after {
+            transform: scaleX(1);
+        }
+
+        .problem-content-wrapper {
+            position: relative;
+            height: 420px;
+            overflow: hidden;
+        }
+
+        .problem-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 40px;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .problem-content.active {
             opacity: 1;
             transform: translateX(0);
         }
-        
-        .slide.prev {
-            transform: translateX(-100%);
-        }
-        
-        /* Navigation */
-        .nav-dots {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 8px;
-            z-index: 100;
-            padding: 10px 20px;
-            background: rgba(0,0,0,0.5);
-            border-radius: 30px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .nav-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-dot.active {
-            background: #ffd700;
-            transform: scale(1.2);
-        }
-        
-        .nav-arrows {
-            position: fixed;
-            bottom: 100px;
-            left: 20px;
-            right: 20px;
-            display: flex;
-            justify-content: space-between;
-            z-index: 100;
-        }
-        
-        .nav-arrow {
-            width: 50px;
-            height: 50px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
+
+        .problem-title {
             font-size: 24px;
-            color: white;
-            backdrop-filter: blur(10px);
-        }
-        
-        .nav-arrow:hover {
-            background: rgba(255,255,255,0.2);
-            transform: scale(1.1);
-        }
-        
-        /* Slide 1: Hero */
-        .slide-1 {
-            background: radial-gradient(circle at center, #1a1a2e 0%, #000 100%);
-            text-align: center;
-        }
-        
-        .hero-title {
-            font-size: 48px;
-            font-weight: 900;
-            line-height: 1;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .hero-subtitle {
-            font-size: 22px;
-            color: #fff;
-            margin-bottom: 40px;
-            font-weight: 300;
-        }
-        
-        .hero-stats {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .hero-stat {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 36px;
-            font-weight: 900;
-            color: #4ade80;
-            display: block;
-        }
-        
-        .stat-label {
-            font-size: 14px;
-            color: #888;
-            text-transform: uppercase;
-        }
-        
-        /* Slide 2: Problem */
-        .slide-2 {
-            background: #0a0a0a;
-        }
-        
-        .comparison-wrapper {
-            width: 100%;
-            max-width: 400px;
-        }
-        
-        .comparison-box {
-            background: #111;
-            border-radius: 20px;
-            padding: 30px 20px;
-            margin-bottom: 20px;
-            border: 3px solid #333;
-        }
-        
-        .comparison-box.bad {
-            border-color: #ef4444;
-        }
-        
-        .comparison-box.good {
-            border-color: #4ade80;
-            background: #0a2e0a;
-        }
-        
-        .comparison-title {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            text-align: center;
-            text-transform: uppercase;
-        }
-        
-        .bad .comparison-title {
-            color: #ef4444;
-        }
-        
-        .good .comparison-title {
-            color: #4ade80;
-        }
-        
-        .comparison-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            font-size: 16px;
-        }
-        
-        /* Slide 3: Math */
-        .slide-3 {
-            background: linear-gradient(135deg, #1e3a8a, #1e1b4b);
-            text-align: center;
-        }
-        
-        .math-title {
-            font-size: 36px;
-            font-weight: 900;
-            color: #ffd700;
-            margin-bottom: 30px;
-        }
-        
-        .math-box {
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-            max-width: 350px;
-        }
-        
-        .math-line {
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .math-number {
-            font-size: 32px;
-            font-weight: 900;
-            color: #4ade80;
-            display: block;
-            margin-top: 10px;
-        }
-        
-        .math-result {
-            font-size: 48px;
-            font-weight: 900;
-            color: #4ade80;
-            margin-top: 30px;
-            text-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
-        }
-        
-        /* Slides 4-6: Tiers */
-        .tier-slide {
-            background: #000;
-        }
-        
-        .tier-card {
-            background: #111;
-            border-radius: 20px;
-            padding: 30px 20px;
-            max-width: 350px;
-            width: 100%;
-            border: 3px solid #222;
-            margin: 0 auto;
-        }
-        
-        .tier-card.featured {
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
-            color: #000;
-            border: none;
-            position: relative;
-        }
-        
-        .tier-card.featured::before {
-            content: "NO-BRAINER";
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #000;
-            color: #ffd700;
-            padding: 5px 20px;
-            border-radius: 20px;
-            font-size: 12px;
             font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--accent-light);
         }
-        
-        .tier-icon {
-            font-size: 48px;
-            text-align: center;
-            margin-bottom: 20px;
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 12px;
         }
-        
-        .tier-name {
-            font-size: 28px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-        
-        .tier-speed {
-            text-align: center;
-            font-size: 18px;
-            color: #4ade80;
-            margin-bottom: 10px;
-        }
-        
-        .featured .tier-speed {
-            color: #000;
-        }
-        
-        .tier-price {
-            font-size: 48px;
-            font-weight: 900;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        .tier-features {
-            margin-bottom: 30px;
-        }
-        
-        .tier-feature {
+
+        .problem-item {
             display: flex;
             align-items: flex-start;
-            gap: 10px;
-            margin-bottom: 12px;
-            font-size: 14px;
-            line-height: 1.4;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            transition: all 0.3s ease;
         }
-        
-        .tier-cta {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background: #4ade80;
-            color: #000;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 16px;
-            text-transform: uppercase;
+
+        .problem-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            transform: translateX(4px);
         }
-        
-        .featured .tier-cta {
-            background: #000;
-            color: #ffd700;
-        }
-        
-        /* Slide 7: Guarantee */
-        .slide-7 {
-            background: linear-gradient(135deg, #dc2626, #991b1b);
-            text-align: center;
-        }
-        
-        .guarantee-title {
-            font-size: 48px;
-            font-weight: 900;
-            margin-bottom: 30px;
-        }
-        
-        .guarantee-box {
-            background: rgba(0,0,0,0.3);
-            border: 3px solid #ffd700;
-            border-radius: 20px;
-            padding: 30px 20px;
-            max-width: 350px;
-        }
-        
-        .guarantee-item {
-            font-size: 20px;
-            margin-bottom: 20px;
+
+        .problem-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 8px;
             display: flex;
             align-items: center;
-            gap: 15px;
-        }
-        
-        .guarantee-icon {
-            font-size: 32px;
-        }
-        
-        .crazy-text {
-            font-size: 28px;
-            font-weight: 900;
-            color: #ffd700;
-            margin-top: 20px;
-        }
-        
-        /* Slide 8-9: Add-ons */
-        .addon-slide {
-            background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
-        }
-        
-        .addon-card {
-            background: #111;
-            border: 3px solid #333;
-            border-radius: 20px;
-            padding: 30px 20px;
-            max-width: 350px;
-            width: 100%;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .addon-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-        
-        .addon-title {
-            font-size: 24px;
-            font-weight: 800;
-            color: #ffd700;
-            margin-bottom: 15px;
-        }
-        
-        .addon-desc {
+            justify-content: center;
             font-size: 16px;
-            color: #ccc;
+            flex-shrink: 0;
+        }
+
+        .problem-text {
+            color: var(--text-muted);
+            font-size: 14px;
             line-height: 1.5;
-            margin-bottom: 20px;
         }
-        
-        .addon-price {
-            font-size: 36px;
-            font-weight: 900;
-            color: #4ade80;
-            margin-bottom: 20px;
+
+        /* Quiz Section */
+        .quiz-section {
+            padding: 80px 0;
+            background: var(--surface);
         }
-        
-        .addon-cta {
-            display: inline-block;
-            background: #ffd700;
-            color: #000;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-weight: 700;
-            text-decoration: none;
-            text-transform: uppercase;
+
+        .quiz-container {
+            max-width: 700px;
+            margin: 0 auto;
         }
-        
-        /* Slide 10: Final Choice */
-        .slide-10 {
-            background: #000;
+
+        .quiz-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 48px;
             text-align: center;
         }
-        
-        .final-title {
-            font-size: 36px;
-            font-weight: 900;
-            margin-bottom: 30px;
-            background: linear-gradient(45deg, #ffd700, #4ade80);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        .quiz-question {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 32px;
         }
-        
-        .choice-box {
-            background: #111;
-            border-radius: 20px;
-            padding: 30px 20px;
-            margin-bottom: 20px;
-            max-width: 350px;
-            border: 3px solid #333;
+
+        .quiz-scenario {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+            font-style: italic;
+            color: var(--text-muted);
         }
-        
-        .choice-box.bad {
-            border-color: #ef4444;
+
+        .quiz-options {
+            display: grid;
+            gap: 16px;
         }
-        
-        .choice-box.good {
-            border-color: #4ade80;
-            background: #0a2e0a;
-        }
-        
-        .choice-title {
-            font-size: 20px;
-            font-weight: 800;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-        
-        .bad .choice-title {
-            color: #ef4444;
-        }
-        
-        .good .choice-title {
-            color: #4ade80;
-        }
-        
-        .choice-item {
-            font-size: 16px;
-            margin-bottom: 10px;
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
             text-align: left;
         }
-        
-        .final-cta {
-            display: inline-block;
-            background: linear-gradient(45deg, #ffd700, #f59e0b);
-            color: #000;
-            padding: 20px 40px;
-            font-size: 20px;
-            font-weight: 900;
-            text-decoration: none;
-            border-radius: 40px;
-            text-transform: uppercase;
-            margin-top: 20px;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateX(8px);
         }
-        
-        .spots-warning {
-            color: #ef4444;
-            font-size: 18px;
+
+        .quiz-result {
+            display: none;
+            margin-top: 32px;
+            padding: 32px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+        }
+
+        .quiz-result.wrong {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            padding: 80px 0;
+            background: var(--bg);
+        }
+
+        .comparison-table {
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+
+        .table-wrapper {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 24px;
+            text-align: left;
             font-weight: 700;
-            margin-top: 20px;
+            font-size: 18px;
         }
-        
-        /* Swipe Hint */
-        .swipe-hint {
-            position: fixed;
-            bottom: 160px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: rgba(255,255,255,0.5);
+
+        th:first-child {
+            width: 40%;
+        }
+
+        td {
+            padding: 20px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .check-mark {
+            color: var(--success);
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .x-mark {
+            color: var(--danger);
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            transform: perspective(1000px) rotateY(5deg) translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .feature-value {
+            color: var(--accent-light);
             font-size: 14px;
-            animation: pulse 2s ease-in-out infinite;
+            font-weight: 600;
+            margin-bottom: 16px;
         }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+
+        .feature-description {
+            color: var(--text-muted);
+            margin-bottom: 24px;
         }
-        
-        /* Touch Gestures */
-        .slide-container {
-            touch-action: pan-y;
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding-left: 24px;
+            margin-bottom: 12px;
+            position: relative;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        /* Results Section */
+        .results-section {
+            padding: 80px 0;
+            background: var(--surface);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .result-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-quote {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .result-author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .author-info h4 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .author-info p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .pricing-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 32px;
+            padding: 64px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: perspective(1000px) rotateX(0deg) scale(1.02);
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient);
+            border-radius: 32px;
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        .price-tag {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.1);
+            padding: 8px 24px;
+            border-radius: 100px;
+            font-size: 14px;
+            margin-bottom: 24px;
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        .price {
+            font-size: 72px;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .price-period {
+            font-size: 20px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 48px;
+        }
+
+        .price-features li {
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .price-features li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-name {
+            text-align: left;
+        }
+
+        .feature-value {
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+            background: var(--surface);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 16px;
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(99, 102, 241, 0.2);
+        }
+
+        .faq-arrow {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-content {
+            padding: 24px 32px;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        /* Footer CTA */
+        .footer-cta {
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            /* General */
+            .container {
+                padding: 0 16px;
+            }
+
+            /* Navigation */
+            nav {
+                padding: 16px 0;
+            }
+
+            nav.scrolled {
+                padding: 12px 0;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .nav-cta {
+                padding: 8px 20px;
+                font-size: 13px;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            /* Make CTA button full width on mobile */
+            .hero-cta {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            /* Optimize spacing throughout */
+            .hero {
+                padding: 100px 0 60px;
+                min-height: auto;
+            }
+
+            /* Ensure video doesn't overflow */
+            .video-container {
+                margin-bottom: 32px;
+            }
+
+            /* Mobile-friendly particle background */
+            #particles-canvas {
+                opacity: 0.3;
+            }
+
+            h1 {
+                font-size: 32px;
+                line-height: 1.2;
+                margin-bottom: 16px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+                margin-bottom: 32px;
+            }
+
+            .hero-badge {
+                font-size: 12px;
+                padding: 6px 16px;
+                margin-bottom: 20px;
+            }
+
+            .video-wrapper {
+                transform: none;
+            }
+
+            .video-wrapper:hover {
+                transform: none;
+            }
+
+            .play-btn {
+                width: 60px;
+                height: 60px;
+            }
+
+            .play-icon {
+                border-left: 16px solid white;
+                border-top: 10px solid transparent;
+                border-bottom: 10px solid transparent;
+            }
+
+            .primary-btn {
+                padding: 14px 32px;
+                font-size: 16px;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .hero-meta {
+                margin-top: 20px;
+                gap: 16px;
+            }
+
+            .meta-item {
+                font-size: 12px;
+            }
+
+            /* Sections */
+            .calculator-section,
+            .problem-section,
+            .quiz-section,
+            .comparison-section,
+            .features-section,
+            .results-section,
+            .pricing-section,
+            .faq-section,
+            .footer-cta {
+                padding: 60px 0;
+            }
+
+            /* Section Headers */
+            h2 {
+                font-size: 28px;
+                margin-bottom: 12px;
+            }
+
+            .section-header {
+                margin-bottom: 32px;
+            }
+
+            .section-description {
+                font-size: 16px;
+            }
+
+            .section-badge {
+                font-size: 11px;
+                padding: 4px 12px;
+                margin-bottom: 12px;
+            }
+
+            /* Calculator */
+            .calculator-container {
+                padding: 32px 20px;
+            }
+
+            .calc-label {
+                font-size: 14px;
+            }
+
+            .slider-value {
+                font-size: 20px;
+            }
+
+            .calc-results {
+                padding: 24px 16px;
+            }
+
+            .calc-results > div:first-child {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 0;
+            }
+
+            .calc-results > div:first-child > div:first-child {
+                margin-bottom: 16px;
+            }
+
+            .calc-results > div:first-child > div:nth-child(2) {
+                margin-bottom: 16px;
+            }
+
+            .arrow-indicator {
+                transform: rotate(90deg);
+                margin: 16px 0;
+                font-size: 32px;
+            }
+
+            .calc-result-value {
+                font-size: 36px;
+            }
+
+            /* Problem Section */
+            .problem-container {
+                border-radius: 16px;
+            }
+
+            .sector-tabs {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .sector-tab {
+                font-size: 13px;
+                padding: 16px 8px;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .sector-tab:nth-child(2) {
+                border-left: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .sector-tab:nth-child(3),
+            .sector-tab:nth-child(4) {
+                border-bottom: none;
+            }
+
+            .problem-content-wrapper {
+                height: auto;
+                min-height: 420px;
+            }
+
+            .problem-content {
+                padding: 24px 16px;
+            }
+
+            .problem-title {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .problem-item {
+                padding: 12px;
+                gap: 10px;
+            }
+
+            .problem-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+            }
+
+            .problem-text {
+                font-size: 13px;
+            }
+
+            /* Quiz */
+            .quiz-card {
+                padding: 32px 20px;
+            }
+
+            .quiz-question {
+                font-size: 20px;
+                margin-bottom: 24px;
+            }
+
+            .quiz-scenario {
+                padding: 20px;
+                font-size: 14px;
+                margin-bottom: 24px;
+            }
+
+            .quiz-option {
+                padding: 16px;
+                font-size: 14px;
+            }
+
+            .quiz-result {
+                padding: 24px 20px;
+            }
+
+            /* Comparison Table */
+            .table-wrapper {
+                border-radius: 16px;
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 500px;
+            }
+
+            th {
+                padding: 16px;
+                font-size: 14px;
+            }
+
+            td {
+                padding: 14px 16px;
+                font-size: 13px;
+            }
+
+            .check-mark,
+            .x-mark {
+                font-size: 16px;
+            }
+
+            /* Features */
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                margin-top: 32px;
+            }
+
+            .feature-card {
+                padding: 32px 24px;
+                border-radius: 16px;
+            }
+
+            .feature-card:hover {
+                transform: none;
+            }
+
+            .feature-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+
+            .feature-title {
+                font-size: 20px;
+            }
+
+            .feature-value {
+                font-size: 13px;
+            }
+
+            .feature-description {
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+
+            .feature-list li {
+                font-size: 13px;
+                margin-bottom: 10px;
+            }
+
+            /* Results */
+            .results-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                margin-top: 32px;
+            }
+
+            .result-card {
+                padding: 24px;
+            }
+
+            .result-quote {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+            .author-avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .author-info h4 {
+                font-size: 14px;
+            }
+
+            .author-info p {
+                font-size: 12px;
+            }
+
+            /* Pricing */
+            .pricing-card {
+                padding: 40px 24px;
+                border-radius: 24px;
+                transform: none;
+            }
+
+            .pricing-card:hover {
+                transform: none;
+            }
+
+            .price-tag {
+                font-size: 12px;
+                padding: 6px 20px;
+            }
+
+            .price {
+                font-size: 48px;
+            }
+
+            .price-period {
+                font-size: 16px;
+                margin-bottom: 24px;
+            }
+
+            .price-features li {
+                padding: 12px 0;
+                font-size: 14px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+
+            .feature-value {
+                font-size: 12px;
+            }
+
+            /* FAQ */
+            .faq-container {
+                max-width: 100%;
+            }
+
+            .faq-item {
+                margin-bottom: 12px;
+            }
+
+            .faq-question {
+                padding: 20px 24px;
+                font-size: 16px;
+                border-radius: 12px;
+            }
+
+            .faq-arrow {
+                width: 20px;
+                height: 20px;
+            }
+
+            .faq-answer-content {
+                padding: 20px 24px;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            /* Footer CTA */
+            .footer-cta {
+                padding: 80px 0 60px;
+            }
+
+            .cta-content h2 {
+                font-size: 28px;
+            }
+
+            /* Particles - reduce for performance */
+            #particles-canvas {
+                opacity: 0.3;
+            }
+        }
+
+        /* Mobile-specific improvements */
+        @media (max-width: 768px) {
+            /* Ensure minimum touch target size */
+            button, a, .sector-tab, .quiz-option, .faq-question {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+
+            /* Improve tap targets */
+            .meta-item {
+                padding: 8px 0;
+            }
+
+            /* Better mobile scrolling */
+            .comparison-table {
+                -webkit-overflow-scrolling: touch;
+                overflow-x: auto;
+            }
+
+            /* Disable hover effects on mobile */
+            .feature-card:hover,
+            .problem-item:hover,
+            .sector-tab:hover,
+            .quiz-option:hover {
+                transform: none;
+            }
+
+            /* Make sliders easier to use on mobile */
+            input[type="range"] {
+                height: 44px;
+                margin: -18px 0;
+            }
+
+            input[type="range"]::-webkit-slider-thumb {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        /* Small mobile */
+        @media (max-width: 375px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .primary-btn {
+                font-size: 15px;
+                padding: 12px 24px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .section-description {
+                font-size: 15px;
+            }
+
+            .calc-result-value {
+                font-size: 32px;
+            }
+
+            .price {
+                font-size: 40px;
+            }
+
+            .sector-tab {
+                font-size: 12px;
+                padding: 14px 6px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="slide-container" id="slideContainer">
-        <!-- Slide 1: Hero -->
-        <div class="slide slide-1 active">
-            <h1 class="hero-title">STOP!<br>DON'T EXPLAIN<br>BLOCKCHAIN</h1>
-            <p class="hero-subtitle">Start Closing $100K+ Enterprise Deals</p>
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <span class="stat-number">$9.5M</span>
-                    <span class="stat-label">Avg Deal</span>
-                </div>
-                <div class="hero-stat">
-                    <span class="stat-number">30</span>
-                    <span class="stat-label">Days</span>
-                </div>
-                <div class="hero-stat">
-                    <span class="stat-number">127x</span>
-                    <span class="stat-label">ROI</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Slide 2: Problem -->
-        <div class="slide slide-2">
-            <div class="comparison-wrapper">
-                <div class="comparison-box bad">
-                    <h2 class="comparison-title">Without Us</h2>
-                    <div class="comparison-item">
-                        <span>😴</span>
-                        <span>Enterprises fall asleep</span>
-                    </div>
-                    <div class="comparison-item">
-                        <span>🗑️</span>
-                        <span>Emails go to trash</span>
-                    </div>
-                    <div class="comparison-item">
-                        <span>💸</span>
-                        <span>Burn $50K/month</span>
-                    </div>
-                    <div class="comparison-item">
-                        <span>📉</span>
-                        <span>6 months to failure</span>
-                    </div>
-                </div>
-                <div class="comparison-box good">
-                    <h2 class="comparison-title">With Us</h2>
-                    <div class="comparison-item">
-                        <span>👀</span>
-                        <span>CFO: "Tell me more"</span>
-                    </div>
-                    <div class="comparison-item">
-                        <span>📧</span>
-                        <span>47% response rate</span>
-                    </div>
-                    <div class="comparison-item">
-                        <span>💰</span>
-                        <span>$100K in 30 days</span>
-                    </div>
-                    <div class="comparison-item">
-                        <span>🚀</span>
-                        <span>Series A ready</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Slide 3: Simple Math -->
-        <div class="slide slide-3">
-            <h2 class="math-title">THE SIMPLE MATH</h2>
-            <div class="math-box">
-                <div class="math-line">
-                    Your Investment:
-                    <span class="math-number">$1,497</span>
-                </div>
-                <div class="math-line">
-                    One Deal:
-                    <span class="math-number">$100,000</span>
-                </div>
-                <div class="math-result">67x Return</div>
-            </div>
-        </div>
-        
-        <!-- Slide 4: Tier 1 -->
-        <div class="slide tier-slide slide-4">
-            <div class="tier-card">
-                <div class="tier-icon">🚀</div>
-                <h3 class="tier-name">Quick Start</h3>
-                <div class="tier-speed">⚡ 48 Hour Delivery</div>
-                <div class="tier-price">$497</div>
-                <div class="tier-features">
-                    <div class="tier-feature">
-                        <span>✓</span>
-                        <span>30-second pitch (3 versions)</span>
-                    </div>
-                    <div class="tier-feature">
-                        <span>✓</span>
-                        <span>5 emails (47% reply rate)</span>
-                    </div>
-                    <div class="tier-feature">
-                        <span>✓</span>
-                        <span>10 LinkedIn templates</span>
-                    </div>
-                    <div class="tier-feature">
-                        <span>✓</span>
-                        <span>"No Blockchain" fact sheet</span>
-                    </div>
-                    <div class="tier-feature">
-                        <span>✓</span>
-                        <span>Meeting prep checklist</span>
-                    </div>
-                    <div class="tier-feature">
-                        <span>🎁</span>
-                        <span>BONUS: 50 subject lines</span>
-                    </div>
-                </div>
-                <a href="#" class="tier-cta">Start Today</a>
-            </div>
-        </div>
-        
-        <!-- Slide 5: Tier 2 -->
-        <div class="slide tier-slide slide-5">
-            <div class="tier-card featured">
-                <div class="tier-icon">🎯</div>
-                <h3 class="tier-name">Accelerator</h3>
-                <div class="tier-speed">📅 1 Week Delivery</div>
-                <div class="tier-price">$1,497</div>
-                <div class="tier-features">
-                    <div class="tier-feature">
-                        <span>✓</span>
-                        <span><strong>Everything in Quick Start</strong></span>
-                    </div>
-                    <div class="tier-feature">
-                        <span>✓</span>
-                        <span>20 companies researched</span>
-                    </div>
-                    <div class="tier-feature">
-                        <span>✓</span>
-                        <span>Decision makers found</span>
-                    </div>
-                    <div class="tier-feature">
-                        <span>✓</span>
-                        <span>Personalized openers</span>
-                    </div>
-                    <div class="tier-feature">
-                        <span>🔥</span>
-                        <span>First 5 emails sent</span>
-                    </div>
-                    <div class="tier-feature">
-                        <span>✓</span>
-                        <span>Response tracking</span>
-                    </div>
-                    <div class="tier-feature">
-                        <span>✓</span>
-                        <span>45-min strategy call</span>
-                    </div>
-                </div>
-                <a href="#" class="tier-cta">Get This Deal</a>
-            </div>
-        </div>
-        
-        <!-- Slide 6: Tier 3 -->
-        <div class="slide tier-slide slide-6">
-            <div class="tier-card">
-                <div class="tier-icon">💎</div>
-                <h3 class="tier-name">Dominator</h3>
-                <div class="tier-speed">🗓️ 30-Day Campaign</div>
-                <div class="tier-price">$4,497</div>
-                <div class="tier-features">
-                    <div class="tier-feature">
-                        <span>✓</span>
-                        <span><strong>Everything in Accelerator</strong></span>
-                    </div>
-                    <div class="tier-feature">
-                        <span>✓</span>
-                        <span>100 emails managed</span>
-                    </div>
-                    <div class="tier-feature">
-                        <span>✓</span>
-                        <span>50 LinkedIn connections</span>
-                    </div>
-                    <div class="tier-feature">
-                        <span>✓</span>
-                        <span>All responses handled</span>
-                    </div>
-                    <div class="tier-feature">
-                        <span>✓</span>
-                        <span>Weekly optimization</span>
-                    </div>
-                    <div class="tier-feature">
-                        <span>💎</span>
-                        <span>Executive briefings</span>
-                    </div>
-                    <div class="tier-feature">
-                        <span>✓</span>
-                        <span>Meeting scheduling</span>
-                    </div>
-                </div>
-                <a href="#" class="tier-cta">Apply Now</a>
-            </div>
-        </div>
-        
-        <!-- Slide 7: Guarantee -->
-        <div class="slide slide-7">
-            <h2 class="guarantee-title">This Is Stupid</h2>
-            <div class="guarantee-box">
-                <div class="guarantee-item">
-                    <span class="guarantee-icon">✅</span>
-                    <span>Get meetings in 30 days</span>
-                </div>
-                <div class="guarantee-item">
-                    <span class="guarantee-icon">✅</span>
-                    <span>Or we work FREE</span>
-                </div>
-                <div class="guarantee-item">
-                    <span class="guarantee-icon">✅</span>
-                    <span>Still fail? We pay YOU $1,000</span>
-                </div>
-                <div class="crazy-text">We lose money if you fail</div>
-            </div>
-        </div>
-        
-        <!-- Slide 8: Add-on 1 -->
-        <div class="slide addon-slide slide-8">
-            <div class="addon-card">
-                <div class="addon-icon">🤝</div>
-                <h3 class="addon-title">Sales Copilot</h3>
-                <p class="addon-desc">
-                    I join your enterprise calls. Handle objections live. Close for next steps. Perfect for technical founders.
-                </p>
-                <div class="addon-price">$500/meeting</div>
-                <a href="#" class="addon-cta">Add Power-Up</a>
-            </div>
-        </div>
-        
-        <!-- Slide 9: Add-on 2 -->
-        <div class="slide addon-slide slide-9">
-            <div class="addon-card">
-                <div class="addon-icon">🧠</div>
-                <h3 class="addon-title">Sales Mastery</h3>
-                <p class="addon-desc">
-                    4 intensive sessions. Master enterprise psychology. Develop executive presence. Close like a pro.
-                </p>
-                <div class="addon-price">$1,497</div>
-                <a href="#" class="addon-cta">Level Up</a>
-            </div>
-        </div>
-        
-        <!-- Slide 10: Final Choice -->
-        <div class="slide slide-10">
-            <h2 class="final-title">You Have 2 Choices</h2>
-            <div class="choice-box bad">
-                <h3 class="choice-title">Keep Struggling</h3>
-                <div class="choice-item">• Explain blockchain forever</div>
-                <div class="choice-item">• Burn through runway</div>
-                <div class="choice-item">• Shut down in 6 months</div>
-            </div>
-            <div class="choice-box good">
-                <h3 class="choice-title">Get The System</h3>
-                <div class="choice-item">• Meetings next week</div>
-                <div class="choice-item">• First deal in 30 days</div>
-                <div class="choice-item">• Series A inevitable</div>
-            </div>
-            <a href="#" class="final-cta">Get Enterprise Deals</a>
-            <p class="spots-warning">⚠️ Only 2 spots left</p>
-        </div>
-    </div>
-    
+    <!-- Background Animation Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
     <!-- Navigation -->
-    <div class="nav-dots">
-        <span class="nav-dot active" onclick="goToSlide(0)"></span>
-        <span class="nav-dot" onclick="goToSlide(1)"></span>
-        <span class="nav-dot" onclick="goToSlide(2)"></span>
-        <span class="nav-dot" onclick="goToSlide(3)"></span>
-        <span class="nav-dot" onclick="goToSlide(4)"></span>
-        <span class="nav-dot" onclick="goToSlide(5)"></span>
-        <span class="nav-dot" onclick="goToSlide(6)"></span>
-        <span class="nav-dot" onclick="goToSlide(7)"></span>
-        <span class="nav-dot" onclick="goToSlide(8)"></span>
-        <span class="nav-dot" onclick="goToSlide(9)"></span>
-    </div>
-    
-    <div class="nav-arrows">
-        <div class="nav-arrow" onclick="prevSlide()">←</div>
-        <div class="nav-arrow" onclick="nextSlide()">→</div>
-    </div>
-    
-    <div class="swipe-hint">Swipe or tap arrows to navigate</div>
-    
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">ELITE DEALMAKERS</div>
+                <div style="display: flex; align-items: center;">
+                    <a href="#pricing" class="nav-cta">Get Started</a>
+                    <button class="mobile-menu-btn" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">🚀 Limited Time: Founding Member Pricing</div>
+                <h1>SOVEREIGN AI: <span class="gradient-text">Your 24/7 AI Sales Coach</span> That Never Sleeps</h1>
+                <p class="hero-description">Master high-ticket sales with personalized AI coaching in any language. Close more deals, command higher prices, and transform your income globally.</p>
+                
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <div class="video-placeholder">
+                            <div class="play-btn">
+                                <div class="play-icon"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-cta">
+                    <a href="#pricing" class="primary-btn">Claim Your Founding Member Spot</a>
+                    <div class="hero-meta">
+                        <div class="meta-item">
+                            <div class="meta-icon">⚡</div>
+                            <span>Instant Access</span>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-icon">🌍</div>
+                            <span>Multilingual Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sales Calculator Section -->
+    <section class="calculator-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">ROI Calculator</div>
+                <h2>Calculate Your <span class="gradient-text">Revenue Increase</span></h2>
+                <p class="section-description">See how much more you could earn with a 60% close rate</p>
+                <p style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">*Our top members consistently achieve 60%+ close rates</p>
+            </div>
+
+            <div class="calculator-container">
+                <div class="calc-input-group">
+                    <label class="calc-label">Current Close Rate</label>
+                    <input type="range" class="calc-slider" id="closeRate" min="10" max="60" value="20">
+                    <div class="slider-value"><span id="closeRateValue">20</span>%</div>
+                </div>
+
+                <div class="calc-input-group">
+                    <label class="calc-label">Average Deal Size</label>
+                    <input type="range" class="calc-slider" id="dealSize" min="1000" max="50000" value="5000" step="1000">
+                    <div class="slider-value">$<span id="dealSizeValue">5,000</span></div>
+                </div>
+
+                <div class="calc-input-group">
+                    <label class="calc-label">Calls Per Month</label>
+                    <input type="range" class="calc-slider" id="callsPerMonth" min="10" max="100" value="40">
+                    <div class="slider-value"><span id="callsValue">40</span></div>
+                </div>
+
+                <div class="calc-results">
+                    <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; margin-bottom: 24px; align-items: center;">
+                        <div>
+                            <div class="calc-result-label">Current Monthly Revenue</div>
+                            <div style="font-size: 32px; font-weight: 700; color: #ef4444;">$<span id="currentRevenue">40,000</span></div>
+                            <div style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">at <span id="currentRateDisplay">20</span>% close rate</div>
+                        </div>
+                        <div style="font-size: 48px; color: var(--accent-light);" class="arrow-indicator">→</div>
+                        <div>
+                            <div class="calc-result-label">With Sovereign AI</div>
+                            <div style="font-size: 32px; font-weight: 700; color: var(--success);">$<span id="improvedRevenue">120,000</span></div>
+                            <div style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">at <span id="targetRate">60</span>% close rate</div>
+                        </div>
+                    </div>
+                    <div class="calc-result-label">Your Potential Monthly Increase</div>
+                    <div class="calc-result-value">+$<span id="increaseValue">80,000</span></div>
+                    <div class="calc-result-label">That's <span id="roiValue">808</span>x ROI on Sovereign AI</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">The Problem</div>
+                <h2>Select Your <span class="gradient-text">Industry</span></h2>
+                <p class="section-description">Click to see the specific challenges you're facing</p>
+            </div>
+
+            <div class="problem-container">
+                <div class="sector-tabs">
+                    <button class="sector-tab active" data-sector="closers">High-Ticket Closers</button>
+                    <button class="sector-tab" data-sector="coaches">Coaches & Consultants</button>
+                    <button class="sector-tab" data-sector="providers">Service Providers</button>
+                    <button class="sector-tab" data-sector="founders">Entrepreneurs</button>
+                </div>
+
+                <div class="problem-content-wrapper">
+                    <div class="problem-content active" id="closers-content">
+                        <h3 class="problem-title">High-Ticket Closer Challenges</h3>
+                        <div class="problem-grid">
+                            <div class="problem-item">
+                                <div class="problem-icon">🤖</div>
+                                <div class="problem-text">Generic scripts that sound robotic and kill trust</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">📉</div>
+                                <div class="problem-text">Stuck at 20% close rates while top closers hit 50%+</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">🎯</div>
+                                <div class="problem-text">Can't adapt frameworks to different industries</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">💸</div>
+                                <div class="problem-text">Missing out on higher commission structures</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">😤</div>
+                                <div class="problem-text">No intel from setters, flying blind on calls</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">🔄</div>
+                                <div class="problem-text">Same objections killing deals repeatedly</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="problem-content" id="coaches-content">
+                        <h3 class="problem-title">Coach & Consultant Challenges</h3>
+                        <div class="problem-grid">
+                            <div class="problem-item">
+                                <div class="problem-icon">🧠</div>
+                                <div class="problem-text">Brilliant at delivery but freeze on sales calls</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">💔</div>
+                                <div class="problem-text">Instant discounts when anyone mentions price</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">📱</div>
+                                <div class="problem-text">DMs ignored while competitors book calls daily</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">💰</div>
+                                <div class="problem-text">Can't justify charging $10K+ for your expertise</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">📊</div>
+                                <div class="problem-text">Leaving 80% of potential revenue on the table</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">🎪</div>
+                                <div class="problem-text">Feel sleazy selling despite believing in your service</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="problem-content" id="providers-content">
+                        <h3 class="problem-title">Service Provider Challenges</h3>
+                        <div class="problem-grid">
+                            <div class="problem-item">
+                                <div class="problem-icon">⏰</div>
+                                <div class="problem-text">Trapped trading hours for dollars</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">📦</div>
+                                <div class="problem-text">No idea how to package and sell value</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">🏢</div>
+                                <div class="problem-text">Losing to agencies charging 10x your rates</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">🎓</div>
+                                <div class="problem-text">Can't afford $10K+ sales training programs</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">🚀</div>
+                                <div class="problem-text">Ready to level up but missing the playbook</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">🎭</div>
+                                <div class="problem-text">Positioned as vendor, not strategic partner</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="problem-content" id="founders-content">
+                        <h3 class="problem-title">Entrepreneur & Founder Challenges</h3>
+                        <div class="problem-grid">
+                            <div class="problem-item">
+                                <div class="problem-icon">🎩</div>
+                                <div class="problem-text">Wearing too many hats to master sales</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">⏳</div>
+                                <div class="problem-text">Every lost deal threatens your runway</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">👥</div>
+                                <div class="problem-text">Can't afford a professional sales team yet</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">💡</div>
+                                <div class="problem-text">Struggling to sell vision to investors</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">🔥</div>
+                                <div class="problem-text">Need to close deals fast or burn out</div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">📈</div>
+                                <div class="problem-text">Technical genius but sales feels unnatural</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Interactive Demo</div>
+                <h2>Test Your <span class="gradient-text">Sales Skills</span></h2>
+                <p class="section-description">See how Sovereign AI would handle this common objection</p>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-card">
+                    <h3 class="quiz-question">How would you respond?</h3>
+                    <div class="quiz-scenario">
+                        "Your prospect just said: 'This sounds great, but $10,000 is way more than I expected to invest. I need to think about it.'"
+                    </div>
+                    
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-answer="wrong">
+                            <strong>Option A:</strong> "I understand. Would a payment plan help? We can do $3,500 for 3 months."
+                        </div>
+                        <div class="quiz-option" data-answer="wrong">
+                            <strong>Option B:</strong> "Think about how much you're losing by not solving this problem. Can you really afford to wait?"
+                        </div>
+                        <div class="quiz-option" data-answer="correct">
+                            <strong>Option C:</strong> "I appreciate you being honest about that. Help me understand - what specifically about the investment concerns you?"
+                        </div>
+                        <div class="quiz-option" data-answer="wrong">
+                            <strong>Option D:</strong> "Many of my clients felt the same way at first, but they all say it was worth it."
+                        </div>
+                    </div>
+
+                    <div class="quiz-result" id="quiz-result">
+                        <h4>AI Coach Analysis</h4>
+                        <p id="quiz-feedback"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="comparison-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Compare</div>
+                <h2>Traditional Training vs <span class="gradient-text">Sovereign AI</span></h2>
+                <p class="section-description">See why AI-powered coaching is the future of sales mastery</p>
+            </div>
+
+            <div class="comparison-table">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Traditional Sales Training</th>
+                                <th>Sovereign AI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Availability</td>
+                                <td><span class="x-mark">✗</span> Scheduled calls only</td>
+                                <td><span class="check-mark">✓</span> 24/7 instant access</td>
+                            </tr>
+                            <tr>
+                                <td>Personalization</td>
+                                <td><span class="x-mark">✗</span> Generic scripts</td>
+                                <td><span class="check-mark">✓</span> Custom to your situation</td>
+                            </tr>
+                            <tr>
+                                <td>Practice Partner</td>
+                                <td><span class="x-mark">✗</span> Role-play in groups</td>
+                                <td><span class="check-mark">✓</span> Unlimited AI practice</td>
+                            </tr>
+                            <tr>
+                                <td>Industry Adaptation</td>
+                                <td><span class="x-mark">✗</span> One-size-fits-all</td>
+                                <td><span class="check-mark">✓</span> Any industry, any offer</td>
+                            </tr>
+                            <tr>
+                                <td>Response Time</td>
+                                <td><span class="x-mark">✗</span> Wait for next call</td>
+                                <td><span class="check-mark">✓</span> Instant answers</td>
+                            </tr>
+                            <tr>
+                                <td>Cost</td>
+                                <td><span class="x-mark">✗</span> $5,000-$25,000</td>
+                                <td><span class="check-mark">✓</span> $99/month</td>
+                            </tr>
+                            <tr>
+                                <td>Updates</td>
+                                <td><span class="x-mark">✗</span> Outdated material</td>
+                                <td><span class="check-mark">✓</span> Always current</td>
+                            </tr>
+                            <tr>
+                                <td>Language Support</td>
+                                <td><span class="x-mark">✗</span> Usually English only</td>
+                                <td><span class="check-mark">✓</span> Full multilingual support</td>
+                            </tr>
+                            <tr>
+                                <td>Community</td>
+                                <td><span class="x-mark">✗</span> Course ends, community dies</td>
+                                <td><span class="check-mark">✓</span> Active daily community</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">The Solution</div>
+                <h2>Everything You Need to <span class="gradient-text">Master Sales</span></h2>
+                <p class="section-description">A complete ecosystem designed to transform your sales conversations</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">Dual AI Coaching System</h3>
+                    <p class="feature-value">$5,000 VALUE</p>
+                    <p class="feature-description">Two AI coaches working together to perfect your sales skills</p>
+                    <ul class="feature-list">
+                        <li>ChatGPT coach for strategy & scripts</li>
+                        <li>Voice AI for live practice calls</li>
+                        <li>Custom scripts for any situation</li>
+                        <li>Industry-specific adaptations</li>
+                        <li>Multilingual support - practice in any language</li>
+                        <li>24/7 availability worldwide</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Weekly Mastery Calls</h3>
+                    <p class="feature-value">$3,000 VALUE</p>
+                    <p class="feature-description">Live coaching to accelerate your implementation</p>
+                    <ul class="feature-list">
+                        <li>Hot seat coaching sessions</li>
+                        <li>Live role-play practice</li>
+                        <li>Script optimization workshops</li>
+                        <li>Q&A with top performers</li>
+                        <li>Recorded for replay</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3 class="feature-title">Elite Community</h3>
+                    <p class="feature-value">$2,000 VALUE</p>
+                    <p class="feature-description">Network with closers crushing it daily</p>
+                    <ul class="feature-list">
+                        <li>Share wins & strategies</li>
+                        <li>Get feedback on calls</li>
+                        <li>Find referral partners</li>
+                        <li>Accountability partners</li>
+                        <li>Job opportunities</li>
+                        <li>Global network - members from 40+ countries</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3 class="feature-title">Monthly Arsenal Updates</h3>
+                    <p class="feature-value">$1,500 VALUE</p>
+                    <p class="feature-description">Fresh scripts and strategies that work NOW</p>
+                    <ul class="feature-list">
+                        <li>Industry-specific scripts</li>
+                        <li>DM templates that book</li>
+                        <li>Objection handlers</li>
+                        <li>Follow-up sequences</li>
+                        <li>Tested & proven</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3 class="feature-title">Resource Vault</h3>
+                    <p class="feature-value">$1,000 VALUE</p>
+                    <p class="feature-description">Everything you need to close deals</p>
+                    <ul class="feature-list">
+                        <li>Battle-tested scripts</li>
+                        <li>Contract templates</li>
+                        <li>CRM workflows</li>
+                        <li>Email sequences</li>
+                        <li>Commission calculators</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎁</div>
+                    <h3 class="feature-title">Founding Bonuses</h3>
+                    <p class="feature-value">$1,294 VALUE</p>
+                    <p class="feature-description">Exclusive for first 100 members only</p>
+                    <ul class="feature-list">
+                        <li>$50K close breakdown</li>
+                        <li>Industry script pack</li>
+                        <li>1-on-1 AI setup call</li>
+                        <li>Lifetime updates</li>
+                        <li>Priority support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Proven Results</div>
+                <h2>Real Members. <span class="gradient-text">Real Transformations.</span></h2>
+                <p class="section-description">These results speak louder than any sales pitch</p>
+            </div>
+
+            <div class="results-grid">
+                <div class="result-card">
+                    <p class="result-quote">"Went from closing 3/10 to 6/10 using Sovereign AI scripts. That's an extra $18K in commissions this month alone."</p>
+                    <div class="result-author">
+                        <div class="author-avatar">MD</div>
+                        <div class="author-info">
+                            <h4>Mike D.</h4>
+                            <p>Remote Closer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <p class="result-quote">"First $25K client after 2 years of charging $2K. The price presentation script was pure magic."</p>
+                    <div class="result-author">
+                        <div class="author-avatar">DL</div>
+                        <div class="author-info">
+                            <h4>David L.</h4>
+                            <p>Business Coach</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <p class="result-quote">"Booked 12 calls from DMs in one week. Closed 5 at $10K each. This pays for itself 500x over."</p>
+                    <div class="result-author">
+                        <div class="author-avatar">NP</div>
+                        <div class="author-info">
+                            <h4>Nina P.</h4>
+                            <p>Marketing Consultant</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <p class="result-quote">"The AI helped me adapt my pitch for a SaaS client. Closed a $75K deal with 15% commission."</p>
+                    <div class="result-author">
+                        <div class="author-avatar">AR</div>
+                        <div class="author-info">
+                            <h4>Ashley R.</h4>
+                            <p>High-Ticket Closer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <p class="result-quote">"Went from $50/hour to $5K packages. The AI taught me how to position value vs. time."</p>
+                    <div class="result-author">
+                        <div class="author-avatar">CM</div>
+                        <div class="author-info">
+                            <h4>Carlos M.</h4>
+                            <p>Designer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <p class="result-quote">"My close rate jumped from 22% to 47% in just 60 days. The SOVEREIGN method is pure gold."</p>
+                    <div class="result-author">
+                        <div class="author-avatar">SK</div>
+                        <div class="author-info">
+                            <h4>Sarah K.</h4>
+                            <p>Sales Professional</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <p class="result-quote">"As a Spanish speaker, I love that I can practice in my native language. Closed my first €30K deal in Madrid!"</p>
+                    <div class="result-author">
+                        <div class="author-avatar">JM</div>
+                        <div class="author-info">
+                            <h4>Juan M.</h4>
+                            <p>International Closer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Investment</div>
+                <h2>Join The <span class="gradient-text">Elite Dealmakers</span></h2>
+                <p class="section-description">Lock in founding member pricing before it's gone forever</p>
+            </div>
+
+            <div class="pricing-card">
+                <div class="price-tag">FOUNDING MEMBER SPECIAL</div>
+                <div class="price">$99</div>
+                <div class="price-period">per month • cancel anytime</div>
+                
+                <ul class="price-features">
+                    <li>
+                        <span class="feature-name">Dual AI Coaching System</span>
+                        <span class="feature-value">$5,000 value</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">Weekly Live Mastery Calls</span>
+                        <span class="feature-value">$3,000 value</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">Elite Sales Community</span>
+                        <span class="feature-value">$2,000 value</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">Monthly Script Updates</span>
+                        <span class="feature-value">$1,500 value</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">Complete Resource Vault</span>
+                        <span class="feature-value">$1,000 value</span>
+                    </li>
+                    <li>
+                        <span class="feature-name">Founding Member Bonuses</span>
+                        <span class="feature-value">$1,294 value</span>
+                    </li>
+                </ul>
+
+                <a href="#" class="primary-btn">Secure Your Spot Now</a>
+                <p style="margin-top: 24px; color: var(--text-muted);">
+                    <span style="color: var(--warning);">⚠️ Price increases to $149/month after 100 members</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">FAQ</div>
+                <h2>Got <span class="gradient-text">Questions?</span></h2>
+                <p class="section-description">Everything you need to know before joining</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How quickly will I see results?</span>
+                        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Most members report improvements in their very first week. By practicing with the AI daily and implementing the scripts, you'll see immediate changes in how prospects respond. Our average member doubles their close rate within 60 days.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What makes this different from other sales training?</span>
+                        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Three key differences: 1) 24/7 AI coaching means you can practice anytime, not just during scheduled calls. 2) Personalized scripts for YOUR specific situation, not generic templates. 3) Live voice practice to build muscle memory, not just theory. Plus, our community of active closers sharing what's working NOW.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>I'm brand new to sales. Will this work for me?</span>
+                        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Absolutely. The AI adapts to your skill level. Beginners get foundational training and simple scripts to build confidence. As you improve, the AI provides more advanced strategies. Many of our most successful members started with zero sales experience.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I use this for my team?</span>
+                        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! Many agency owners and sales managers use Sovereign AI to train their teams. The AI provides consistent training, the community offers peer support, and the weekly calls give your team ongoing development. It's like having a sales trainer on staff 24/7.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What if I'm already successful in sales?</span>
+                        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Even top performers find massive value. Use the AI to test new approaches, adapt to different industries, or break through plateaus. Our highest earners use it to go from 40% to 60%+ close rates. Small improvements at your level mean huge commission increases.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is there a contract or commitment?</span>
+                        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            No contracts, no commitment. Cancel anytime with one click. But here's what happens: members see such incredible ROI that they never want to leave. One extra close pays for months of membership. Most members make back their investment in the first week.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What exactly do I get access to?</span>
+                        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Immediately after joining: Both AI coaches (ChatGPT + Voice), access to the private community, your welcome package with quick-start guides, invitation to weekly calls, the complete script vault, and scheduling for your 1-on-1 setup session. Everything is designed to get you results fast.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Does Sovereign AI support multiple languages?</span>
+                        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! Sovereign AI offers full multilingual support. You can practice sales conversations, generate scripts, and receive coaching in your preferred language. Whether you're closing deals in English, Spanish, French, German, or any other major language, the AI adapts to your needs. This is perfect for international closers or anyone selling to a global audience.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Why is the price going up?</span>
+                        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We're rewarding early adopters who believe in the vision. The first 100 members lock in $99/month forever. After that, it's $149/month for new members. This ensures we maintain quality while building an elite community. Your rate never increases as a founding member.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to <span class="gradient-text">Transform Your Sales?</span></h2>
+                <p class="section-description" style="margin-bottom: 48px;">Join founding members already closing more deals with AI</p>
+                <a href="#" class="primary-btn">Lock In Your $99/Month Rate</a>
+                <p style="margin-top: 24px; color: var(--text-muted);">
+                    Cancel anytime • Instant access
+                </p>
+            </div>
+        </div>
+    </section>
+
     <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.nav-dot');
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        function showSlide(n) {
-            slides.forEach((slide, index) => {
-                slide.classList.remove('active', 'prev');
-                if (index < n) slide.classList.add('prev');
-                if (index === n) slide.classList.add('active');
-            });
-            
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === n);
-            });
-            
-            currentSlide = n;
+        // Background Particles Animation
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
-        
-        function nextSlide() {
-            if (currentSlide < slides.length - 1) {
-                showSlide(currentSlide + 1);
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * 2 - 1;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(131, 140, 248, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
             }
         }
-        
-        function prevSlide() {
-            if (currentSlide > 0) {
-                showSlide(currentSlide - 1);
+
+        function createParticles() {
+            for (let i = 0; i < 50; i++) {
+                particles.push(new Particle());
             }
         }
-        
-        function goToSlide(n) {
-            showSlide(n);
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            requestAnimationFrame(animateParticles);
         }
-        
-        // Touch gestures
-        document.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-        
-        document.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-        
-        function handleSwipe() {
-            if (touchEndX < touchStartX - 50) nextSlide();
-            if (touchEndX > touchStartX + 50) prevSlide();
+
+        createParticles();
+        animateParticles();
+
+        // Sales Calculator
+        const closeRateSlider = document.getElementById('closeRate');
+        const dealSizeSlider = document.getElementById('dealSize');
+        const callsSlider = document.getElementById('callsPerMonth');
+
+        function updateCalculator() {
+            const closeRate = parseInt(closeRateSlider.value);
+            const dealSize = parseInt(dealSizeSlider.value);
+            const calls = parseInt(callsSlider.value);
+
+            document.getElementById('closeRateValue').textContent = closeRate;
+            document.getElementById('dealSizeValue').textContent = dealSize.toLocaleString();
+            document.getElementById('callsValue').textContent = calls;
+            document.getElementById('currentRateDisplay').textContent = closeRate;
+
+            // Calculate current monthly revenue
+            const currentRevenue = (calls * (closeRate / 100) * dealSize);
+            
+            // Calculate improved revenue with Sovereign AI
+            // If already at 60%, show potential to reach 80% (our absolute top performers)
+            const improvedCloseRate = closeRate >= 60 ? 80 : 60;
+            const improvedRevenue = (calls * (improvedCloseRate / 100) * dealSize);
+            
+            // Update the target rate display
+            document.getElementById('targetRate').textContent = improvedCloseRate;
+            
+            // Calculate increase
+            const increase = improvedRevenue - currentRevenue;
+            const roi = Math.round(increase / 99);
+
+            document.getElementById('currentRevenue').textContent = currentRevenue.toLocaleString();
+            document.getElementById('improvedRevenue').textContent = improvedRevenue.toLocaleString();
+            document.getElementById('increaseValue').textContent = increase.toLocaleString();
+            document.getElementById('roiValue').textContent = roi.toLocaleString();
         }
+
+        closeRateSlider.addEventListener('input', updateCalculator);
+        dealSizeSlider.addEventListener('input', updateCalculator);
+        callsSlider.addEventListener('input', updateCalculator);
         
-        // Keyboard navigation
-        document.addEventListener('keydown', e => {
-            if (e.key === 'ArrowLeft') prevSlide();
-            if (e.key === 'ArrowRight') nextSlide();
+        // Initialize calculator on page load
+        updateCalculator();
+
+        // Problem Section Tabs
+        const sectorTabs = document.querySelectorAll('.sector-tab');
+        const problemContents = document.querySelectorAll('.problem-content');
+
+        // Show first tab content on load
+        if (problemContents.length > 0) {
+            problemContents[0].classList.add('active');
+        }
+
+        sectorTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                sectorTabs.forEach(t => t.classList.remove('active'));
+                problemContents.forEach(content => content.classList.remove('active'));
+
+                // Add active class to clicked tab
+                tab.classList.add('active');
+
+                // Show corresponding content
+                const sector = tab.dataset.sector;
+                const content = document.getElementById(`${sector}-content`);
+                if (content) {
+                    // Small delay for smooth transition
+                    setTimeout(() => {
+                        content.classList.add('active');
+                    }, 50);
+                }
+            });
         });
+
+        // Quiz functionality
+        const quizOptions = document.querySelectorAll('.quiz-option');
+        const quizResult = document.getElementById('quiz-result');
+        const quizFeedback = document.getElementById('quiz-feedback');
+
+        quizOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const isCorrect = option.dataset.answer === 'correct';
+                
+                quizResult.style.display = 'block';
+                quizResult.classList.toggle('wrong', !isCorrect);
+                
+                if (isCorrect) {
+                    quizFeedback.textContent = "Excellent! This response uses psychological curiosity to understand their real concern. The AI would then guide you to isolate whether it's about ROI, cash flow, or value perception - then provide the perfect reframe for their specific situation.";
+                } else {
+                    quizFeedback.textContent = "This is what most salespeople do - and why they lose deals. The AI would coach you to never immediately offer discounts, defend the price, or use generic reassurance. Instead, seek to understand their specific concern first.";
+                }
+
+                // Highlight selected option
+                quizOptions.forEach(opt => opt.style.opacity = '0.5');
+                option.style.opacity = '1';
+                option.style.borderColor = isCorrect ? 'rgba(16, 185, 129, 0.5)' : 'rgba(239, 68, 68, 0.5)';
+            });
+        });
+
+        // Smooth scroll for nav
+        document.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // FAQ functionality
+        const faqItems = document.querySelectorAll('.faq-item');
         
-        // Hide swipe hint after first interaction
-        document.addEventListener('touchstart', () => {
-            document.querySelector('.swipe-hint').style.display = 'none';
-        }, { once: true });
-        
-        document.addEventListener('click', () => {
-            document.querySelector('.swipe-hint').style.display = 'none';
-        }, { once: true });
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all FAQs
+                faqItems.forEach(faq => {
+                    faq.classList.remove('active');
+                });
+                
+                // Open clicked FAQ if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        const cards = document.querySelectorAll('.feature-card, .result-card');
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Mobile optimizations
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
+        // Reduce particles on mobile for performance
+        if (isMobile()) {
+            // Clear existing particles
+            particles = [];
+            // Create fewer particles on mobile
+            for (let i = 0; i < 20; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        // Touch-friendly interactions
+        if ('ontouchstart' in window) {
+            // Add touch feedback to buttons
+            document.querySelectorAll('.primary-btn, .sector-tab, .quiz-option, .faq-question').forEach(element => {
+                element.addEventListener('touchstart', function() {
+                    this.style.opacity = '0.8';
+                });
+                element.addEventListener('touchend', function() {
+                    this.style.opacity = '1';
+                });
+            });
+        }
+
+        // Smooth scroll with offset for mobile nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = target.offsetTop - navHeight - 20;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
