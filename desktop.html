@@ -2,22 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#0a0a0a">
-    <title>ELITE DEALMAKERS - Sovereign AI Sales Coach</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Dealmakers Club - The Exclusive Business Transformation Society</title>
     
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%236366f1'/><text x='50' y='65' font-family='Arial, sans-serif' font-size='48' font-weight='bold' text-anchor='middle' fill='white'>ED</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000000'/><text x='50' y='65' font-family='Arial, sans-serif' font-size='48' font-weight='bold' text-anchor='middle' fill='%23FFD700'>ED</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' fill='%23000000'/><text x='90' y='115' font-family='Arial, sans-serif' font-size='86' font-weight='bold' text-anchor='middle' fill='%23FFD700'>ED</text></svg>">
     
-    <!-- Alternative favicon with gradient background -->
-    <!-- <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%236366f1'/><stop offset='100%' style='stop-color:%23a855f7'/></linearGradient></defs><rect width='100' height='100' fill='url(%23grad)'/><text x='50' y='65' font-family='Arial, sans-serif' font-size='48' font-weight='bold' text-anchor='middle' fill='white'>ED</text></svg>"> -->
-    
-    <!-- For actual logo implementation, replace above with: -->
-    <!-- <link rel="icon" type="image/png" sizes="32x32" href="/path-to-your-edm-logo-32x32.png"> -->
-    <!-- <link rel="icon" type="image/png" sizes="16x16" href="/path-to-your-edm-logo-16x16.png"> -->
-    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/path-to-your-edm-logo-180x180.png"> -->
     <style>
         * {
             margin: 0;
@@ -26,21 +17,22 @@
         }
 
         :root {
-            --bg: #0a0a0a;
-            --surface: #111111;
-            --surface-light: #1a1a1a;
+            --bg: #000000;
+            --surface: #0a0a0a;
+            --surface-light: #141414;
             --text: #ffffff;
-            --text-muted: #a0a0a0;
-            --accent: #6366f1;
-            --accent-light: #818cf8;
-            --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
+            --text-muted: #8a8a8a;
+            --accent: #FFD700;
+            --accent-dark: #B8860B;
+            --gradient: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            --gradient-dark: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            --success: #00ff00;
+            --danger: #ff0000;
+            --exclusive: #9400D3;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
@@ -48,55 +40,40 @@
             overflow-x: hidden;
         }
 
-        /* Background Animation Canvas */
-        #particles-canvas {
+        /* Exclusive Background Pattern */
+        .bg-pattern {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        /* Prevent horizontal scroll on mobile */
-        html, body {
-            overflow-x: hidden;
-            max-width: 100%;
+            z-index: 0;
+            opacity: 0.03;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255, 215, 0, 0.1) 35px, rgba(255, 215, 0, 0.1) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255, 215, 0, 0.05) 35px, rgba(255, 215, 0, 0.05) 70px);
         }
 
         /* Container */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 40px;
             position: relative;
-            z-index: 2;
+            z-index: 1;
         }
 
-        /* Navigation */
+        /* Premium Navigation */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(10, 10, 10, 0.8);
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             z-index: 1000;
             padding: 20px 0;
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            padding: 15px 0;
-            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
         }
 
         .nav-container {
@@ -106,46 +83,71 @@
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 800;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
 
-        .nav-cta {
+        .logo-icon {
+            width: 48px;
+            height: 48px;
             background: var(--gradient);
-            color: white;
-            padding: 10px 24px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--bg);
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--accent);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .member-count {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(255, 215, 0, 0.1);
             border-radius: 100px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
             font-size: 14px;
         }
 
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        .member-count-number {
+            color: var(--accent);
+            font-weight: 700;
         }
 
-        /* Mobile menu button */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            margin-left: 16px;
-        }
-
-        .mobile-menu-btn span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--text);
-            margin: 5px 0;
+        .join-btn {
+            background: var(--gradient);
+            color: var(--bg);
+            padding: 12px 32px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .join-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
         }
 
         /* Hero Section */
@@ -153,729 +155,538 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
             padding: 120px 0 80px;
             position: relative;
         }
 
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
         .hero-content {
-            text-align: center;
             position: relative;
             z-index: 2;
         }
 
-        .hero-badge {
-            display: inline-block;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.3);
+        .exclusive-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(148, 0, 211, 0.2);
+            border: 1px solid var(--exclusive);
             padding: 8px 20px;
             border-radius: 100px;
             font-size: 14px;
             margin-bottom: 24px;
-            color: var(--accent-light);
-            animation: fadeInDown 0.6s ease-out;
+            color: var(--exclusive);
+            font-weight: 600;
         }
 
         h1 {
-            font-size: clamp(48px, 8vw, 80px);
+            font-size: clamp(48px, 6vw, 72px);
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 24px;
-            animation: fadeInUp 0.6s ease-out 0.1s both;
+            letter-spacing: -2px;
         }
 
-        .gradient-text {
+        .gold-text {
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero-description {
-            font-size: clamp(18px, 2.5vw, 24px);
+            font-size: 20px;
             color: var(--text-muted);
-            margin-bottom: 48px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeInUp 0.6s ease-out 0.2s both;
+            margin-bottom: 32px;
+            line-height: 1.6;
         }
 
-        /* Video Container */
-        .video-container {
-            max-width: 900px;
-            margin: 0 auto 48px;
-            animation: fadeInUp 0.6s ease-out 0.3s both;
-        }
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            background: var(--surface);
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            transform-style: preserve-3d;
-            transform: perspective(1000px) rotateX(5deg);
-            transition: transform 0.3s ease;
-        }
-
-        .video-wrapper:hover {
-            transform: perspective(1000px) rotateX(0deg) scale(1.02);
-        }
-
-        .video-placeholder {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
-        }
-
-        .play-btn {
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .play-btn:hover {
-            transform: scale(1.1);
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .play-icon {
-            width: 0;
-            height: 0;
-            border-left: 20px solid white;
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
-            margin-left: 4px;
-        }
-
-        /* CTA Section */
         .hero-cta {
-            animation: fadeInUp 0.6s ease-out 0.4s both;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 48px;
         }
 
         .primary-btn {
-            display: inline-block;
             background: var(--gradient);
-            color: white;
+            color: var(--bg);
             padding: 16px 40px;
             border-radius: 100px;
             text-decoration: none;
             font-weight: 700;
             font-size: 18px;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .primary-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .primary-btn:hover::before {
-            width: 400px;
-            height: 400px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
         }
 
         .primary-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
         }
 
-        .hero-meta {
-            margin-top: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
+        .secondary-btn {
+            color: var(--text);
+            padding: 16px 40px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
         }
 
-        .meta-item {
+        .secondary-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .trust-indicators {
             display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-muted);
+            gap: 64px;
+        }
+
+        .trust-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .trust-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .trust-label {
             font-size: 14px;
+            color: var(--text-muted);
         }
 
-        .meta-icon {
-            width: 20px;
-            height: 20px;
-            background: rgba(99, 102, 241, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-        }
-
-        /* Sales Calculator Section */
-        .calculator-section {
-            padding: 80px 0;
+        /* Live Activity Feed */
+        .activity-feed {
             background: var(--surface);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 24px;
+            padding: 32px;
             position: relative;
             overflow: hidden;
         }
 
-        .calculator-container {
-            max-width: 800px;
-            margin: 0 auto;
+        .activity-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .activity-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--success);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
             background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
-            padding: 48px;
+            border-radius: 12px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .activity-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--bg);
+        }
+
+        .activity-details {
+            flex: 1;
+        }
+
+        .activity-name {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .activity-action {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .activity-time {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Monthly Fresh Content Section */
+        .fresh-section {
+            padding: 100px 0;
+            background: var(--surface);
             position: relative;
         }
 
-        .calc-input-group {
-            margin-bottom: 32px;
-        }
-
-        .calc-label {
-            display: block;
-            margin-bottom: 12px;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .calc-slider {
-            width: 100%;
-            margin-bottom: 8px;
-        }
-
-        .slider-value {
+        .fresh-header {
             text-align: center;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--accent-light);
+            margin-bottom: 64px;
         }
 
-        input[type="range"] {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 8px;
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: var(--gradient);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        input[type="range"]::-webkit-slider-thumb:hover {
-            transform: scale(1.2);
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-        }
-
-        .calc-results {
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 16px;
-            padding: 32px;
-            text-align: center;
-            margin-top: 32px;
-        }
-
-        .calc-result-label {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-
-        .calc-result-value {
-            font-size: 48px;
-            font-weight: 800;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 16px;
-        }
-
-        /* Interactive Problem Section */
-        .problem-section {
-            padding: 80px 0;
-            background: var(--bg);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-
-        .section-badge {
-            display: inline-block;
-            background: rgba(99, 102, 241, 0.1);
-            padding: 6px 16px;
+        .fresh-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 0, 0, 0.1);
+            padding: 8px 20px;
             border-radius: 100px;
-            font-size: 12px;
+            font-size: 14px;
+            margin-bottom: 24px;
+            color: var(--danger);
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 16px;
-            color: var(--accent-light);
         }
 
         h2 {
-            font-size: clamp(32px, 5vw, 48px);
+            font-size: clamp(40px, 5vw, 56px);
             font-weight: 800;
             margin-bottom: 16px;
+            letter-spacing: -1px;
         }
 
-        .section-description {
-            font-size: 18px;
+        .section-subtitle {
+            font-size: 20px;
             color: var(--text-muted);
             max-width: 600px;
             margin: 0 auto;
         }
 
-        .problem-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .problem-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        .sector-tabs {
-            display: flex;
-            background: rgba(255, 255, 255, 0.02);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .sector-tab {
-            flex: 1;
-            padding: 20px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--text-muted);
-            position: relative;
-            text-align: center;
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .sector-tab:last-child {
-            border-right: none;
-        }
-
-        .sector-tab::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--gradient);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .sector-tab:hover {
-            background: rgba(255, 255, 255, 0.02);
-            color: var(--text);
-        }
-
-        .sector-tab.active {
-            color: var(--accent-light);
-            background: rgba(99, 102, 241, 0.05);
-        }
-
-        .sector-tab.active::after {
-            transform: scaleX(1);
-        }
-
-        .problem-content-wrapper {
-            position: relative;
-            height: 420px;
-            overflow: hidden;
-        }
-
-        .problem-content {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 40px;
-            opacity: 0;
-            transform: translateX(20px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .problem-content.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .problem-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            color: var(--accent-light);
-        }
-
-        .problem-grid {
+        .fresh-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 12px;
-        }
-
-        .problem-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 16px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .problem-item:hover {
-            background: rgba(255, 255, 255, 0.04);
-            transform: translateX(4px);
-        }
-
-        .problem-icon {
-            width: 32px;
-            height: 32px;
-            background: rgba(239, 68, 68, 0.1);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            flex-shrink: 0;
-        }
-
-        .problem-text {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        /* Quiz Section */
-        .quiz-section {
-            padding: 80px 0;
-            background: var(--surface);
-        }
-
-        .quiz-container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .quiz-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
-            padding: 48px;
-            text-align: center;
-        }
-
-        .quiz-question {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 32px;
-        }
-
-        .quiz-scenario {
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 32px;
-            font-style: italic;
-            color: var(--text-muted);
-        }
-
-        .quiz-options {
-            display: grid;
-            gap: 16px;
-        }
-
-        .quiz-option {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: left;
-        }
-
-        .quiz-option:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(99, 102, 241, 0.3);
-            transform: translateX(8px);
-        }
-
-        .quiz-result {
-            display: none;
-            margin-top: 32px;
-            padding: 32px;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            border-radius: 16px;
-        }
-
-        .quiz-result.wrong {
-            background: rgba(239, 68, 68, 0.1);
-            border-color: rgba(239, 68, 68, 0.3);
-        }
-
-        /* Comparison Table */
-        .comparison-section {
-            padding: 80px 0;
-            background: var(--bg);
-        }
-
-        .comparison-table {
-            max-width: 1000px;
-            margin: 0 auto;
-            overflow-x: auto;
-        }
-
-        .table-wrapper {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
-            overflow: hidden;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            background: rgba(99, 102, 241, 0.1);
-            padding: 24px;
-            text-align: left;
-            font-weight: 700;
-            font-size: 18px;
-        }
-
-        th:first-child {
-            width: 40%;
-        }
-
-        td {
-            padding: 20px 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        tr:hover td {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .check-mark {
-            color: var(--success);
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .x-mark {
-            color: var(--danger);
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        /* Features Section */
-        .features-section {
-            padding: 80px 0;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 32px;
-            margin-top: 48px;
         }
 
-        .feature-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
-            padding: 40px;
+        .fresh-card {
+            background: var(--surface-light);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 20px;
+            padding: 32px;
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
-            transform-style: preserve-3d;
-            transform: perspective(1000px) rotateY(0deg);
         }
 
-        .feature-card::before {
+        .fresh-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 4px;
             background: var(--gradient);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
         }
 
-        .feature-card:hover::before {
-            transform: scaleX(1);
+        .fresh-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent);
         }
 
-        .feature-card:hover {
-            background: rgba(255, 255, 255, 0.04);
-            transform: perspective(1000px) rotateY(5deg) translateY(-4px);
-        }
-
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--gradient);
-            border-radius: 12px;
+        .fresh-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 32px;
             margin-bottom: 24px;
         }
 
-        .feature-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .feature-value {
-            color: var(--accent-light);
-            font-size: 14px;
+        .fresh-date {
+            display: inline-block;
+            background: rgba(255, 0, 0, 0.1);
+            color: var(--danger);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
             font-weight: 600;
             margin-bottom: 16px;
         }
 
-        .feature-description {
+        .fresh-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .fresh-description {
             color: var(--text-muted);
             margin-bottom: 24px;
+            line-height: 1.6;
         }
 
-        .feature-list {
-            list-style: none;
-        }
-
-        .feature-list li {
-            padding-left: 24px;
-            margin-bottom: 12px;
-            position: relative;
-            color: var(--text-muted);
+        .fresh-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             font-size: 14px;
         }
 
-        .feature-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--success);
+        .fresh-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .fresh-value {
+            color: var(--accent);
             font-weight: 700;
         }
 
-        /* Results Section */
-        .results-section {
-            padding: 80px 0;
+        /* Exclusive Benefits Grid */
+        .benefits-section {
+            padding: 100px 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 64px;
+        }
+
+        .benefit-card {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        .benefit-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: var(--bg);
+        }
+
+        .benefit-content h3 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .benefit-content p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .benefit-features {
+            list-style: none;
+        }
+
+        .benefit-features li {
+            padding: 8px 0;
+            padding-left: 28px;
+            position: relative;
+            color: var(--text-muted);
+        }
+
+        .benefit-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Opportunities Section */
+        .opportunities-section {
+            padding: 100px 0;
             background: var(--surface);
         }
 
-        .results-grid {
+        .opportunities-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 32px;
-            margin-top: 48px;
+            margin-top: 64px;
         }
 
-        .result-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
+        .opportunity-card {
+            background: var(--surface-light);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 20px;
             padding: 32px;
-            position: relative;
-            overflow: hidden;
+            text-align: center;
+            transition: all 0.3s ease;
         }
 
-        .result-quote {
+        .opportunity-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+        }
+
+        .opportunity-amount {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .opportunity-type {
             font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .opportunity-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Social Proof Section */
+        .proof-section {
+            padding: 100px 0;
+        }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 64px;
+        }
+
+        .proof-card {
+            background: var(--surface);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+        }
+
+        .proof-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 80px;
+            color: var(--accent);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        .proof-content {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 32px;
             font-style: italic;
         }
 
-        .result-author {
+        .proof-author {
             display: flex;
             align-items: center;
             gap: 16px;
         }
 
         .author-avatar {
-            width: 48px;
-            height: 48px;
+            width: 56px;
+            height: 56px;
             background: var(--gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 18px;
+            font-size: 20px;
+            color: var(--bg);
         }
 
-        .author-info h4 {
-            font-size: 16px;
+        .author-details {
+            flex: 1;
+        }
+
+        .author-name {
+            font-size: 18px;
+            font-weight: 700;
             margin-bottom: 4px;
         }
 
-        .author-info p {
+        .author-role {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .author-result {
+            text-align: right;
+        }
+
+        .result-amount {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .result-period {
             font-size: 14px;
             color: var(--text-muted);
         }
@@ -883,58 +694,51 @@
         /* Pricing Section */
         .pricing-section {
             padding: 120px 0;
-            position: relative;
+            background: var(--surface);
+            text-align: center;
+        }
+
+        .pricing-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .pricing-card {
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--surface-light);
+            border: 2px solid var(--accent);
             border-radius: 32px;
             padding: 64px;
-            text-align: center;
             position: relative;
             overflow: hidden;
-            transform-style: preserve-3d;
-            transform: perspective(1000px) rotateX(5deg);
-            transition: transform 0.3s ease;
-        }
-
-        .pricing-card:hover {
-            transform: perspective(1000px) rotateX(0deg) scale(1.02);
         }
 
         .pricing-card::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: var(--gradient);
-            border-radius: 32px;
-            opacity: 0.5;
-            z-index: -1;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
         }
 
-        .price-tag {
-            display: inline-block;
-            background: rgba(99, 102, 241, 0.1);
-            padding: 8px 24px;
-            border-radius: 100px;
-            font-size: 14px;
-            margin-bottom: 24px;
-            color: var(--accent-light);
-            font-weight: 600;
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        .price {
+        .price-original {
+            font-size: 24px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin-bottom: 8px;
+        }
+
+        .price-current {
             font-size: 72px;
             font-weight: 800;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--accent);
             line-height: 1;
             margin-bottom: 8px;
         }
@@ -948,663 +752,180 @@
         .price-features {
             list-style: none;
             margin-bottom: 48px;
+            text-align: left;
+            display: inline-block;
         }
 
         .price-features li {
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            padding: 12px 0;
+            padding-left: 32px;
+            position: relative;
+            font-size: 16px;
         }
 
-        .price-features li:last-child {
-            border-bottom: none;
+        .price-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 20px;
         }
 
-        .feature-name {
-            text-align: left;
+        .pricing-cta {
+            position: relative;
+            z-index: 1;
         }
 
-        .feature-value {
-            color: var(--accent-light);
+        .bonus-tag {
+            display: inline-block;
+            background: rgba(255, 0, 0, 0.1);
+            color: var(--danger);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 14px;
             font-weight: 600;
+            margin-top: 24px;
         }
 
-        /* FAQ Section */
-        .faq-section {
-            padding: 80px 0;
-            background: var(--surface);
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            margin-bottom: 16px;
-        }
-
-        .faq-question {
-            width: 100%;
-            text-align: left;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 24px 32px;
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .faq-question:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(99, 102, 241, 0.2);
-        }
-
-        .faq-arrow {
-            width: 24px;
-            height: 24px;
-            transition: transform 0.3s ease;
-        }
-
-        .faq-item.active .faq-arrow {
-            transform: rotate(180deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .faq-answer-content {
-            padding: 24px 32px;
-            color: var(--text-muted);
-            line-height: 1.8;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-        }
-
-        /* Footer CTA */
-        .footer-cta {
-            padding: 120px 0;
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
             text-align: center;
         }
 
-        .cta-content {
-            max-width: 600px;
-            margin: 0 auto;
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .footer-links {
+            display: flex;
+            gap: 32px;
         }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--gradient);
+            color: var(--bg);
+            transform: translateY(-4px);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 14px;
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .fresh-grid,
+            .opportunities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
-            /* General */
             .container {
-                padding: 0 16px;
-            }
-
-            /* Navigation */
-            nav {
-                padding: 16px 0;
-            }
-
-            nav.scrolled {
-                padding: 12px 0;
-            }
-
-            .logo {
-                font-size: 18px;
-            }
-
-            .nav-cta {
-                padding: 8px 20px;
-                font-size: 13px;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            /* Make CTA button full width on mobile */
-            .hero-cta {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            /* Optimize spacing throughout */
-            .hero {
-                padding: 100px 0 60px;
-                min-height: auto;
-            }
-
-            /* Ensure video doesn't overflow */
-            .video-container {
-                margin-bottom: 32px;
-            }
-
-            /* Mobile-friendly particle background */
-            #particles-canvas {
-                opacity: 0.3;
+                padding: 0 20px;
             }
 
             h1 {
-                font-size: 32px;
-                line-height: 1.2;
-                margin-bottom: 16px;
-            }
-
-            .hero-description {
-                font-size: 16px;
-                margin-bottom: 32px;
-            }
-
-            .hero-badge {
-                font-size: 12px;
-                padding: 6px 16px;
-                margin-bottom: 20px;
-            }
-
-            .video-wrapper {
-                transform: none;
-            }
-
-            .video-wrapper:hover {
-                transform: none;
-            }
-
-            .play-btn {
-                width: 60px;
-                height: 60px;
-            }
-
-            .play-icon {
-                border-left: 16px solid white;
-                border-top: 10px solid transparent;
-                border-bottom: 10px solid transparent;
-            }
-
-            .primary-btn {
-                padding: 14px 32px;
-                font-size: 16px;
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .hero-meta {
-                margin-top: 20px;
-                gap: 16px;
-            }
-
-            .meta-item {
-                font-size: 12px;
-            }
-
-            /* Sections */
-            .calculator-section,
-            .problem-section,
-            .quiz-section,
-            .comparison-section,
-            .features-section,
-            .results-section,
-            .pricing-section,
-            .faq-section,
-            .footer-cta {
-                padding: 60px 0;
-            }
-
-            /* Section Headers */
-            h2 {
-                font-size: 28px;
-                margin-bottom: 12px;
-            }
-
-            .section-header {
-                margin-bottom: 32px;
-            }
-
-            .section-description {
-                font-size: 16px;
-            }
-
-            .section-badge {
-                font-size: 11px;
-                padding: 4px 12px;
-                margin-bottom: 12px;
-            }
-
-            /* Calculator */
-            .calculator-container {
-                padding: 32px 20px;
-            }
-
-            .calc-label {
-                font-size: 14px;
-            }
-
-            .slider-value {
-                font-size: 20px;
-            }
-
-            .calc-results {
-                padding: 24px 16px;
-            }
-
-            .calc-results > div:first-child {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 0;
-            }
-
-            .calc-results > div:first-child > div:first-child {
-                margin-bottom: 16px;
-            }
-
-            .calc-results > div:first-child > div:nth-child(2) {
-                margin-bottom: 16px;
-            }
-
-            .arrow-indicator {
-                transform: rotate(90deg);
-                margin: 16px 0;
-                font-size: 32px;
-            }
-
-            .calc-result-value {
-                font-size: 36px;
-            }
-
-            /* Problem Section */
-            .problem-container {
-                border-radius: 16px;
-            }
-
-            .sector-tabs {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .sector-tab {
-                font-size: 13px;
-                padding: 16px 8px;
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            }
-
-            .sector-tab:nth-child(2) {
-                border-left: 1px solid rgba(255, 255, 255, 0.05);
-            }
-
-            .sector-tab:nth-child(3),
-            .sector-tab:nth-child(4) {
-                border-bottom: none;
-            }
-
-            .problem-content-wrapper {
-                height: auto;
-                min-height: 420px;
-            }
-
-            .problem-content {
-                padding: 24px 16px;
-            }
-
-            .problem-title {
-                font-size: 20px;
-                margin-bottom: 20px;
-            }
-
-            .problem-grid {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-
-            .problem-item {
-                padding: 12px;
-                gap: 10px;
-            }
-
-            .problem-icon {
-                width: 28px;
-                height: 28px;
-                font-size: 14px;
-            }
-
-            .problem-text {
-                font-size: 13px;
-            }
-
-            /* Quiz */
-            .quiz-card {
-                padding: 32px 20px;
-            }
-
-            .quiz-question {
-                font-size: 20px;
-                margin-bottom: 24px;
-            }
-
-            .quiz-scenario {
-                padding: 20px;
-                font-size: 14px;
-                margin-bottom: 24px;
-            }
-
-            .quiz-option {
-                padding: 16px;
-                font-size: 14px;
-            }
-
-            .quiz-result {
-                padding: 24px 20px;
-            }
-
-            /* Comparison Table */
-            .table-wrapper {
-                border-radius: 16px;
-                overflow-x: auto;
-            }
-
-            table {
-                min-width: 500px;
-            }
-
-            th {
-                padding: 16px;
-                font-size: 14px;
-            }
-
-            td {
-                padding: 14px 16px;
-                font-size: 13px;
-            }
-
-            .check-mark,
-            .x-mark {
-                font-size: 16px;
-            }
-
-            /* Features */
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-                margin-top: 32px;
-            }
-
-            .feature-card {
-                padding: 32px 24px;
-                border-radius: 16px;
-            }
-
-            .feature-card:hover {
-                transform: none;
-            }
-
-            .feature-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-                margin-bottom: 20px;
-            }
-
-            .feature-title {
-                font-size: 20px;
-            }
-
-            .feature-value {
-                font-size: 13px;
-            }
-
-            .feature-description {
-                font-size: 14px;
-                margin-bottom: 20px;
-            }
-
-            .feature-list li {
-                font-size: 13px;
-                margin-bottom: 10px;
-            }
-
-            /* Results */
-            .results-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-                margin-top: 32px;
-            }
-
-            .result-card {
-                padding: 24px;
-            }
-
-            .result-quote {
-                font-size: 16px;
-                margin-bottom: 20px;
-            }
-
-            .author-avatar {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
-            }
-
-            .author-info h4 {
-                font-size: 14px;
-            }
-
-            .author-info p {
-                font-size: 12px;
-            }
-
-            /* Pricing */
-            .pricing-card {
-                padding: 40px 24px;
-                border-radius: 24px;
-                transform: none;
-            }
-
-            .pricing-card:hover {
-                transform: none;
-            }
-
-            .price-tag {
-                font-size: 12px;
-                padding: 6px 20px;
-            }
-
-            .price {
-                font-size: 48px;
-            }
-
-            .price-period {
-                font-size: 16px;
-                margin-bottom: 24px;
-            }
-
-            .price-features li {
-                padding: 12px 0;
-                font-size: 14px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 4px;
-            }
-
-            .feature-value {
-                font-size: 12px;
-            }
-
-            /* FAQ */
-            .faq-container {
-                max-width: 100%;
-            }
-
-            .faq-item {
-                margin-bottom: 12px;
-            }
-
-            .faq-question {
-                padding: 20px 24px;
-                font-size: 16px;
-                border-radius: 12px;
-            }
-
-            .faq-arrow {
-                width: 20px;
-                height: 20px;
-            }
-
-            .faq-answer-content {
-                padding: 20px 24px;
-                font-size: 14px;
-                line-height: 1.6;
-            }
-
-            /* Footer CTA */
-            .footer-cta {
-                padding: 80px 0 60px;
-            }
-
-            .cta-content h2 {
-                font-size: 28px;
-            }
-
-            /* Particles - reduce for performance */
-            #particles-canvas {
-                opacity: 0.3;
-            }
-        }
-
-        /* Mobile-specific improvements */
-        @media (max-width: 768px) {
-            /* Ensure minimum touch target size */
-            button, a, .sector-tab, .quiz-option, .faq-question {
-                min-height: 44px;
-                display: flex;
-                align-items: center;
-            }
-
-            /* Improve tap targets */
-            .meta-item {
-                padding: 8px 0;
-            }
-
-            /* Better mobile scrolling */
-            .comparison-table {
-                -webkit-overflow-scrolling: touch;
-                overflow-x: auto;
-            }
-
-            /* Disable hover effects on mobile */
-            .feature-card:hover,
-            .problem-item:hover,
-            .sector-tab:hover,
-            .quiz-option:hover {
-                transform: none;
-            }
-
-            /* Make sliders easier to use on mobile */
-            input[type="range"] {
-                height: 44px;
-                margin: -18px 0;
-            }
-
-            input[type="range"]::-webkit-slider-thumb {
-                width: 32px;
-                height: 32px;
-            }
-        }
-
-        /* Small mobile */
-        @media (max-width: 375px) {
-            h1 {
-                font-size: 28px;
-            }
-
-            .hero-description {
-                font-size: 15px;
-            }
-
-            .primary-btn {
-                font-size: 15px;
-                padding: 12px 24px;
-            }
-
-            h2 {
-                font-size: 24px;
-            }
-
-            .section-description {
-                font-size: 15px;
-            }
-
-            .calc-result-value {
-                font-size: 32px;
-            }
-
-            .price {
                 font-size: 40px;
             }
 
-            .sector-tab {
-                font-size: 12px;
-                padding: 14px 6px;
+            h2 {
+                font-size: 32px;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .trust-indicators {
+                gap: 32px;
+            }
+
+            .fresh-grid,
+            .opportunities-grid,
+            .proof-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card {
+                padding: 40px 24px;
+            }
+
+            .price-current {
+                font-size: 48px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 32px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Background Animation Canvas -->
-    <canvas id="particles-canvas"></canvas>
+    <div class="bg-pattern"></div>
 
-    <!-- Navigation -->
+    <!-- Premium Navigation -->
     <nav>
         <div class="container">
             <div class="nav-container">
-                <div class="logo">ELITE DEALMAKERS</div>
-                <div style="display: flex; align-items: center;">
-                    <a href="#pricing" class="nav-cta">Get Started</a>
-                    <button class="mobile-menu-btn" aria-label="Menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
+                <div class="logo">
+                    <div class="logo-icon">E</div>
+                    <div class="logo-text">Elite <span>Dealmakers</span> Club</div>
+                </div>
+                <div class="nav-right">
+                    <div class="member-count">
+                        <span>🔥</span>
+                        <span>Only <span class="member-count-number">27</span> spots left</span>
+                    </div>
+                    <a href="#join" class="join-btn">
+                        Join The Club
+                        <span>→</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1613,921 +934,456 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">🚀 Limited Time: Founding Member Pricing</div>
-                <h1>SOVEREIGN AI: <span class="gradient-text">Your 24/7 AI Sales Coach</span> That Never Sleeps</h1>
-                <p class="hero-description">Master high-ticket sales with personalized AI coaching in any language. Close more deals, command higher prices, and transform your income globally.</p>
-                
-                <div class="video-container">
-                    <div class="video-wrapper">
-                        <div class="video-placeholder">
-                            <div class="play-btn">
-                                <div class="play-icon"></div>
-                            </div>
-                        </div>
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="exclusive-badge">
+                        <span>🔒</span>
+                        <span>EXCLUSIVE MEMBERSHIP SOCIETY</span>
                     </div>
-                </div>
-
-                <div class="hero-cta">
-                    <a href="#pricing" class="primary-btn">Claim Your Founding Member Spot</a>
-                    <div class="hero-meta">
-                        <div class="meta-item">
-                            <div class="meta-icon">⚡</div>
-                            <span>Instant Access</span>
-                        </div>
-                        <div class="meta-item">
-                            <div class="meta-icon">🌍</div>
-                            <span>Multilingual Support</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sales Calculator Section -->
-    <section class="calculator-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-badge">ROI Calculator</div>
-                <h2>Calculate Your <span class="gradient-text">Revenue Increase</span></h2>
-                <p class="section-description">See how much more you could earn with a 60% close rate</p>
-                <p style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">*Our top members consistently achieve 60%+ close rates</p>
-            </div>
-
-            <div class="calculator-container">
-                <div class="calc-input-group">
-                    <label class="calc-label">Current Close Rate</label>
-                    <input type="range" class="calc-slider" id="closeRate" min="10" max="60" value="20">
-                    <div class="slider-value"><span id="closeRateValue">20</span>%</div>
-                </div>
-
-                <div class="calc-input-group">
-                    <label class="calc-label">Average Deal Size</label>
-                    <input type="range" class="calc-slider" id="dealSize" min="1000" max="50000" value="5000" step="1000">
-                    <div class="slider-value">$<span id="dealSizeValue">5,000</span></div>
-                </div>
-
-                <div class="calc-input-group">
-                    <label class="calc-label">Calls Per Month</label>
-                    <input type="range" class="calc-slider" id="callsPerMonth" min="10" max="100" value="40">
-                    <div class="slider-value"><span id="callsValue">40</span></div>
-                </div>
-
-                <div class="calc-results">
-                    <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; margin-bottom: 24px; align-items: center;">
-                        <div>
-                            <div class="calc-result-label">Current Monthly Revenue</div>
-                            <div style="font-size: 32px; font-weight: 700; color: #ef4444;">$<span id="currentRevenue">40,000</span></div>
-                            <div style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">at <span id="currentRateDisplay">20</span>% close rate</div>
-                        </div>
-                        <div style="font-size: 48px; color: var(--accent-light);" class="arrow-indicator">→</div>
-                        <div>
-                            <div class="calc-result-label">With Sovereign AI</div>
-                            <div style="font-size: 32px; font-weight: 700; color: var(--success);">$<span id="improvedRevenue">120,000</span></div>
-                            <div style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">at <span id="targetRate">60</span>% close rate</div>
-                        </div>
-                    </div>
-                    <div class="calc-result-label">Your Potential Monthly Increase</div>
-                    <div class="calc-result-value">+$<span id="increaseValue">80,000</span></div>
-                    <div class="calc-result-label">That's <span id="roiValue">808</span>x ROI on Sovereign AI</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Problem Section -->
-    <section class="problem-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-badge">The Problem</div>
-                <h2>Select Your <span class="gradient-text">Industry</span></h2>
-                <p class="section-description">Click to see the specific challenges you're facing</p>
-            </div>
-
-            <div class="problem-container">
-                <div class="sector-tabs">
-                    <button class="sector-tab active" data-sector="closers">High-Ticket Closers</button>
-                    <button class="sector-tab" data-sector="coaches">Coaches & Consultants</button>
-                    <button class="sector-tab" data-sector="providers">Service Providers</button>
-                    <button class="sector-tab" data-sector="founders">Entrepreneurs</button>
-                </div>
-
-                <div class="problem-content-wrapper">
-                    <div class="problem-content active" id="closers-content">
-                        <h3 class="problem-title">High-Ticket Closer Challenges</h3>
-                        <div class="problem-grid">
-                            <div class="problem-item">
-                                <div class="problem-icon">🤖</div>
-                                <div class="problem-text">Generic scripts that sound robotic and kill trust</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">📉</div>
-                                <div class="problem-text">Stuck at 20% close rates while top closers hit 50%+</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">🎯</div>
-                                <div class="problem-text">Can't adapt frameworks to different industries</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">💸</div>
-                                <div class="problem-text">Missing out on higher commission structures</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">😤</div>
-                                <div class="problem-text">No intel from setters, flying blind on calls</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">🔄</div>
-                                <div class="problem-text">Same objections killing deals repeatedly</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="problem-content" id="coaches-content">
-                        <h3 class="problem-title">Coach & Consultant Challenges</h3>
-                        <div class="problem-grid">
-                            <div class="problem-item">
-                                <div class="problem-icon">🧠</div>
-                                <div class="problem-text">Brilliant at delivery but freeze on sales calls</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">💔</div>
-                                <div class="problem-text">Instant discounts when anyone mentions price</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">📱</div>
-                                <div class="problem-text">DMs ignored while competitors book calls daily</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">💰</div>
-                                <div class="problem-text">Can't justify charging $10K+ for your expertise</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">📊</div>
-                                <div class="problem-text">Leaving 80% of potential revenue on the table</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">🎪</div>
-                                <div class="problem-text">Feel sleazy selling despite believing in your service</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="problem-content" id="providers-content">
-                        <h3 class="problem-title">Service Provider Challenges</h3>
-                        <div class="problem-grid">
-                            <div class="problem-item">
-                                <div class="problem-icon">⏰</div>
-                                <div class="problem-text">Trapped trading hours for dollars</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">📦</div>
-                                <div class="problem-text">No idea how to package and sell value</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">🏢</div>
-                                <div class="problem-text">Losing to agencies charging 10x your rates</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">🎓</div>
-                                <div class="problem-text">Can't afford $10K+ sales training programs</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">🚀</div>
-                                <div class="problem-text">Ready to level up but missing the playbook</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">🎭</div>
-                                <div class="problem-text">Positioned as vendor, not strategic partner</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="problem-content" id="founders-content">
-                        <h3 class="problem-title">Entrepreneur & Founder Challenges</h3>
-                        <div class="problem-grid">
-                            <div class="problem-item">
-                                <div class="problem-icon">🎩</div>
-                                <div class="problem-text">Wearing too many hats to master sales</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">⏳</div>
-                                <div class="problem-text">Every lost deal threatens your runway</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">👥</div>
-                                <div class="problem-text">Can't afford a professional sales team yet</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">💡</div>
-                                <div class="problem-text">Struggling to sell vision to investors</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">🔥</div>
-                                <div class="problem-text">Need to close deals fast or burn out</div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon">📈</div>
-                                <div class="problem-text">Technical genius but sales feels unnatural</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quiz Section -->
-    <section class="quiz-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-badge">Interactive Demo</div>
-                <h2>Test Your <span class="gradient-text">Sales Skills</span></h2>
-                <p class="section-description">See how Sovereign AI would handle this common objection</p>
-            </div>
-
-            <div class="quiz-container">
-                <div class="quiz-card">
-                    <h3 class="quiz-question">How would you respond?</h3>
-                    <div class="quiz-scenario">
-                        "Your prospect just said: 'This sounds great, but $10,000 is way more than I expected to invest. I need to think about it.'"
-                    </div>
+                    <h1>Get Paid <span class="gold-text">$10,000+</span> Per Month While Learning From 7-Figure Entrepreneurs</h1>
+                    <p class="hero-description">Access monthly private courses, high-paying opportunities, proven scripts, and an elite network of successful entrepreneurs crushing it in 2025.</p>
                     
-                    <div class="quiz-options">
-                        <div class="quiz-option" data-answer="wrong">
-                            <strong>Option A:</strong> "I understand. Would a payment plan help? We can do $3,500 for 3 months."
-                        </div>
-                        <div class="quiz-option" data-answer="wrong">
-                            <strong>Option B:</strong> "Think about how much you're losing by not solving this problem. Can you really afford to wait?"
-                        </div>
-                        <div class="quiz-option" data-answer="correct">
-                            <strong>Option C:</strong> "I appreciate you being honest about that. Help me understand - what specifically about the investment concerns you?"
-                        </div>
-                        <div class="quiz-option" data-answer="wrong">
-                            <strong>Option D:</strong> "Many of my clients felt the same way at first, but they all say it was worth it."
-                        </div>
+                    <div class="hero-cta">
+                        <a href="#join" class="primary-btn">Claim Your Spot Now</a>
+                        <a href="#benefits" class="secondary-btn">See What's Inside</a>
                     </div>
 
-                    <div class="quiz-result" id="quiz-result">
-                        <h4>AI Coach Analysis</h4>
-                        <p id="quiz-feedback"></p>
+                    <div class="trust-indicators">
+                        <div class="trust-item">
+                            <div class="trust-value">$2.8M+</div>
+                            <div class="trust-label">Generated This Month</div>
+                        </div>
+                        <div class="trust-item">
+                            <div class="trust-value">87%</div>
+                            <div class="trust-label">Hit 6-Figures</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-feed">
+                    <div class="activity-header">
+                        <div class="activity-title">
+                            <span>🏆</span>
+                            <span>Live Member Activity</span>
+                        </div>
+                        <div class="live-indicator">
+                            <div class="live-dot"></div>
+                            <span>Live</span>
+                        </div>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-avatar">JK</div>
+                            <div class="activity-details">
+                                <div class="activity-name">John K.</div>
+                                <div class="activity-action">Just closed a $15,000 deal</div>
+                            </div>
+                            <div class="activity-time">2 min ago</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-avatar">SR</div>
+                            <div class="activity-details">
+                                <div class="activity-name">Sarah R.</div>
+                                <div class="activity-action">Earned $500 from affiliate program</div>
+                            </div>
+                            <div class="activity-time">5 min ago</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-avatar">ML</div>
+                            <div class="activity-details">
+                                <div class="activity-name">Mike L.</div>
+                                <div class="activity-action">Hit $100K this month!</div>
+                            </div>
+                            <div class="activity-time">12 min ago</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-avatar">EP</div>
+                            <div class="activity-details">
+                                <div class="activity-name">Elena P.</div>
+                                <div class="activity-action">Got featured in Forbes</div>
+                            </div>
+                            <div class="activity-time">18 min ago</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-avatar">DL</div>
+                            <div class="activity-details">
+                                <div class="activity-name">David L.</div>
+                                <div class="activity-action">Launched $50K program</div>
+                            </div>
+                            <div class="activity-time">23 min ago</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-avatar">NP</div>
+                            <div class="activity-details">
+                                <div class="activity-name">Nina P.</div>
+                                <div class="activity-action">Booked 12 calls this week</div>
+                            </div>
+                            <div class="activity-time">31 min ago</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Comparison Table -->
-    <section class="comparison-section">
+    <!-- Fresh Monthly Content -->
+    <section class="fresh-section">
         <div class="container">
-            <div class="section-header">
-                <div class="section-badge">Compare</div>
-                <h2>Traditional Training vs <span class="gradient-text">Sovereign AI</span></h2>
-                <p class="section-description">See why AI-powered coaching is the future of sales mastery</p>
+            <div class="fresh-header">
+                <div class="fresh-badge">
+                    <span>🆕</span>
+                    <span>FRESH MONTHLY CONTENT</span>
+                </div>
+                <h2>This Month's <span class="gold-text">Exclusive Releases</span></h2>
+                <p class="section-subtitle">Brand new courses, strategies, and opportunities updated monthly</p>
             </div>
 
-            <div class="comparison-table">
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Feature</th>
-                                <th>Traditional Sales Training</th>
-                                <th>Sovereign AI</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Availability</td>
-                                <td><span class="x-mark">✗</span> Scheduled calls only</td>
-                                <td><span class="check-mark">✓</span> 24/7 instant access</td>
-                            </tr>
-                            <tr>
-                                <td>Personalization</td>
-                                <td><span class="x-mark">✗</span> Generic scripts</td>
-                                <td><span class="check-mark">✓</span> Custom to your situation</td>
-                            </tr>
-                            <tr>
-                                <td>Practice Partner</td>
-                                <td><span class="x-mark">✗</span> Role-play in groups</td>
-                                <td><span class="check-mark">✓</span> Unlimited AI practice</td>
-                            </tr>
-                            <tr>
-                                <td>Industry Adaptation</td>
-                                <td><span class="x-mark">✗</span> One-size-fits-all</td>
-                                <td><span class="check-mark">✓</span> Any industry, any offer</td>
-                            </tr>
-                            <tr>
-                                <td>Response Time</td>
-                                <td><span class="x-mark">✗</span> Wait for next call</td>
-                                <td><span class="check-mark">✓</span> Instant answers</td>
-                            </tr>
-                            <tr>
-                                <td>Cost</td>
-                                <td><span class="x-mark">✗</span> $5,000-$25,000</td>
-                                <td><span class="check-mark">✓</span> $99/month</td>
-                            </tr>
-                            <tr>
-                                <td>Updates</td>
-                                <td><span class="x-mark">✗</span> Outdated material</td>
-                                <td><span class="check-mark">✓</span> Always current</td>
-                            </tr>
-                            <tr>
-                                <td>Language Support</td>
-                                <td><span class="x-mark">✗</span> Usually English only</td>
-                                <td><span class="check-mark">✓</span> Full multilingual support</td>
-                            </tr>
-                            <tr>
-                                <td>Community</td>
-                                <td><span class="x-mark">✗</span> Course ends, community dies</td>
-                                <td><span class="check-mark">✓</span> Active daily community</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="fresh-grid">
+                <div class="fresh-card">
+                    <div class="fresh-icon">🎯</div>
+                    <div class="fresh-date">NEW THIS MONTH</div>
+                    <h3 class="fresh-title">AI Agency Blueprint 3.0</h3>
+                    <p class="fresh-description">The exact system one member used to scale from $0 to $75K/month in 90 days selling AI services.</p>
+                    <div class="fresh-meta">
+                        <div class="fresh-author">
+                            <span>Premium Course</span>
+                        </div>
+                        <div class="fresh-value">Value: $2,997</div>
+                    </div>
+                </div>
+
+                <div class="fresh-card">
+                    <div class="fresh-icon">🎥</div>
+                    <div class="fresh-date">NEW THIS MONTH</div>
+                    <h3 class="fresh-title">YouTube Money Method</h3>
+                    <p class="fresh-description">Underground method to make $500-$2,000/day with YouTube Shop affiliate program (before it gets saturated).</p>
+                    <div class="fresh-meta">
+                        <div class="fresh-author">
+                            <span>Exclusive Strategy</span>
+                        </div>
+                        <div class="fresh-value">Value: $1,497</div>
+                    </div>
+                </div>
+
+                <div class="fresh-card">
+                    <div class="fresh-icon">💰</div>
+                    <div class="fresh-date">NEW THIS MONTH</div>
+                    <h3 class="fresh-title">$100K Launch Formula</h3>
+                    <p class="fresh-description">Step-by-step launch sequence that generated $127K in 7 days for a brand new offer.</p>
+                    <div class="fresh-meta">
+                        <div class="fresh-author">
+                            <span>Advanced Training</span>
+                        </div>
+                        <div class="fresh-value">Value: $3,997</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features-section">
+    <!-- Exclusive Benefits -->
+    <section class="benefits-section" id="benefits">
         <div class="container">
-            <div class="section-header">
-                <div class="section-badge">The Solution</div>
-                <h2>Everything You Need to <span class="gradient-text">Master Sales</span></h2>
-                <p class="section-description">A complete ecosystem designed to transform your sales conversations</p>
+            <div class="fresh-header">
+                <h2>Everything You Get As An <span class="gold-text">Elite Member</span></h2>
+                <p class="section-subtitle">The complete ecosystem for building a 7-figure business</p>
             </div>
 
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3 class="feature-title">Dual AI Coaching System</h3>
-                    <p class="feature-value">$5,000 VALUE</p>
-                    <p class="feature-description">Two AI coaches working together to perfect your sales skills</p>
-                    <ul class="feature-list">
-                        <li>ChatGPT coach for strategy & scripts</li>
-                        <li>Voice AI for live practice calls</li>
-                        <li>Custom scripts for any situation</li>
-                        <li>Industry-specific adaptations</li>
-                        <li>Multilingual support - practice in any language</li>
-                        <li>24/7 availability worldwide</li>
-                    </ul>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon-wrapper">🎓</div>
+                    <div class="benefit-content">
+                        <h3>Monthly Exclusive Courses</h3>
+                        <p>Fresh strategies and "money glitches" before they go mainstream. Topics you won't find on YouTube or in $10K programs.</p>
+                        <ul class="benefit-features">
+                            <li>3-5 new courses every month</li>
+                            <li>Underground strategies only</li>
+                            <li>Early access to trends</li>
+                            <li>Lifetime access to vault</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3 class="feature-title">Weekly Mastery Calls</h3>
-                    <p class="feature-value">$3,000 VALUE</p>
-                    <p class="feature-description">Live coaching to accelerate your implementation</p>
-                    <ul class="feature-list">
-                        <li>Hot seat coaching sessions</li>
-                        <li>Live role-play practice</li>
-                        <li>Script optimization workshops</li>
-                        <li>Q&A with top performers</li>
-                        <li>Recorded for replay</li>
-                    </ul>
+                <div class="benefit-card">
+                    <div class="benefit-icon-wrapper">🤝</div>
+                    <div class="benefit-content">
+                        <h3>Elite Mastermind Access</h3>
+                        <p>Network with successful entrepreneurs. Find partners, get advice, and do deals together.</p>
+                        <ul class="benefit-features">
+                            <li>Private Slack community</li>
+                            <li>Weekly hot seat calls</li>
+                            <li>Deal flow opportunities</li>
+                            <li>Accountability partners</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <h3 class="feature-title">Elite Community</h3>
-                    <p class="feature-value">$2,000 VALUE</p>
-                    <p class="feature-description">Network with closers crushing it daily</p>
-                    <ul class="feature-list">
-                        <li>Share wins & strategies</li>
-                        <li>Get feedback on calls</li>
-                        <li>Find referral partners</li>
-                        <li>Accountability partners</li>
-                        <li>Job opportunities</li>
-                        <li>Global network - members from 40+ countries</li>
-                    </ul>
+                <div class="benefit-card">
+                    <div class="benefit-icon-wrapper">📈</div>
+                    <div class="benefit-content">
+                        <h3>Growth Exchange Network</h3>
+                        <p>Exchange engagement, testimonials, and growth with other members. Grow your social proof fast.</p>
+                        <ul class="benefit-features">
+                            <li>Social media engagement pods</li>
+                            <li>Testimonial exchanges</li>
+                            <li>Cross-promotion opportunities</li>
+                            <li>Viral content strategies</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3 class="feature-title">Monthly Arsenal Updates</h3>
-                    <p class="feature-value">$1,500 VALUE</p>
-                    <p class="feature-description">Fresh scripts and strategies that work NOW</p>
-                    <ul class="feature-list">
-                        <li>Industry-specific scripts</li>
-                        <li>DM templates that book</li>
-                        <li>Objection handlers</li>
-                        <li>Follow-up sequences</li>
-                        <li>Tested & proven</li>
-                    </ul>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🔐</div>
-                    <h3 class="feature-title">Resource Vault</h3>
-                    <p class="feature-value">$1,000 VALUE</p>
-                    <p class="feature-description">Everything you need to close deals</p>
-                    <ul class="feature-list">
-                        <li>Battle-tested scripts</li>
-                        <li>Contract templates</li>
-                        <li>CRM workflows</li>
-                        <li>Email sequences</li>
-                        <li>Commission calculators</li>
-                    </ul>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🎁</div>
-                    <h3 class="feature-title">Founding Bonuses</h3>
-                    <p class="feature-value">$1,294 VALUE</p>
-                    <p class="feature-description">Exclusive for first 100 members only</p>
-                    <ul class="feature-list">
-                        <li>$50K close breakdown</li>
-                        <li>Industry script pack</li>
-                        <li>1-on-1 AI setup call</li>
-                        <li>Lifetime updates</li>
-                        <li>Priority support</li>
-                    </ul>
+                <div class="benefit-card">
+                    <div class="benefit-icon-wrapper">💎</div>
+                    <div class="benefit-content">
+                        <h3>Done-For-You Resources</h3>
+                        <p>Everything you need to close deals and scale your business, ready to copy and deploy.</p>
+                        <ul class="benefit-features">
+                            <li>500+ proven sales scripts</li>
+                            <li>DM templates that convert</li>
+                            <li>Email sequences</li>
+                            <li>90-day content calendars</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Results Section -->
-    <section class="results-section">
+    <!-- Money Making Opportunities -->
+    <section class="opportunities-section">
         <div class="container">
-            <div class="section-header">
-                <div class="section-badge">Proven Results</div>
-                <h2>Real Members. <span class="gradient-text">Real Transformations.</span></h2>
-                <p class="section-description">These results speak louder than any sales pitch</p>
+            <div class="fresh-header">
+                <h2>Multiple Ways to <span class="gold-text">Make Money</span></h2>
+                <p class="section-subtitle">Most members make back their investment in the first week</p>
             </div>
 
-            <div class="results-grid">
-                <div class="result-card">
-                    <p class="result-quote">"Went from closing 3/10 to 6/10 using Sovereign AI scripts. That's an extra $18K in commissions this month alone."</p>
-                    <div class="result-author">
-                        <div class="author-avatar">MD</div>
-                        <div class="author-info">
-                            <h4>Mike D.</h4>
-                            <p>Remote Closer</p>
-                        </div>
-                    </div>
+            <div class="opportunities-grid">
+                <div class="opportunity-card">
+                    <div class="opportunity-amount">$1K-$10K</div>
+                    <div class="opportunity-type">Remote Jobs</div>
+                    <div class="opportunity-desc">Exclusive high-paying remote positions</div>
                 </div>
 
-                <div class="result-card">
-                    <p class="result-quote">"First $25K client after 2 years of charging $2K. The price presentation script was pure magic."</p>
-                    <div class="result-author">
-                        <div class="author-avatar">DL</div>
-                        <div class="author-info">
-                            <h4>David L.</h4>
-                            <p>Business Coach</p>
-                        </div>
-                    </div>
+                <div class="opportunity-card">
+                    <div class="opportunity-amount">50%</div>
+                    <div class="opportunity-type">Affiliate Commission</div>
+                    <div class="opportunity-desc">Earn $50 per member you refer</div>
                 </div>
 
-                <div class="result-card">
-                    <p class="result-quote">"Booked 12 calls from DMs in one week. Closed 5 at $10K each. This pays for itself 500x over."</p>
-                    <div class="result-author">
-                        <div class="author-avatar">NP</div>
-                        <div class="author-info">
-                            <h4>Nina P.</h4>
-                            <p>Marketing Consultant</p>
-                        </div>
-                    </div>
+                <div class="opportunity-card">
+                    <div class="opportunity-amount">$100-$15K</div>
+                    <div class="opportunity-type">Brand Deals</div>
+                    <div class="opportunity-desc">Sponsorship opportunities</div>
                 </div>
 
-                <div class="result-card">
-                    <p class="result-quote">"The AI helped me adapt my pitch for a SaaS client. Closed a $75K deal with 15% commission."</p>
-                    <div class="result-author">
-                        <div class="author-avatar">AR</div>
-                        <div class="author-info">
-                            <h4>Ashley R.</h4>
-                            <p>High-Ticket Closer</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="result-card">
-                    <p class="result-quote">"Went from $50/hour to $5K packages. The AI taught me how to position value vs. time."</p>
-                    <div class="result-author">
-                        <div class="author-avatar">CM</div>
-                        <div class="author-info">
-                            <h4>Carlos M.</h4>
-                            <p>Designer</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="result-card">
-                    <p class="result-quote">"My close rate jumped from 22% to 47% in just 60 days. The SOVEREIGN method is pure gold."</p>
-                    <div class="result-author">
-                        <div class="author-avatar">SK</div>
-                        <div class="author-info">
-                            <h4>Sarah K.</h4>
-                            <p>Sales Professional</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="result-card">
-                    <p class="result-quote">"As a Spanish speaker, I love that I can practice in my native language. Closed my first €30K deal in Madrid!"</p>
-                    <div class="result-author">
-                        <div class="author-avatar">JM</div>
-                        <div class="author-info">
-                            <h4>Juan M.</h4>
-                            <p>International Closer</p>
-                        </div>
-                    </div>
+                <div class="opportunity-card">
+                    <div class="opportunity-amount">$5K+</div>
+                    <div class="opportunity-type">Monthly Giveaways</div>
+                    <div class="opportunity-desc">Cash, tools, and vacations</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section class="pricing-section" id="pricing">
+    <!-- Social Proof -->
+    <section class="proof-section">
         <div class="container">
-            <div class="section-header">
-                <div class="section-badge">Investment</div>
-                <h2>Join The <span class="gradient-text">Elite Dealmakers</span></h2>
-                <p class="section-description">Lock in founding member pricing before it's gone forever</p>
+            <div class="fresh-header">
+                <h2>Members Making <span class="gold-text">Life-Changing Money</span></h2>
+                <p class="section-subtitle">Real results from real entrepreneurs just like you</p>
             </div>
 
-            <div class="pricing-card">
-                <div class="price-tag">FOUNDING MEMBER SPECIAL</div>
-                <div class="price">$99</div>
-                <div class="price-period">per month • cancel anytime</div>
-                
-                <ul class="price-features">
-                    <li>
-                        <span class="feature-name">Dual AI Coaching System</span>
-                        <span class="feature-value">$5,000 value</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Weekly Live Mastery Calls</span>
-                        <span class="feature-value">$3,000 value</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Elite Sales Community</span>
-                        <span class="feature-value">$2,000 value</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Monthly Script Updates</span>
-                        <span class="feature-value">$1,500 value</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Complete Resource Vault</span>
-                        <span class="feature-value">$1,000 value</span>
-                    </li>
-                    <li>
-                        <span class="feature-name">Founding Member Bonuses</span>
-                        <span class="feature-value">$1,294 value</span>
-                    </li>
-                </ul>
+            <div class="proof-grid">
+                <div class="proof-card">
+                    <p class="proof-content">"The AI Agency course alone made me $45,000 in the first month. I've tried $10K masterminds that didn't come close to this value."</p>
+                    <div class="proof-author">
+                        <div class="author-avatar">MC</div>
+                        <div class="author-details">
+                            <div class="author-name">Marcus Chen</div>
+                            <div class="author-role">AI Agency Owner</div>
+                        </div>
+                        <div class="author-result">
+                            <div class="result-amount">$75K</div>
+                            <div class="result-period">per month</div>
+                        </div>
+                    </div>
+                </div>
 
-                <a href="#" class="primary-btn">Secure Your Spot Now</a>
-                <p style="margin-top: 24px; color: var(--text-muted);">
-                    <span style="color: var(--warning);">⚠️ Price increases to $149/month after 100 members</span>
-                </p>
+                <div class="proof-card">
+                    <p class="proof-content">"Joined as a complete beginner. The scripts and community support helped me land my first $10K client in 3 weeks."</p>
+                    <div class="proof-author">
+                        <div class="author-avatar">SR</div>
+                        <div class="author-details">
+                            <div class="author-name">Sarah Rodriguez</div>
+                            <div class="author-role">Business Coach</div>
+                        </div>
+                        <div class="author-result">
+                            <div class="result-amount">$42K</div>
+                            <div class="result-period">per month</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="proof-card">
+                    <p class="proof-content">"The affiliate program pays my membership 10x over. I've made $8,400 this month just from referrals while building my main business."</p>
+                    <div class="proof-author">
+                        <div class="author-avatar">JW</div>
+                        <div class="author-details">
+                            <div class="author-name">Jake Williams</div>
+                            <div class="author-role">Content Creator</div>
+                        </div>
+                        <div class="author-result">
+                            <div class="result-amount">$28K</div>
+                            <div class="result-period">per month</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="proof-card">
+                    <p class="proof-content">"Got a $7,500/month remote job through the job board, plus I'm doing $20K/month with my consulting business now."</p>
+                    <div class="proof-author">
+                        <div class="author-avatar">EP</div>
+                        <div class="author-details">
+                            <div class="author-name">Elena Park</div>
+                            <div class="author-role">Marketing Consultant</div>
+                        </div>
+                        <div class="author-result">
+                            <div class="result-amount">$27.5K</div>
+                            <div class="result-period">per month</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="faq-section">
+    <!-- Pricing -->
+    <section class="pricing-section" id="join">
         <div class="container">
-            <div class="section-header">
-                <div class="section-badge">FAQ</div>
-                <h2>Got <span class="gradient-text">Questions?</span></h2>
-                <p class="section-description">Everything you need to know before joining</p>
-            </div>
-
-            <div class="faq-container">
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>How quickly will I see results?</span>
-                        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Most members report improvements in their very first week. By practicing with the AI daily and implementing the scripts, you'll see immediate changes in how prospects respond. Our average member doubles their close rate within 60 days.
-                        </div>
-                    </div>
+            <div class="pricing-container">
+                <div class="fresh-header">
+                    <h2>Join The <span class="gold-text">Elite Dealmakers Club</span></h2>
+                    <p class="section-subtitle">Get instant access to everything for less than a coffee per day</p>
                 </div>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>What makes this different from other sales training?</span>
-                        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Three key differences: 1) 24/7 AI coaching means you can practice anytime, not just during scheduled calls. 2) Personalized scripts for YOUR specific situation, not generic templates. 3) Live voice practice to build muscle memory, not just theory. Plus, our community of active closers sharing what's working NOW.
-                        </div>
-                    </div>
-                </div>
+                <div class="pricing-card">
+                    <div class="price-original">Regular Price: $297/month</div>
+                    <div class="price-current">$99</div>
+                    <div class="price-period">per month • cancel anytime</div>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>I'm brand new to sales. Will this work for me?</span>
-                        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Absolutely. The AI adapts to your skill level. Beginners get foundational training and simple scripts to build confidence. As you improve, the AI provides more advanced strategies. Many of our most successful members started with zero sales experience.
-                        </div>
-                    </div>
-                </div>
+                    <ul class="price-features">
+                        <li>3-5 new exclusive courses monthly ($8,000+ value)</li>
+                        <li>Elite mastermind community access ($2,000 value)</li>
+                        <li>500+ proven scripts & templates ($5,000 value)</li>
+                        <li>Weekly live coaching calls ($3,000 value)</li>
+                        <li>High-paying job opportunities ($1K-$10K/month)</li>
+                        <li>50% affiliate commissions (unlimited earning potential)</li>
+                        <li>Monthly cash giveaways & prizes ($5,000+ value)</li>
+                        <li>Brand deal opportunities ($100-$15K per deal)</li>
+                        <li>Growth exchange network (priceless)</li>
+                        <li>Lifetime updates & new features</li>
+                    </ul>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Can I use this for my team?</span>
-                        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Yes! Many agency owners and sales managers use Sovereign AI to train their teams. The AI provides consistent training, the community offers peer support, and the weekly calls give your team ongoing development. It's like having a sales trainer on staff 24/7.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>What if I'm already successful in sales?</span>
-                        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Even top performers find massive value. Use the AI to test new approaches, adapt to different industries, or break through plateaus. Our highest earners use it to go from 40% to 60%+ close rates. Small improvements at your level mean huge commission increases.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Is there a contract or commitment?</span>
-                        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            No contracts, no commitment. Cancel anytime with one click. But here's what happens: members see such incredible ROI that they never want to leave. One extra close pays for months of membership. Most members make back their investment in the first week.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>What exactly do I get access to?</span>
-                        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Immediately after joining: Both AI coaches (ChatGPT + Voice), access to the private community, your welcome package with quick-start guides, invitation to weekly calls, the complete script vault, and scheduling for your 1-on-1 setup session. Everything is designed to get you results fast.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Does Sovereign AI support multiple languages?</span>
-                        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Yes! Sovereign AI offers full multilingual support. You can practice sales conversations, generate scripts, and receive coaching in your preferred language. Whether you're closing deals in English, Spanish, French, German, or any other major language, the AI adapts to your needs. This is perfect for international closers or anyone selling to a global audience.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Why is the price going up?</span>
-                        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            We're rewarding early adopters who believe in the vision. The first 100 members lock in $99/month forever. After that, it's $149/month for new members. This ensures we maintain quality while building an elite community. Your rate never increases as a founding member.
-                        </div>
+                    <div class="pricing-cta">
+                        <a href="#" class="primary-btn">Secure Your Membership Now</a>
+                        <div class="bonus-tag">🎁 BONUS: Get $200 credit for premium courses</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer CTA -->
-    <section class="footer-cta">
+    <!-- Footer -->
+    <footer>
         <div class="container">
-            <div class="cta-content">
-                <h2>Ready to <span class="gradient-text">Transform Your Sales?</span></h2>
-                <p class="section-description" style="margin-bottom: 48px;">Join founding members already closing more deals with AI</p>
-                <a href="#" class="primary-btn">Lock In Your $99/Month Rate</a>
-                <p style="margin-top: 24px; color: var(--text-muted);">
-                    Cancel anytime • Instant access
-                </p>
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#">Terms</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Support</a>
+                    <a href="#">Affiliate Program</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">🐦</a>
+                    <a href="#" class="social-icon">📸</a>
+                    <a href="#" class="social-icon">🎥</a>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2025 Elite Dealmakers Club. All rights reserved.
             </div>
         </div>
-    </section>
+    </footer>
 
     <script>
-        // Background Particles Animation
-        const canvas = document.getElementById('particles-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = Math.random() * 2 - 1;
-                this.speedY = Math.random() * 2 - 1;
-                this.opacity = Math.random() * 0.5 + 0.2;
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-
-            draw() {
-                ctx.fillStyle = `rgba(131, 140, 248, ${this.opacity})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function createParticles() {
-            for (let i = 0; i < 50; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-
-            requestAnimationFrame(animateParticles);
-        }
-
-        createParticles();
-        animateParticles();
-
-        // Sales Calculator
-        const closeRateSlider = document.getElementById('closeRate');
-        const dealSizeSlider = document.getElementById('dealSize');
-        const callsSlider = document.getElementById('callsPerMonth');
-
-        function updateCalculator() {
-            const closeRate = parseInt(closeRateSlider.value);
-            const dealSize = parseInt(dealSizeSlider.value);
-            const calls = parseInt(callsSlider.value);
-
-            document.getElementById('closeRateValue').textContent = closeRate;
-            document.getElementById('dealSizeValue').textContent = dealSize.toLocaleString();
-            document.getElementById('callsValue').textContent = calls;
-            document.getElementById('currentRateDisplay').textContent = closeRate;
-
-            // Calculate current monthly revenue
-            const currentRevenue = (calls * (closeRate / 100) * dealSize);
-            
-            // Calculate improved revenue with Sovereign AI
-            // If already at 60%, show potential to reach 80% (our absolute top performers)
-            const improvedCloseRate = closeRate >= 60 ? 80 : 60;
-            const improvedRevenue = (calls * (improvedCloseRate / 100) * dealSize);
-            
-            // Update the target rate display
-            document.getElementById('targetRate').textContent = improvedCloseRate;
-            
-            // Calculate increase
-            const increase = improvedRevenue - currentRevenue;
-            const roi = Math.round(increase / 99);
-
-            document.getElementById('currentRevenue').textContent = currentRevenue.toLocaleString();
-            document.getElementById('improvedRevenue').textContent = improvedRevenue.toLocaleString();
-            document.getElementById('increaseValue').textContent = increase.toLocaleString();
-            document.getElementById('roiValue').textContent = roi.toLocaleString();
-        }
-
-        closeRateSlider.addEventListener('input', updateCalculator);
-        dealSizeSlider.addEventListener('input', updateCalculator);
-        callsSlider.addEventListener('input', updateCalculator);
+        // Update member count
+        const memberCount = document.querySelector('.member-count-number');
+        let spots = 27;
         
-        // Initialize calculator on page load
-        updateCalculator();
+        setInterval(() => {
+            if (spots > 3 && Math.random() > 0.7) {
+                spots--;
+                memberCount.textContent = spots;
+            }
+        }, 30000);
 
-        // Problem Section Tabs
-        const sectorTabs = document.querySelectorAll('.sector-tab');
-        const problemContents = document.querySelectorAll('.problem-content');
+        // Activity feed updates
+        const activities = [
+            { name: 'Alex T.', action: 'Just hit $50K this month!', avatar: 'AT' },
+            { name: 'Lisa M.', action: 'Closed 3 deals from DM scripts', avatar: 'LM' },
+            { name: 'Ryan K.', action: 'Got accepted to speak at conference', avatar: 'RK' },
+            { name: 'Sophie L.', action: 'Earned $1,200 from affiliates today', avatar: 'SL' },
+            { name: 'Marcus B.', action: 'Launched new $5K offer', avatar: 'MB' },
+            { name: 'Emma W.', action: 'Grew Instagram by 10K this week', avatar: 'EW' }
+        ];
 
-        // Show first tab content on load
-        if (problemContents.length > 0) {
-            problemContents[0].classList.add('active');
-        }
+        const activityList = document.querySelector('.activity-list');
+        let activityIndex = 0;
 
-        sectorTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs and contents
-                sectorTabs.forEach(t => t.classList.remove('active'));
-                problemContents.forEach(content => content.classList.remove('active'));
-
-                // Add active class to clicked tab
-                tab.classList.add('active');
-
-                // Show corresponding content
-                const sector = tab.dataset.sector;
-                const content = document.getElementById(`${sector}-content`);
-                if (content) {
-                    // Small delay for smooth transition
-                    setTimeout(() => {
-                        content.classList.add('active');
-                    }, 50);
+        setInterval(() => {
+            const newActivity = activities[activityIndex % activities.length];
+            const activityHtml = `
+                <div class="activity-item">
+                    <div class="activity-avatar">${newActivity.avatar}</div>
+                    <div class="activity-details">
+                        <div class="activity-name">${newActivity.name}</div>
+                        <div class="activity-action">${newActivity.action}</div>
+                    </div>
+                    <div class="activity-time">Just now</div>
+                </div>
+            `;
+            
+            activityList.insertAdjacentHTML('afterbegin', activityHtml);
+            
+            // Update times
+            const items = activityList.querySelectorAll('.activity-item');
+            items.forEach((item, index) => {
+                if (index > 0) {
+                    const timeEl = item.querySelector('.activity-time');
+                    const currentTime = parseInt(timeEl.textContent) || 0;
+                    timeEl.textContent = `${currentTime + 5} min ago`;
                 }
             });
-        });
-
-        // Quiz functionality
-        const quizOptions = document.querySelectorAll('.quiz-option');
-        const quizResult = document.getElementById('quiz-result');
-        const quizFeedback = document.getElementById('quiz-feedback');
-
-        quizOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                const isCorrect = option.dataset.answer === 'correct';
-                
-                quizResult.style.display = 'block';
-                quizResult.classList.toggle('wrong', !isCorrect);
-                
-                if (isCorrect) {
-                    quizFeedback.textContent = "Excellent! This response uses psychological curiosity to understand their real concern. The AI would then guide you to isolate whether it's about ROI, cash flow, or value perception - then provide the perfect reframe for their specific situation.";
-                } else {
-                    quizFeedback.textContent = "This is what most salespeople do - and why they lose deals. The AI would coach you to never immediately offer discounts, defend the price, or use generic reassurance. Instead, seek to understand their specific concern first.";
-                }
-
-                // Highlight selected option
-                quizOptions.forEach(opt => opt.style.opacity = '0.5');
-                option.style.opacity = '1';
-                option.style.borderColor = isCorrect ? 'rgba(16, 185, 129, 0.5)' : 'rgba(239, 68, 68, 0.5)';
-            });
-        });
-
-        // Smooth scroll for nav
-        document.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-
-        // FAQ functionality
-        const faqItems = document.querySelectorAll('.faq-item');
-        
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
             
-            question.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                
-                // Close all FAQs
-                faqItems.forEach(faq => {
-                    faq.classList.remove('active');
-                });
-                
-                // Open clicked FAQ if it wasn't active
-                if (!isActive) {
-                    item.classList.add('active');
+            // Remove old items
+            if (items.length > 6) {
+                items[items.length - 1].remove();
+            }
+            
+            activityIndex++;
+        }, 15000);
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
@@ -2548,56 +1404,12 @@
         }, observerOptions);
 
         // Observe all cards
-        const cards = document.querySelectorAll('.feature-card, .result-card');
+        const cards = document.querySelectorAll('.fresh-card, .benefit-card, .opportunity-card, .proof-card');
         cards.forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(card);
-        });
-
-        // Mobile optimizations
-        function isMobile() {
-            return window.innerWidth <= 768;
-        }
-
-        // Reduce particles on mobile for performance
-        if (isMobile()) {
-            // Clear existing particles
-            particles = [];
-            // Create fewer particles on mobile
-            for (let i = 0; i < 20; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        // Touch-friendly interactions
-        if ('ontouchstart' in window) {
-            // Add touch feedback to buttons
-            document.querySelectorAll('.primary-btn, .sector-tab, .quiz-option, .faq-question').forEach(element => {
-                element.addEventListener('touchstart', function() {
-                    this.style.opacity = '0.8';
-                });
-                element.addEventListener('touchend', function() {
-                    this.style.opacity = '1';
-                });
-            });
-        }
-
-        // Smooth scroll with offset for mobile nav
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const navHeight = document.querySelector('nav').offsetHeight;
-                    const targetPosition = target.offsetTop - navHeight - 20;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
         });
     </script>
 </body>
