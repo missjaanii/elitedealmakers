@@ -268,11 +268,6 @@
             color: var(--text-muted);
         }
 
-        /* Mobile Member Count - Hidden on Desktop */
-        .mobile-member-count {
-            display: none;
-        }
-
         /* Live Activity Feed */
         .activity-feed {
             background: var(--surface);
@@ -851,6 +846,11 @@
             font-size: 14px;
         }
 
+        /* Mobile Only Elements */
+        .mobile-only {
+            display: none;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .hero-grid {
@@ -941,13 +941,13 @@
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-content">
+                    <div class="hero-member-count mobile-only">
+                        <span>🔥</span>
+                        <span>Only <span class="spots-number">27</span> spots left</span>
+                    </div>
                     <div class="exclusive-badge">
                         <span>🔒</span>
                         <span>EXCLUSIVE MEMBERSHIP SOCIETY</span>
-                    </div>
-                    <div class="mobile-member-count">
-                        <span>🔥</span>
-                        <span>Only <span class="member-count-number">27</span> spots left</span>
                     </div>
                     <h1>Get Paid <span class="gold-text">$10,000+</span> Per Month While Learning From 7-Figure Entrepreneurs</h1>
                     <p class="hero-description">Access monthly private courses, high-paying opportunities, proven scripts, and an elite network of successful entrepreneurs crushing it in 2025.</p>
@@ -1327,15 +1327,15 @@
 
     <script>
         // Update member count
-        const memberCounts = document.querySelectorAll('.member-count-number');
+        const memberCount = document.querySelector('.member-count-number');
+        const mobileSpots = document.querySelector('.spots-number');
         let spots = 27;
         
         setInterval(() => {
             if (spots > 3 && Math.random() > 0.7) {
                 spots--;
-                memberCounts.forEach(count => {
-                    count.textContent = spots;
-                });
+                if (memberCount) memberCount.textContent = spots;
+                if (mobileSpots) mobileSpots.textContent = spots;
             }
         }, 30000);
 
