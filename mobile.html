@@ -1,4 +1,22 @@
-<!DOCTYPE html>
+.hero-content {
+                max-width: 100%;
+                padding: 0 8px;
+            }            /* Hero Grid */
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .hero-content {
+                order: 1;
+            }
+
+            .activity-feed {
+                order: 2;
+                margin-top: 0;
+            }            .pricing-card::before {
+                display: none; /* Disable animation on mobile for performance */
+            }<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,6 +37,13 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
         }
 
         :root {
@@ -44,12 +69,18 @@
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
             position: relative;
+            padding-top: 0; /* Nav is fixed, so no padding needed */
         }
 
         /* Prevent horizontal scroll on mobile */
         html, body {
             overflow-x: hidden;
             max-width: 100%;
+            position: relative;
+        }
+
+        main {
+            overflow-x: hidden;
         }
 
         /* Exclusive Background Pattern */
@@ -59,11 +90,19 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
+            z-index: -1;
             opacity: 0.03;
             background-image: 
                 repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255, 215, 0, 0.1) 35px, rgba(255, 215, 0, 0.1) 70px),
                 repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255, 215, 0, 0.05) 35px, rgba(255, 215, 0, 0.05) 70px);
+            pointer-events: none;
+        }
+
+        /* Clearfix */
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
         }
 
         /* Container */
@@ -81,11 +120,14 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(0, 0, 0, 0.98);
             backdrop-filter: blur(20px);
-            z-index: 1000;
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 9999;
             padding: 20px 0;
             border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            width: 100%;
+            transform: translateZ(0); /* Fix for iOS Safari */
         }
 
         .nav-container {
@@ -165,6 +207,7 @@
         /* Hero Section */
         .hero {
             min-height: 100vh;
+            min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
             display: flex;
             align-items: center;
             padding: 120px 0 80px;
@@ -865,6 +908,10 @@
                 gap: 48px;
             }
 
+            .activity-feed {
+                order: 2;
+            }
+
             .fresh-grid,
             .opportunities-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -943,8 +990,10 @@
         </div>
     </nav>
 
+    <main>
+
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero clearfix">
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-content">
@@ -1327,6 +1376,8 @@
             </div>
         </div>
     </footer>
+
+    </main>
 
     <script>
         // Update member count
