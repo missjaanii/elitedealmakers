@@ -1,38 +1,32 @@
-.hero-content {
-                max-width: 100%;
-                padding: 0 8px;
-            }            /* Hero Grid */
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
+/* Touch states for mobile */
+        @media (hover: none) {
+            .button:hover {
+                background: var(--gold);
+                border-color: var(--gold);
             }
-
-            .hero-content {
-                order: 1;
+            
+            .button-outline:hover {
+                border-color: rgba(255, 255, 255, 0.3);
+                color: var(--white);
             }
-
-            .activity-feed {
-                order: 2;
-                margin-top: 0;
-            }            .pricing-card::before {
-                display: none; /* Disable animation on mobile for performance */
-            }<!DOCTYPE html>
+        }<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#000000">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>Elite Dealmakers Club - The Exclusive Business Transformation Society</title>
+    <title>Elite Dealmakers</title>
     
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000000'/><text x='50' y='65' font-family='Arial, sans-serif' font-size='48' font-weight='bold' text-anchor='middle' fill='%23FFD700'>ED</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' fill='%23000000'/><text x='90' y='115' font-family='Arial, sans-serif' font-size='86' font-weight='bold' text-anchor='middle' fill='%23FFD700'>ED</text></svg>">
-    <link rel="icon" sizes="192x192" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%23000000'/><text x='96' y='125' font-family='Arial, sans-serif' font-size='92' font-weight='bold' text-anchor='middle' fill='%23FFD700'>ED</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000000'/><text x='50' y='65' font-family='Georgia, serif' font-size='48' font-weight='300' text-anchor='middle' fill='%23FFD700'>ED</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' fill='%23000000'/><text x='90' y='115' font-family='Georgia, serif' font-size='86' font-weight='300' text-anchor='middle' fill='%23FFD700'>ED</text></svg>">
     
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;400;500&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -40,1438 +34,738 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Smooth scrolling */
+        :root {
+            --black: #000000;
+            --dark: #0a0a0a;
+            --charcoal: #1a1a1a;
+            --white: #ffffff;
+            --off-white: #f8f8f8;
+            --light-gray: rgba(255, 255, 255, 0.1);
+            --gray: #888888;
+            --gold: #d4af37;
+            --gold-light: #f4e4bc;
+            --safe-top: env(safe-area-inset-top);
+            --safe-bottom: env(safe-area-inset-bottom);
+        }
+
         html {
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
         }
 
-        :root {
-            --bg: #000000;
-            --surface: #0a0a0a;
-            --surface-light: #141414;
-            --text: #ffffff;
-            --text-muted: #8a8a8a;
-            --accent: #FFD700;
-            --accent-dark: #B8860B;
-            --gradient: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            --gradient-dark: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-            --success: #00ff00;
-            --danger: #ff0000;
-            --exclusive: #9400D3;
-        }
-
         body {
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-weight: 300;
+            background: var(--black);
+            color: var(--white);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-            position: relative;
-            padding-top: 0; /* Nav is fixed, so no padding needed */
+            letter-spacing: -0.01em;
         }
 
-        /* Prevent horizontal scroll on mobile */
-        html, body {
-            overflow-x: hidden;
-            max-width: 100%;
-            position: relative;
+        /* Typography */
+        .serif {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 300;
+            letter-spacing: -0.02em;
         }
 
-        main {
-            overflow-x: hidden;
-        }
-
-        /* Exclusive Background Pattern */
-        .bg-pattern {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.03;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255, 215, 0, 0.1) 35px, rgba(255, 215, 0, 0.1) 70px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255, 215, 0, 0.05) 35px, rgba(255, 215, 0, 0.05) 70px);
-            pointer-events: none;
-        }
-
-        /* Clearfix */
-        .clearfix::after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Premium Navigation */
-        nav {
+        /* Header */
+        .header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             background: rgba(0, 0, 0, 0.98);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 9999;
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
-            width: 100%;
-            transform: translateZ(0); /* Fix for iOS Safari */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 0.5px solid rgba(212, 175, 55, 0.3);
         }
 
-        .nav-container {
+        .header-inner {
+            padding: 16px 20px;
+            padding-top: calc(16px + var(--safe-top));
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
         }
 
         .logo {
+            font-size: 22px;
+            letter-spacing: -0.03em;
+            color: var(--gold);
+        }
+
+        .menu-button {
+            width: 24px;
+            height: 16px;
             display: flex;
-            align-items: center;
-            gap: 16px;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
         }
 
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--gradient);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--bg);
-        }
-
-        .logo-text {
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .logo-text span {
-            color: var(--accent);
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-        }
-
-        .member-count {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 20px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 100px;
-            font-size: 14px;
-        }
-
-        .member-count-number {
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        .join-btn {
-            background: var(--gradient);
-            color: var(--bg);
-            padding: 12px 32px;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 700;
+        .menu-line {
+            height: 0.5px;
+            background: var(--white);
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
-        .join-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        .menu-line:first-child {
+            width: 100%;
         }
 
-        /* Hero Section */
-        .hero {
+        .menu-line:last-child {
+            width: 60%;
+            align-self: flex-end;
+        }
+
+        /* Main Content */
+        .main {
+            padding-top: calc(70px + var(--safe-top));
             min-height: 100vh;
-            min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
-            display: flex;
-            align-items: center;
-            padding: 120px 0 80px;
-            position: relative;
         }
 
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
+        /* Hero */
+        .hero {
+            padding: 60px 20px 80px;
+            text-align: center;
+            background: var(--black);
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .exclusive-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(148, 0, 211, 0.2);
-            border: 1px solid var(--exclusive);
-            padding: 8px 20px;
-            border-radius: 100px;
-            font-size: 14px;
+        .hero-label {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
             margin-bottom: 24px;
-            color: var(--exclusive);
-            font-weight: 600;
+            font-weight: 400;
         }
 
         h1 {
-            font-size: clamp(48px, 6vw, 72px);
-            font-weight: 800;
+            font-size: 42px;
             line-height: 1.1;
-            margin-bottom: 24px;
-            letter-spacing: -2px;
+            margin-bottom: 20px;
+            font-weight: 300;
+            color: var(--white);
         }
 
         .gold-text {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--gold);
         }
 
-        .hero-description {
-            font-size: 20px;
-            color: var(--text-muted);
-            margin-bottom: 32px;
+        .hero-desc {
+            font-size: 16px;
             line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+            font-weight: 300;
         }
 
-        .hero-cta {
+        /* Stats */
+        .stats {
             display: flex;
-            align-items: center;
-            gap: 24px;
-            margin-bottom: 48px;
-        }
-
-        .primary-btn {
-            background: var(--gradient);
-            color: var(--bg);
-            padding: 16px 40px;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 18px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-        }
-
-        .primary-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
-        }
-
-        .secondary-btn {
-            color: var(--text);
-            padding: 16px 40px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 18px;
-            transition: all 0.3s ease;
-        }
-
-        .secondary-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .trust-indicators {
-            display: flex;
-            gap: 64px;
-        }
-
-        .trust-item {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .trust-value {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--accent);
-        }
-
-        .trust-label {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        /* Live Activity Feed */
-        .activity-feed {
-            background: var(--surface);
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            border-radius: 24px;
-            padding: 32px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .activity-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 24px;
-        }
-
-        .activity-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        .live-indicator {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            color: var(--success);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .live-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--success);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-        }
-
-        .activity-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .activity-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 16px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 12px;
-            animation: slideIn 0.5s ease-out;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .activity-avatar {
-            width: 40px;
-            height: 40px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            font-weight: 700;
-            color: var(--bg);
+            gap: 60px;
+            margin-bottom: 50px;
         }
 
-        .activity-details {
-            flex: 1;
-        }
-
-        .activity-name {
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-
-        .activity-action {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        .activity-time {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        /* Monthly Fresh Content Section */
-        .fresh-section {
-            padding: 100px 0;
-            background: var(--surface);
-            position: relative;
-        }
-
-        .fresh-header {
+        .stat {
             text-align: center;
-            margin-bottom: 64px;
         }
 
-        .fresh-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 0, 0, 0.1);
-            padding: 8px 20px;
-            border-radius: 100px;
-            font-size: 14px;
-            margin-bottom: 24px;
-            color: var(--danger);
-            font-weight: 600;
+        .stat-value {
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 4px;
+            color: var(--gold);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Button */
+        .button {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid var(--gold);
+        }
+
+        .button:hover {
+            background: var(--gold-light);
+            border-color: var(--gold-light);
+        }
+
+        .button:active {
+            transform: scale(0.98);
+        }
+
+        .button-outline {
+            background: transparent;
+            color: var(--white);
+            margin-top: 16px;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .button-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Section */
+        .section {
+            padding: 80px 20px;
+            background: var(--black);
+        }
+
+        .section-alt {
+            background: var(--dark);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+            font-weight: 400;
         }
 
         h2 {
-            font-size: clamp(40px, 5vw, 56px);
-            font-weight: 800;
-            margin-bottom: 16px;
-            letter-spacing: -1px;
-        }
-
-        .section-subtitle {
-            font-size: 20px;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .fresh-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
-        .fresh-card {
-            background: var(--surface-light);
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            border-radius: 20px;
-            padding: 32px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .fresh-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient);
-        }
-
-        .fresh-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: var(--accent);
-        }
-
-        .fresh-icon {
-            width: 64px;
-            height: 64px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            margin-bottom: 24px;
-        }
-
-        .fresh-date {
-            display: inline-block;
-            background: rgba(255, 0, 0, 0.1);
-            color: var(--danger);
-            padding: 4px 12px;
-            border-radius: 100px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        .fresh-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        .fresh-description {
-            color: var(--text-muted);
-            margin-bottom: 24px;
-            line-height: 1.6;
-        }
-
-        .fresh-meta {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 14px;
-        }
-
-        .fresh-author {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .fresh-value {
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        /* Exclusive Benefits Grid */
-        .benefits-section {
-            padding: 100px 0;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            margin-top: 64px;
-        }
-
-        .benefit-card {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 32px;
-            align-items: start;
-        }
-
-        .benefit-icon-wrapper {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            color: var(--bg);
-        }
-
-        .benefit-content h3 {
-            font-size: 28px;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-
-        .benefit-content p {
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-
-        .benefit-features {
-            list-style: none;
-        }
-
-        .benefit-features li {
-            padding: 8px 0;
-            padding-left: 28px;
-            position: relative;
-            color: var(--text-muted);
-        }
-
-        .benefit-features li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        /* Opportunities Section */
-        .opportunities-section {
-            padding: 100px 0;
-            background: var(--surface);
-        }
-
-        .opportunities-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 32px;
-            margin-top: 64px;
-        }
-
-        .opportunity-card {
-            background: var(--surface-light);
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            border-radius: 20px;
-            padding: 32px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .opportunity-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent);
-        }
-
-        .opportunity-amount {
             font-size: 36px;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 8px;
+            line-height: 1.2;
+            font-weight: 300;
+            margin-bottom: 12px;
+            color: var(--white);
         }
 
-        .opportunity-type {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 8px;
+        .section-desc {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 300;
         }
 
-        .opportunity-desc {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        /* Social Proof Section */
-        .proof-section {
-            padding: 100px 0;
-        }
-
-        .proof-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+        /* Content Cards */
+        .content-list {
+            display: flex;
+            flex-direction: column;
             gap: 40px;
-            margin-top: 64px;
         }
 
-        .proof-card {
-            background: var(--surface);
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            border-radius: 24px;
-            padding: 40px;
-            position: relative;
+        .content-item {
+            padding-bottom: 40px;
+            border-bottom: 0.5px solid var(--light-gray);
         }
 
-        .proof-card::before {
-            content: '"';
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 80px;
-            color: var(--accent);
-            opacity: 0.2;
-            font-family: Georgia, serif;
+        .content-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
         }
 
-        .proof-content {
-            font-size: 18px;
-            line-height: 1.8;
-            margin-bottom: 32px;
-            font-style: italic;
+        .content-meta {
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
         }
 
-        .proof-author {
+        .content-title {
+            font-size: 24px;
+            margin-bottom: 12px;
+            font-weight: 300;
+            color: var(--white);
+        }
+
+        .content-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 16px;
+        }
+
+        .content-value {
+            font-size: 13px;
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        /* Features */
+        .features {
             display: flex;
-            align-items: center;
-            gap: 16px;
+            flex-direction: column;
+            gap: 32px;
         }
 
-        .author-avatar {
-            width: 56px;
-            height: 56px;
-            background: var(--gradient);
-            border-radius: 50%;
+        .feature {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 20px;
-            color: var(--bg);
+            gap: 20px;
+            align-items: flex-start;
         }
 
-        .author-details {
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .feature-content {
             flex: 1;
         }
 
-        .author-name {
+        .feature-title {
             font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
+            font-weight: 400;
+            color: var(--white);
         }
 
-        .author-role {
+        .feature-desc {
             font-size: 14px;
-            color: var(--text-muted);
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
         }
 
-        .author-result {
-            text-align: right;
+        /* Member Section */
+        .member-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
         }
 
-        .result-amount {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--accent);
-        }
-
-        .result-period {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        /* Pricing Section */
-        .pricing-section {
-            padding: 120px 0;
-            background: var(--surface);
+        .member-card {
+            background: var(--dark);
+            border: 0.5px solid var(--light-gray);
+            padding: 24px 16px;
             text-align: center;
         }
 
-        .pricing-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .pricing-card {
-            background: var(--surface-light);
-            border: 2px solid var(--accent);
-            border-radius: 32px;
-            padding: 64px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pricing-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .price-original {
+        .member-value {
             font-size: 24px;
-            color: var(--text-muted);
+            color: var(--gold);
+            margin-bottom: 4px;
+            font-weight: 300;
+        }
+
+        .member-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 400;
+        }
+
+        /* Testimonial */
+        .testimonial {
+            padding: 40px 0;
+            border-top: 0.5px solid var(--light-gray);
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--white);
+        }
+
+        .testimonial-author {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .author-info {
+            text-align: left;
+        }
+
+        .author-name {
+            font-size: 14px;
+            margin-bottom: 4px;
+            font-weight: 400;
+        }
+
+        .author-role {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 300;
+        }
+
+        .author-revenue {
+            text-align: right;
+        }
+
+        .revenue-amount {
+            font-size: 20px;
+            color: var(--gold);
+            font-weight: 300;
+        }
+
+        .revenue-period {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Pricing */
+        .pricing {
+            background: var(--dark);
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 0.5px solid var(--light-gray);
+        }
+
+        .price-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
             text-decoration: line-through;
             margin-bottom: 8px;
         }
 
-        .price-current {
-            font-size: 72px;
-            font-weight: 800;
-            color: var(--accent);
-            line-height: 1;
+        .price {
+            font-size: 64px;
+            font-weight: 300;
             margin-bottom: 8px;
+            line-height: 1;
+            color: var(--gold);
         }
 
         .price-period {
-            font-size: 20px;
-            color: var(--text-muted);
-            margin-bottom: 32px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 40px;
         }
 
         .price-features {
-            list-style: none;
-            margin-bottom: 48px;
             text-align: left;
-            display: inline-block;
+            max-width: 320px;
+            margin: 0 auto 40px;
+            list-style: none;
         }
 
         .price-features li {
             padding: 12px 0;
-            padding-left: 32px;
-            position: relative;
-            font-size: 16px;
-        }
-
-        .price-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 20px;
-        }
-
-        .pricing-cta {
-            position: relative;
-            z-index: 1;
-        }
-
-        .bonus-tag {
-            display: inline-block;
-            background: rgba(255, 0, 0, 0.1);
-            color: var(--danger);
-            padding: 8px 20px;
-            border-radius: 100px;
+            border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
             font-size: 14px;
-            font-weight: 600;
-            margin-top: 24px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .price-features li:last-child {
+            border-bottom: none;
         }
 
         /* Footer */
-        footer {
-            padding: 60px 0;
-            border-top: 1px solid rgba(255, 215, 0, 0.1);
+        .footer {
+            padding: 60px 20px 40px;
             text-align: center;
-        }
-
-        .footer-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 32px;
+            background: var(--black);
+            color: var(--white);
+            border-top: 0.5px solid var(--light-gray);
         }
 
         .footer-links {
             display: flex;
-            gap: 32px;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 32px;
         }
 
         .footer-links a {
-            color: var(--text-muted);
+            color: rgba(255, 255, 255, 0.6);
             text-decoration: none;
+            font-size: 13px;
             transition: color 0.3s ease;
         }
 
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 16px;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-icon:hover {
-            background: var(--gradient);
-            color: var(--bg);
-            transform: translateY(-4px);
+        .footer-links a:active {
+            color: var(--gold);
         }
 
         .copyright {
-            color: var(--text-muted);
-            font-size: 14px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.05em;
         }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-
-            .activity-feed {
-                order: 2;
-            }
-
-            .fresh-grid,
-            .opportunities-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--black);
+            padding: 16px 20px;
+            padding-bottom: calc(16px + var(--safe-bottom));
+            border-top: 0.5px solid var(--light-gray);
+            z-index: 90;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 20px;
-            }
+        .sticky-cta.visible {
+            transform: translateY(0);
+        }
 
-            h1 {
-                font-size: 40px;
-            }
+        .sticky-cta .button {
+            width: 100%;
+            text-align: center;
+        }
 
-            h2 {
-                font-size: 32px;
-            }
+        /* Minimal animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
 
-            .hero-cta {
-                flex-direction: column;
-                align-items: stretch;
-            }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-            .trust-indicators {
-                gap: 32px;
+        /* Touch states for mobile */
+        @media (hover: none) {
+            .button:hover {
+                background: var(--gold);
+                border-color: var(--gold);
             }
-
-            .fresh-grid,
-            .opportunities-grid,
-            .proof-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .pricing-card {
-                padding: 40px 24px;
-            }
-
-            .price-current {
-                font-size: 48px;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 32px;
+            
+            .button-outline:hover {
+                border-color: rgba(255, 255, 255, 0.3);
+                color: var(--white);
             }
         }
     </style>
 </head>
 <body>
-    <div class="bg-pattern"></div>
-
-    <!-- Premium Navigation -->
-    <nav>
-        <div class="container">
-            <div class="nav-container">
-                <div class="logo">
-                    <div class="logo-icon">E</div>
-                    <div class="logo-text">Elite <span>Dealmakers</span> Club</div>
-                </div>
-                <div class="nav-right">
-                    <div class="member-count">
-                        <span>🔥</span>
-                        <span>Only <span class="member-count-number">27</span> spots left</span>
-                    </div>
-                    <a href="#join" class="join-btn">
-                        Join The Club
-                        <span>→</span>
-                    </a>
-                </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo serif">Elite Dealmakers</div>
+            <div class="menu-button">
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <main>
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero -->
+        <section class="hero">
+            <p class="hero-label">Exclusive Membership</p>
+            <h1 class="serif">Earn <span class="gold-text">$10,000+</span><br>Per Month</h1>
+            <p class="hero-desc">Join successful entrepreneurs building<br>substantial businesses together.</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value serif">$2.8M</div>
+                    <div class="stat-label">Monthly Volume</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value serif">87%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+            </div>
 
-    <!-- Hero Section -->
-    <section class="hero clearfix">
-        <div class="container">
-            <div class="hero-grid">
-                <div class="hero-content">
-                    <div class="exclusive-badge">
-                        <span>🔒</span>
-                        <span>EXCLUSIVE MEMBERSHIP SOCIETY</span>
-                    </div>
-                    <h1>Get Paid <span class="gold-text">$10,000+</span> Per Month While Learning From 7-Figure Entrepreneurs</h1>
-                    <p class="hero-description">Access monthly private courses, high-paying opportunities, proven scripts, and an elite network of successful entrepreneurs crushing it in 2025.</p>
-                    
-                    <div class="hero-cta">
-                        <a href="#join" class="primary-btn">Claim Your Spot Now</a>
-                        <a href="#benefits" class="secondary-btn">See What's Inside</a>
-                    </div>
+            <a href="#membership" class="button">Apply for Membership</a>
+            <br>
+            <a href="#features" class="button button-outline">Learn More</a>
+        </section>
 
-                    <div class="trust-indicators">
-                        <div class="trust-item">
-                            <div class="trust-value">$2.8M+</div>
-                            <div class="trust-label">Generated This Month</div>
-                        </div>
-                        <div class="trust-item">
-                            <div class="trust-value">87%</div>
-                            <div class="trust-label">Hit 6-Figures</div>
-                        </div>
+        <!-- Monthly Content -->
+        <section class="section">
+            <div class="section-header">
+                <p class="section-label">This Month</p>
+                <h2 class="serif">New Releases</h2>
+                <p class="section-desc">Exclusive content added monthly</p>
+            </div>
+
+            <div class="content-list">
+                <div class="content-item fade-in">
+                    <p class="content-meta">Advanced Strategy</p>
+                    <h3 class="content-title serif">AI Agency Blueprint</h3>
+                    <p class="content-desc">Complete system for scaling AI service businesses from zero to $75,000 monthly revenue in 90 days.</p>
+                    <p class="content-value">$2,997 value</p>
+                </div>
+
+                <div class="content-item fade-in">
+                    <p class="content-meta">Revenue Stream</p>
+                    <h3 class="content-title serif">Platform Monetization</h3>
+                    <p class="content-desc">Advanced methods for generating $500-2,000 daily through strategic platform partnerships.</p>
+                    <p class="content-value">$1,497 value</p>
+                </div>
+
+                <div class="content-item fade-in">
+                    <p class="content-meta">Case Study</p>
+                    <h3 class="content-title serif">Six-Figure Launch</h3>
+                    <p class="content-desc">Detailed breakdown of the launch sequence that generated $127,000 in seven days.</p>
+                    <p class="content-value">$3,997 value</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="section section-alt" id="features">
+            <div class="section-header">
+                <p class="section-label">Membership Benefits</p>
+                <h2 class="serif">What's Included</h2>
+            </div>
+
+            <div class="features">
+                <div class="feature fade-in">
+                    <div class="feature-icon"></div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Monthly Masterclasses</h3>
+                        <p class="feature-desc">Three to five new courses monthly featuring advanced strategies from seven-figure entrepreneurs.</p>
                     </div>
                 </div>
 
-                <div class="activity-feed">
-                    <div class="activity-header">
-                        <div class="activity-title">
-                            <span>🏆</span>
-                            <span>Live Member Activity</span>
-                        </div>
-                        <div class="live-indicator">
-                            <div class="live-dot"></div>
-                            <span>Live</span>
-                        </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon"></div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Private Network</h3>
+                        <p class="feature-desc">Connect with successful entrepreneurs. Weekly calls, deal flow, and direct access to expertise.</p>
                     </div>
-                    <div class="activity-list">
-                        <div class="activity-item">
-                            <div class="activity-avatar">JK</div>
-                            <div class="activity-details">
-                                <div class="activity-name">John K.</div>
-                                <div class="activity-action">Just closed a $15,000 deal</div>
-                            </div>
-                            <div class="activity-time">2 min ago</div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-avatar">SR</div>
-                            <div class="activity-details">
-                                <div class="activity-name">Sarah R.</div>
-                                <div class="activity-action">Earned $500 from affiliate program</div>
-                            </div>
-                            <div class="activity-time">5 min ago</div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-avatar">ML</div>
-                            <div class="activity-details">
-                                <div class="activity-name">Mike L.</div>
-                                <div class="activity-action">Hit $100K this month!</div>
-                            </div>
-                            <div class="activity-time">12 min ago</div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-avatar">EP</div>
-                            <div class="activity-details">
-                                <div class="activity-name">Elena P.</div>
-                                <div class="activity-action">Got featured in Forbes</div>
-                            </div>
-                            <div class="activity-time">18 min ago</div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-avatar">DL</div>
-                            <div class="activity-details">
-                                <div class="activity-name">David L.</div>
-                                <div class="activity-action">Launched $50K program</div>
-                            </div>
-                            <div class="activity-time">23 min ago</div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-avatar">NP</div>
-                            <div class="activity-details">
-                                <div class="activity-name">Nina P.</div>
-                                <div class="activity-action">Booked 12 calls this week</div>
-                            </div>
-                            <div class="activity-time">31 min ago</div>
-                        </div>
+                </div>
+
+                <div class="feature fade-in">
+                    <div class="feature-icon"></div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Proven Resources</h3>
+                        <p class="feature-desc">Complete library of scripts, templates, and systems. Everything needed to scale efficiently.</p>
+                    </div>
+                </div>
+
+                <div class="feature fade-in">
+                    <div class="feature-icon"></div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Revenue Opportunities</h3>
+                        <p class="feature-desc">Access to high-paying positions, affiliate programs, and partnership opportunities.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Fresh Monthly Content -->
-    <section class="fresh-section">
-        <div class="container">
-            <div class="fresh-header">
-                <div class="fresh-badge">
-                    <span>🆕</span>
-                    <span>FRESH MONTHLY CONTENT</span>
-                </div>
-                <h2>This Month's <span class="gold-text">Exclusive Releases</span></h2>
-                <p class="section-subtitle">Brand new courses, strategies, and opportunities updated monthly</p>
+        <!-- Members -->
+        <section class="section">
+            <div class="section-header">
+                <p class="section-label">Revenue Streams</p>
+                <h2 class="serif">Multiple Income Sources</h2>
             </div>
 
-            <div class="fresh-grid">
-                <div class="fresh-card">
-                    <div class="fresh-icon">🎯</div>
-                    <div class="fresh-date">NEW THIS MONTH</div>
-                    <h3 class="fresh-title">AI Agency Blueprint 3.0</h3>
-                    <p class="fresh-description">The exact system one member used to scale from $0 to $75K/month in 90 days selling AI services.</p>
-                    <div class="fresh-meta">
-                        <div class="fresh-author">
-                            <span>Premium Course</span>
-                        </div>
-                        <div class="fresh-value">Value: $2,997</div>
-                    </div>
+            <div class="member-grid">
+                <div class="member-card fade-in">
+                    <div class="member-value serif">$1-10K</div>
+                    <div class="member-label">Remote Positions</div>
                 </div>
-
-                <div class="fresh-card">
-                    <div class="fresh-icon">🎥</div>
-                    <div class="fresh-date">NEW THIS MONTH</div>
-                    <h3 class="fresh-title">YouTube Money Method</h3>
-                    <p class="fresh-description">Underground method to make $500-$2,000/day with YouTube Flywheel Formula (before it gets saturated).</p>
-                    <div class="fresh-meta">
-                        <div class="fresh-author">
-                            <span>Exclusive Strategy</span>
-                        </div>
-                        <div class="fresh-value">Value: $1,497</div>
-                    </div>
+                <div class="member-card fade-in">
+                    <div class="member-value serif">50%</div>
+                    <div class="member-label">Commissions</div>
                 </div>
+                <div class="member-card fade-in">
+                    <div class="member-value serif">$15K+</div>
+                    <div class="member-label">Partnerships</div>
+                </div>
+                <div class="member-card fade-in">
+                    <div class="member-value serif">$5K+</div>
+                    <div class="member-label">Monthly Rewards</div>
+                </div>
+            </div>
+        </section>
 
-                <div class="fresh-card">
-                    <div class="fresh-icon">💰</div>
-                    <div class="fresh-date">NEW THIS MONTH</div>
-                    <h3 class="fresh-title">$100K Launch Formula</h3>
-                    <p class="fresh-description">Step-by-step launch sequence that generated $127K in 7 days for a brand new offer.</p>
-                    <div class="fresh-meta">
-                        <div class="fresh-author">
-                            <span>Advanced Training</span>
-                        </div>
-                        <div class="fresh-value">Value: $3,997</div>
+        <!-- Testimonials -->
+        <section class="section section-alt">
+            <div class="section-header">
+                <p class="section-label">Success Stories</p>
+                <h2 class="serif">Member Results</h2>
+            </div>
+
+            <div class="testimonial fade-in">
+                <p class="testimonial-text">"The AI Agency course alone generated $45,000 in the first month. No other program comes close to this value."</p>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <p class="author-name">Marcus Chen</p>
+                        <p class="author-role">AI Agency Owner</p>
+                    </div>
+                    <div class="author-revenue">
+                        <p class="revenue-amount serif">$75K</p>
+                        <p class="revenue-period">Monthly</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Exclusive Benefits -->
-    <section class="benefits-section" id="benefits">
-        <div class="container">
-            <div class="fresh-header">
-                <h2>Everything You Get As An <span class="gold-text">Elite Member</span></h2>
-                <p class="section-subtitle">The complete ecosystem for building a 7-figure business</p>
-            </div>
-
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon-wrapper">🎓</div>
-                    <div class="benefit-content">
-                        <h3>Monthly Exclusive Courses</h3>
-                        <p>Fresh strategies and "money glitches" before they go mainstream. Topics you won't find on YouTube or in $10K programs.</p>
-                        <ul class="benefit-features">
-                            <li>3-5 new courses every month</li>
-                            <li>Underground strategies only</li>
-                            <li>Early access to trends</li>
-                            <li>Lifetime access to vault</li>
-                        </ul>
+            <div class="testimonial fade-in">
+                <p class="testimonial-text">"Started as a complete beginner. The resources and community helped me secure my first $10,000 client in three weeks."</p>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <p class="author-name">Sarah Rodriguez</p>
+                        <p class="author-role">Business Consultant</p>
                     </div>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon-wrapper">🤝</div>
-                    <div class="benefit-content">
-                        <h3>Elite Mastermind Access</h3>
-                        <p>Network with successful entrepreneurs. Find partners, get advice, and do deals together.</p>
-                        <ul class="benefit-features">
-                            <li>Private Skool community</li>
-                            <li>Weekly hot seat calls</li>
-                            <li>Deal flow opportunities</li>
-                            <li>Accountability partners</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon-wrapper">📈</div>
-                    <div class="benefit-content">
-                        <h3>Growth Exchange Network</h3>
-                        <p>Exchange engagement, testimonials, and growth with other members. Grow your social proof fast.</p>
-                        <ul class="benefit-features">
-                            <li>Social media engagement pods</li>
-                            <li>Testimonial exchanges</li>
-                            <li>Cross-promotion opportunities</li>
-                            <li>Viral content strategies</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon-wrapper">💎</div>
-                    <div class="benefit-content">
-                        <h3>Done-For-You Resources</h3>
-                        <p>Everything you need to close deals and scale your business, ready to copy and deploy.</p>
-                        <ul class="benefit-features">
-                            <li>500+ proven sales scripts</li>
-                            <li>DM templates that convert</li>
-                            <li>Email sequences</li>
-                            <li>90-day content calendars</li>
-                        </ul>
+                    <div class="author-revenue">
+                        <p class="revenue-amount serif">$42K</p>
+                        <p class="revenue-period">Monthly</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Money Making Opportunities -->
-    <section class="opportunities-section">
-        <div class="container">
-            <div class="fresh-header">
-                <h2>Multiple Ways to <span class="gold-text">Make Money</span></h2>
-                <p class="section-subtitle">Most members make back their investment in the first week</p>
-            </div>
+        <!-- Pricing -->
+        <section class="pricing" id="membership">
+            <p class="price-label">Regular $297/month</p>
+            <h2 class="price serif">$99</h2>
+            <p class="price-period">Monthly membership</p>
 
-            <div class="opportunities-grid">
-                <div class="opportunity-card">
-                    <div class="opportunity-amount">$1K-$10K</div>
-                    <div class="opportunity-type">Remote Jobs</div>
-                    <div class="opportunity-desc">Exclusive high-paying remote positions</div>
-                </div>
+            <ul class="price-features">
+                <li>3-5 exclusive courses monthly</li>
+                <li>Private mastermind access</li>
+                <li>Complete resource library</li>
+                <li>Weekly coaching calls</li>
+                <li>Revenue opportunities</li>
+                <li>50% affiliate commissions</li>
+            </ul>
 
-                <div class="opportunity-card">
-                    <div class="opportunity-amount">50%</div>
-                    <div class="opportunity-type">Affiliate Commission</div>
-                    <div class="opportunity-desc">Earn $50 per member you refer</div>
-                </div>
-
-                <div class="opportunity-card">
-                    <div class="opportunity-amount">$100-$15K</div>
-                    <div class="opportunity-type">Brand Deals</div>
-                    <div class="opportunity-desc">Sponsorship opportunities</div>
-                </div>
-
-                <div class="opportunity-card">
-                    <div class="opportunity-amount">$5K+</div>
-                    <div class="opportunity-type">Monthly Giveaways</div>
-                    <div class="opportunity-desc">Cash, tools, and vacations</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Social Proof -->
-    <section class="proof-section">
-        <div class="container">
-            <div class="fresh-header">
-                <h2>Members Making <span class="gold-text">Life-Changing Money</span></h2>
-                <p class="section-subtitle">Real results from real entrepreneurs just like you</p>
-            </div>
-
-            <div class="proof-grid">
-                <div class="proof-card">
-                    <p class="proof-content">"The AI Agency course alone made me $45,000 in the first month. I've tried $10K masterminds that didn't come close to this value."</p>
-                    <div class="proof-author">
-                        <div class="author-avatar">MC</div>
-                        <div class="author-details">
-                            <div class="author-name">Marcus Chen</div>
-                            <div class="author-role">AI Agency Owner</div>
-                        </div>
-                        <div class="author-result">
-                            <div class="result-amount">$75K</div>
-                            <div class="result-period">per month</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="proof-card">
-                    <p class="proof-content">"Joined as a complete beginner. The scripts and community support helped me land my first $10K client in 3 weeks."</p>
-                    <div class="proof-author">
-                        <div class="author-avatar">SR</div>
-                        <div class="author-details">
-                            <div class="author-name">Sarah Rodriguez</div>
-                            <div class="author-role">Business Coach</div>
-                        </div>
-                        <div class="author-result">
-                            <div class="result-amount">$42K</div>
-                            <div class="result-period">per month</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="proof-card">
-                    <p class="proof-content">"The affiliate program pays my membership 10x over. I've made $8,400 this month just from referrals while building my main business."</p>
-                    <div class="proof-author">
-                        <div class="author-avatar">JW</div>
-                        <div class="author-details">
-                            <div class="author-name">Jake Williams</div>
-                            <div class="author-role">Content Creator</div>
-                        </div>
-                        <div class="author-result">
-                            <div class="result-amount">$28K</div>
-                            <div class="result-period">per month</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="proof-card">
-                    <p class="proof-content">"Got a $7,500/month remote job through the job board, plus I'm doing $20K/month with my consulting business now."</p>
-                    <div class="proof-author">
-                        <div class="author-avatar">EP</div>
-                        <div class="author-details">
-                            <div class="author-name">Elena Park</div>
-                            <div class="author-role">Marketing Consultant</div>
-                        </div>
-                        <div class="author-result">
-                            <div class="result-amount">$27.5K</div>
-                            <div class="result-period">per month</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing -->
-    <section class="pricing-section" id="join">
-        <div class="container">
-            <div class="pricing-container">
-                <div class="fresh-header">
-                    <h2>Join The <span class="gold-text">Elite Dealmakers Club</span></h2>
-                    <p class="section-subtitle">Get instant access to everything for less than a coffee per day</p>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="price-original">Regular Price: $297/month</div>
-                    <div class="price-current">$99</div>
-                    <div class="price-period">per month • cancel anytime</div>
-
-                    <ul class="price-features">
-                        <li>3-5 new exclusive courses monthly ($8,000+ value)</li>
-                        <li>Elite mastermind community access ($2,000 value)</li>
-                        <li>500+ proven scripts & templates ($5,000 value)</li>
-                        <li>Weekly live coaching calls ($3,000 value)</li>
-                        <li>High-paying job opportunities ($1K-$10K/month)</li>
-                        <li>50% affiliate commissions (unlimited earning potential)</li>
-                        <li>Monthly cash giveaways & prizes ($5,000+ value)</li>
-                        <li>Brand deal opportunities ($100-$15K per deal)</li>
-                        <li>Growth exchange network (priceless)</li>
-                        <li>Lifetime updates & new features</li>
-                    </ul>
-
-                    <div class="pricing-cta">
-                        <a href="#" class="primary-btn">Secure Your Membership Now</a>
-                        <div class="bonus-tag">🎁 BONUS: Get $200 credit for premium courses</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-links">
-                    <a href="#">Terms</a>
-                    <a href="#">Privacy</a>
-                    <a href="#">Support</a>
-                    <a href="#">Affiliate Program</a>
-                </div>
-                <div class="footer-social">
-                    <a href="#" class="social-icon">📘</a>
-                    <a href="#" class="social-icon">🐦</a>
-                    <a href="#" class="social-icon">📸</a>
-                    <a href="#" class="social-icon">🎥</a>
-                </div>
-            </div>
-            <div class="copyright">
-                © 2025 Elite Dealmakers Club. All rights reserved.
-            </div>
-        </div>
-    </footer>
-
+            <a href="#" class="button">Start Your Membership</a>
+        </section>
     </main>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">Terms</a>
+            <a href="#">Privacy</a>
+            <a href="#">Contact</a>
+        </div>
+        <p class="copyright">© 2025 Elite Dealmakers. All rights reserved.</p>
+    </footer>
+
+    <!-- Sticky CTA -->
+    <div class="sticky-cta" id="stickyCta">
+        <a href="#membership" class="button">Apply Now - Limited Spots</a>
+    </div>
+
     <script>
-        // Update member count
-        const memberCount = document.querySelector('.member-count-number');
-        let spots = 27;
-        
-        setInterval(() => {
-            if (spots > 3 && Math.random() > 0.7) {
-                spots--;
-                memberCount.textContent = spots;
-            }
-        }, 30000);
-
-        // Activity feed updates (less frequent on mobile)
-        const activities = [
-            { name: 'Alex T.', action: 'Just hit $50K this month!', avatar: 'AT' },
-            { name: 'Lisa M.', action: 'Closed 3 deals from DM scripts', avatar: 'LM' },
-            { name: 'Ryan K.', action: 'Got accepted to speak at conference', avatar: 'RK' },
-            { name: 'Sophie L.', action: 'Earned $1,200 from affiliates today', avatar: 'SL' },
-            { name: 'Marcus B.', action: 'Launched new $5K offer', avatar: 'MB' },
-            { name: 'Emma W.', action: 'Grew Instagram by 10K this week', avatar: 'EW' }
-        ];
-
-        const activityList = document.querySelector('.activity-list');
-        let activityIndex = 0;
-        const isMobile = window.innerWidth <= 768;
-        const updateInterval = isMobile ? 30000 : 15000; // 30s on mobile, 15s on desktop
-
-        setInterval(() => {
-            const newActivity = activities[activityIndex % activities.length];
-            const activityHtml = `
-                <div class="activity-item">
-                    <div class="activity-avatar">${newActivity.avatar}</div>
-                    <div class="activity-details">
-                        <div class="activity-name">${newActivity.name}</div>
-                        <div class="activity-action">${newActivity.action}</div>
-                    </div>
-                    <div class="activity-time">Just now</div>
-                </div>
-            `;
-            
-            activityList.insertAdjacentHTML('afterbegin', activityHtml);
-            
-            // Update times
-            const items = activityList.querySelectorAll('.activity-item');
-            items.forEach((item, index) => {
-                if (index > 0) {
-                    const timeEl = item.querySelector('.activity-time');
-                    const currentTime = parseInt(timeEl.textContent) || 0;
-                    timeEl.textContent = `${currentTime + 5} min ago`;
-                }
-            });
-            
-            // Remove old items (keep fewer on mobile)
-            const maxItems = isMobile ? 5 : 6;
-            if (items.length > maxItems) {
-                items[items.length - 1].remove();
-            }
-            
-            activityIndex++;
-        }, updateInterval);
-
-        // Smooth scroll with mobile support
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const navHeight = document.querySelector('nav').offsetHeight;
-                    const targetPosition = target.offsetTop - navHeight - 10;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Prevent horizontal scroll on mobile
-        function preventHorizontalScroll() {
-            const maxWidth = window.innerWidth;
-            document.querySelectorAll('*').forEach(el => {
-                if (el.offsetWidth > maxWidth) {
-                    console.warn('Element causing horizontal scroll:', el);
-                    el.style.maxWidth = '100%';
-                }
-            });
-        }
-
-        // Check on load and resize
-        window.addEventListener('load', preventHorizontalScroll);
-        window.addEventListener('resize', preventHorizontalScroll);
-
-        // Intersection Observer for animations
+        // Fade in animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1480,19 +774,45 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
 
-        // Observe all cards
-        const cards = document.querySelectorAll('.fresh-card, .benefit-card, .opportunity-card, .proof-card');
-        cards.forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Sticky CTA
+        const stickyCta = document.getElementById('stickyCta');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 500 && currentScroll > lastScroll) {
+                stickyCta.classList.add('visible');
+            } else if (currentScroll < lastScroll) {
+                stickyCta.classList.remove('visible');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     </script>
 </body>
