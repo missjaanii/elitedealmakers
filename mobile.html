@@ -243,12 +243,24 @@
         .section {
             padding: 60px 20px;
         }
+        
+        /* Who section more compact */
+        #who {
+            padding: 40px 20px;
+            position: relative;
+            background: linear-gradient(180deg, var(--black) 0%, var(--dark-surface) 50%, var(--black) 100%);
+        }
 
         .section-title {
             font-size: 28px;
             font-weight: 800;
             margin-bottom: 15px;
             letter-spacing: -0.5px;
+        }
+        
+        #who .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
         }
 
         .section-subtitle {
@@ -258,59 +270,93 @@
             line-height: 1.5;
         }
 
-        /* Who It's For Cards */
-        .target-cards {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 20px;
-            margin: 0 -20px;
-            padding: 0 20px 20px;
+        /* Who It's For Cards - Redesigned */
+        .target-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
         }
 
         .target-card {
             background: var(--dark-surface);
             border: 1px solid rgba(255, 215, 0, 0.2);
             border-radius: 20px;
-            padding: 30px;
-            min-width: 280px;
-            flex-shrink: 0;
+            padding: 25px 20px;
+            text-align: center;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+            cursor: pointer;
         }
+        
+        .target-card:nth-child(1) { animation-delay: 0.1s; }
+        .target-card:nth-child(2) { animation-delay: 0.2s; }
+        .target-card:nth-child(3) { animation-delay: 0.3s; }
+        .target-card:nth-child(4) { animation-delay: 0.4s; }
 
         .target-card:active {
             transform: scale(0.98);
+            border-color: var(--gold);
+        }
+
+        .target-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .target-card:active::before {
+            transform: scaleX(1);
         }
 
         .target-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
+            font-size: 36px;
+            margin-bottom: 12px;
             display: block;
+            filter: grayscale(0);
         }
 
         .target-title {
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--gold);
-        }
-
-        .target-description {
-            font-size: 14px;
-            color: var(--gray-light);
-            line-height: 1.5;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
+            color: var(--white);
+            line-height: 1.2;
         }
 
         .revenue-range {
             display: inline-block;
             background: rgba(255, 215, 0, 0.1);
-            padding: 4px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 11px;
             color: var(--gold);
-            font-weight: 500;
+            font-weight: 600;
+        }
+
+        /* Who section specific */
+        .who-intro {
+            background: rgba(255, 215, 0, 0.05);
+            border-left: 3px solid var(--gold);
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .who-intro p {
+            font-size: 14px;
+            color: var(--gray-light);
+            margin: 0;
+            line-height: 1.5;
         }
 
         /* Service Tiers */
@@ -644,27 +690,7 @@
             transform: scale(0.95);
         }
 
-        /* Scroll Indicator */
-        .scroll-indicator {
-            display: flex;
-            justify-content: center;
-            gap: 6px;
-            margin-top: 20px;
-        }
-
-        .scroll-dot {
-            width: 8px;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .scroll-dot.active {
-            background: var(--gold);
-            width: 24px;
-            border-radius: 4px;
-        }
+        /* Remove scroll indicator styles */
 
         /* Touch feedback */
         button, a, .tier-tab, .faq-question {
@@ -742,7 +768,7 @@
         <section id="home" class="hero">
             <div class="hero-badge">AI Business Transformation</div>
             <h1>Build A <span class="gold-text">7-Figure Business</span> That Runs Without You</h1>
-            <p class="hero-description">Stop trading time for money. We help coaches & consultants build AI-powered systems that scale infinitely.</p>
+            <p class="hero-description">Stop trading time for money. We help coaches, consultants, and creators build AI-powered systems that scale infinitely.</p>
             
             <a href="#contact" class="cta-button">See If You Qualify</a>
             <a href="#services" class="secondary-button">Explore Services</a>
@@ -765,45 +791,41 @@
 
         <!-- Who It's For -->
         <section id="who" class="section">
-            <h2 class="section-title">Built For <span class="gold-text">Ambitious Entrepreneurs</span></h2>
-            <p class="section-subtitle">We only work with established businesses ready to scale</p>
+            <h2 class="section-title">Perfect For <span class="gold-text">4 Types</span> of Entrepreneurs</h2>
             
-            <div class="target-cards">
+            <div class="who-intro">
+                <p><strong>Minimum requirement:</strong> $5K/month revenue with a proven offer ready to scale with AI.</p>
+            </div>
+            
+            <div class="target-grid">
                 <div class="target-card">
                     <span class="target-icon">🎯</span>
-                    <h3 class="target-title">Coaches & Consultants</h3>
-                    <p class="target-description">Life coaches, business consultants, and experts tired of trading hours for dollars.</p>
-                    <span class="revenue-range">$10K-$100K/month</span>
+                    <h3 class="target-title">Coaches &<br>Consultants</h3>
+                    <span class="revenue-range">$10K-$100K/mo</span>
                 </div>
                 
                 <div class="target-card">
                     <span class="target-icon">🚀</span>
-                    <h3 class="target-title">Service Providers</h3>
-                    <p class="target-description">Agencies and service businesses wanting to automate and scale without hiring.</p>
+                    <h3 class="target-title">Service<br>Providers</h3>
                     <span class="revenue-range">$50K-$500K ARR</span>
                 </div>
                 
                 <div class="target-card">
                     <span class="target-icon">💎</span>
-                    <h3 class="target-title">High-Ticket Closers</h3>
-                    <p class="target-description">Sales professionals ready to build their own empire instead of making others rich.</p>
-                    <span class="revenue-range">$5K-$50K/month</span>
+                    <h3 class="target-title">High-Ticket<br>Closers</h3>
+                    <span class="revenue-range">$5K-$50K/mo</span>
                 </div>
                 
                 <div class="target-card">
                     <span class="target-icon">📚</span>
-                    <h3 class="target-title">Course Creators</h3>
-                    <p class="target-description">Digital product creators and infopreneurs with proven offers ready to 10x revenue.</p>
-                    <span class="revenue-range">$20K+ monthly</span>
+                    <h3 class="target-title">Course<br>Creators</h3>
+                    <span class="revenue-range">$20K+/mo</span>
                 </div>
             </div>
             
-            <div class="scroll-indicator">
-                <span class="scroll-dot active"></span>
-                <span class="scroll-dot"></span>
-                <span class="scroll-dot"></span>
-                <span class="scroll-dot"></span>
-            </div>
+            <p style="text-align: center; margin-top: 20px; font-size: 12px; color: var(--gray);">
+                <em>Tap any card to see our services →</em>
+            </p>
         </section>
 
         <!-- Services -->
@@ -1132,20 +1154,13 @@
             });
         });
 
-        // Horizontal Scroll Indicators
-        const targetCards = document.querySelector('.target-cards');
-        const scrollDots = document.querySelectorAll('.scroll-indicator .scroll-dot');
-        
-        if (targetCards && scrollDots.length > 0) {
-            targetCards.addEventListener('scroll', () => {
-                const scrollPercentage = targetCards.scrollLeft / (targetCards.scrollWidth - targetCards.clientWidth);
-                const activeIndex = Math.round(scrollPercentage * (scrollDots.length - 1));
-                
-                scrollDots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === activeIndex);
-                });
+        // Target cards interaction
+        document.querySelectorAll('.target-card').forEach(card => {
+            card.addEventListener('click', () => {
+                // Navigate to services section
+                document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
             });
-        }
+        });
 
         // Touch feedback for buttons
         document.querySelectorAll('.cta-button, .secondary-button, .tier-tab').forEach(button => {
